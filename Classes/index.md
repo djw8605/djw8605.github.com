@@ -2,6 +2,7 @@
 layout: page
 title: "Classes Index"
 description: ""
+group: navigation
 ---
 {% include JB/setup %}
 
