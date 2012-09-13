@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "CS 856 - Parallel Programming"
+title: "CS 856"
 description: ""
 tagline: "Parallel Programming"
 group: class
