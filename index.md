@@ -5,7 +5,9 @@ tagline: Derek's Github
 ---
 {% include JB/setup %}
 
-## The 
+## This site is Derek's site for various things.
+
+I am keeping some class work here.  View the [Class Index]({{ BASE_PATH }}/Classes.html)
 
 Read [Jekyll Quick Start](http://jekyllbootstrap.com/usage/jekyll-quick-start.html)
 
