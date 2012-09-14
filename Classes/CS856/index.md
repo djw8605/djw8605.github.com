@@ -8,6 +8,8 @@ group: class
 ---
 {% include JB/setup %}
 
+
+## Notes
 <ul>
 {% assign pages_list = site.pages %}
 {% assign group = 'CS856' %}
@@ -15,4 +17,5 @@ group: class
 </ul>
 
 
+## Assignments
 
