@@ -11,7 +11,7 @@ group: class
 
 ## Notes
 <ul>
-{% assign pages_list = site.pages %}
+{% assign pages_list = notes %}
 {% assign group = 'CS856' %}
 {% include JB/pages_list %}
 </ul>
