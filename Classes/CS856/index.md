@@ -9,7 +9,6 @@ group: class
 {% include JB/setup %}
 
 <ul>
-{% assign pages_list = notes %}
 {% assign group = 'CS856' %}
 {% include JB/pages_list %}
 </ul>
