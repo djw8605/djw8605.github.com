@@ -68,4 +68,32 @@ html, body {
 	border:1px solid #4C964D;
 	color:#FFF;
 }
+
+footer {
+  padding-bottom: 40px;
+  background-color: #2c3437;
+  z-index: 10;
+  color: #000000;
+}
+
+footer .link-column a {
+  margin 10px;
+  
+}
+
+footer .link-column a:link {
+  color: #FFFFFF;
+  text-decoration:none;
+}
+
+footer .link-column a:visited {
+  color: #FFFFFF;
+  text-decoration:none;
+}  
+
+footer .link-column a:hover {
+  color: #808080;
+  text-decoration:none;
+} 
+
 	
