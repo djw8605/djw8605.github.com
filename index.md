@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Derek's Site
-tagline: Derek's Site
+tagline: All you wanted to know and more!
 ---
 {% include JB/setup %}
 
