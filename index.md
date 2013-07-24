@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Home Github Site
-tagline: Derek's Github
+title: Derek's Site
+tagline: Derek's Site
 ---
 {% include JB/setup %}
 
@@ -28,4 +28,8 @@ The [Campus Factory](https://github.com/djw8605/campus-factory), a light weight 
 
 [Bosco](http://bosco.opensciencegrid.org/) is an easy to use distributed resource manager.
 
+
+## Publications
+
+- He, C., Weitzel, D., Swanson, D., & Lu, Y. (2012, November). HOG: Distributed Hadoop MapReduce on the Grid. In <i>High Performance Computing, Networking, Storage and Analysis (SCC), 2012 SC Companion:</i> (pp. 1276-1283). IEEE.
 
