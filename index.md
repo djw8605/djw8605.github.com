@@ -10,16 +10,16 @@ tagline: All you wanted to know and more!
 
 ### Research
 
-<div class='row'>
-  <div class='span8'>
+<span class='row'>
+  <span class='span8'>
 
 My research focuses on high throughput distributed computing (HTDC).  Recently, I have worked on a number of projects that expand access to HTDC by overlaying High Performance Computing (HPC) clusters with HTC semantics.  Such as the [Bosco](http://bosco.opensciencegrid.org/) project, for which I was the lead developer.  Additionally, I designed and implemented the [Campus Factory](https://github.com/djw8605/campus-factory) for my masters.  I also adopted and modified [GridR](https://github.com/osg-bosco/GridR) (outdated [CRAN](http://cran.r-project.org/web/packages/GridR/)) to support remote submissions using Bosco, called [BoscoR](http://bosco.opensciencegrid.org/boscor/). 
-</div>
-<div class='span4'>
+</span>
+<span class='span4'>
   <img src="http://i.imgur.com/MyN7vFk.jpg" width="216" height="242">
-</div>
+</span>
 
-</div> <!-- Row -->
+</span> <!-- Row -->
 
 <!-- 
 I am keeping some class work here.  View the [Class Index]({{ BASE_PATH }}/Classes/index.html)
