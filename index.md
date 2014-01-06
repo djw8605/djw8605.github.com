@@ -16,7 +16,7 @@ tagline: All you wanted to know and more!
 My research focuses on high throughput distributed computing (HTDC).  Recently, I have worked on a number of projects that expand access to HTDC by overlaying High Performance Computing (HPC) clusters with HTC semantics.  Such as the [Bosco](http://bosco.opensciencegrid.org/) project, for which I was the lead developer.  Additionally, I designed and implemented the [Campus Factory](https://github.com/djw8605/campus-factory) for my masters.  I also adopted and modified [GridR](https://github.com/osg-bosco/GridR) (outdated [CRAN](http://cran.r-project.org/web/packages/GridR/)) to support remote submissions using Bosco, called [BoscoR](http://bosco.opensciencegrid.org/boscor/). 
 </div>
 <div class='span4'>
-  <img src="http://i.imgur.com/MyN7vFk.jpg" width=216 height=242>
+  <img src="http://i.imgur.com/MyN7vFk.jpg" width="216" height="242">
 </div>
 
 </div> <!-- Row -->
