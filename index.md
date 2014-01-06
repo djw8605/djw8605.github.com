@@ -8,12 +8,19 @@ tagline: All you wanted to know and more!
 
 ## This site is Derek's site for various things.
 
+### Research
+
+My research focuses on high throughput distributed computing (HTDC).  Recently, I have worked on a number of projects that expand access to HTDC by overlaying High Performance Computing (HPC) clusters with HTC semantics.  Such as the [Bosco](http://bosco.opensciencegrid.org/) project, for which I was the lead developer.  Additionally, I designed and implemented the [Campus Factory](https://github.com/djw8605/campus-factory) for my masters.  I also adopted and modified [GridR](https://github.com/osg-bosco/GridR) (outdated [CRAN](http://cran.r-project.org/web/packages/GridR/)) to support remote submissions using Bosco, called [BoscoR](http://bosco.opensciencegrid.org/boscor/). 
+
+<!-- 
 I am keeping some class work here.  View the [Class Index]({{ BASE_PATH }}/Classes/index.html)
+-->
+
 
 <div class='flip-counter'></div>
 
 
-## Publications
+### Publications
 
 - He, C., Weitzel, D., Swanson, D., & Lu, Y. (2012, November). HOG: Distributed Hadoop MapReduce on the Grid. In <i>High Performance Computing, Networking, Storage and Analysis (SCC), 2012 SC Companion:</i> (pp. 1276-1283). IEEE.
 - Weitzel, D. (2011). <i>Campus Grids: A framework to facilitate resource sharing</i> (Masters Thesis, University of Nebraska).
