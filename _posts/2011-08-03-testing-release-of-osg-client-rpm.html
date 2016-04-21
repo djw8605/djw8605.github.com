@@ -1,0 +1,12 @@
+---
+title: Testing Release of OSG-Client RPM
+date: '2011-08-03T19:09:00.000-05:00'
+author: Derek Weitzel
+tags:
+- osg
+modified_time: '2011-08-03T19:10:19.333-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-9035046148825483744
+blogger_orig_url: http://derekweitzel.blogspot.com/2011/08/testing-release-of-osg-client-rpm.html
+---
+
+It's finally here! &nbsp;The first official testing release of the osg-client in RPM form. &nbsp;We're asking anyone and everyone to go out there and start testing. &nbsp;The official instructions are on the<a href="https://twiki.grid.iu.edu/bin/view/Documentation/InstallOSGClient"> OSG Twiki</a>. &nbsp;We even made a <a href="https://twiki.grid.iu.edu/bin/view/Documentation/TestOSGClient">Testing Client</a> page if you want to run through some simple commands.<br /><br />The instructions are simple, install <a href="http://fedoraproject.org/wiki/EPEL">EPEL</a>, then install the VDT repo:<br /><pre>rpm -Uvh http://vdt.cs.wisc.edu/repos/3.0/el5/development/x86_64//vdt-release-3.0-2.noarch.rpm <br /></pre><br />Install the osg-client (expect a lot of dependencies).  My latest build downloaded 140MB of dependencies.<br /><pre>yum install --enablerepo=vdt-testing --nogpgcheck osg-client <br /></pre><br />Then, go and do your normal workflows. &nbsp;Create proxies, run globus-job-run's, start condor and run jobs. &nbsp;Whatever, just test. &nbsp;If you have any issues, email osg-software@opensciencegrid.org. &nbsp;Or join me on the OSG jabber, osg@conference.indiana.edu.<br /><br />All current bugs (I'm happy with how few there are) with the osg-client can be found on <a href="https://jira.opensciencegrid.org/secure/IssueNavigator.jspa?reset=true&amp;mode=hide&amp;jqlQuery=component+%3D+osg-client+AND+project+%3D+SOFTWARE+AND+resolution+%3D+Unresolved+ORDER+BY+updated+DESC">Jira</a>.<br /><br />Go forth and test...

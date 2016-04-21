@@ -1,0 +1,11 @@
+---
+title: Non-root RPM Install
+date: '2011-01-28T22:56:00.000-06:00'
+author: Derek Weitzel
+tags: 
+modified_time: '2011-01-28T22:59:13.632-06:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-416005990493039905
+blogger_orig_url: http://derekweitzel.blogspot.com/2011/01/non-root-rpm-install.html
+---
+
+First, copy the database files from rpm.  This is so you don't have to reinstall things already installed on the system.<br /><br />cp /var/lib/rpm/* newprefix/<br /><br />To install the rpms:<br />rpm --prefix $HOME/newprefix -ivh rpmbuild/RPMS/noarch/hcc-testapp-1.0-1.noarch.rpm   rpmbuild/RPMS/noarch/hcc-apps-1.0-1.noarch.rpm --dbpath /home/swa<br />nson/dweitzel/newprefix/

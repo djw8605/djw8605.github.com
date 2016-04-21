@@ -1,0 +1,17 @@
+---
+title: Reprocessing CMS events with Bosco
+date: '2013-04-02T14:38:00.003-05:00'
+author: Derek Weitzel
+tags:
+- bosco
+- GlideinWMS
+- osg
+- campus
+- condor
+modified_time: '2013-04-02T15:23:20.401-05:00'
+thumbnail: http://3.bp.blogspot.com/-Iu-KOlNG1-s/UVswQYykYoI/AAAAAAAAB5A/0nsceq8Rumk/s72-c/sdsc_jobs.png
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-9221383956864186778
+blogger_orig_url: http://derekweitzel.blogspot.com/2013/04/reprocessing-cms-events-with-bosco.html
+---
+
+Prior to the <a href="http://home.web.cern.ch/about/updates/2013/02/long-shutdown-1-exciting-times-ahead">LHC long shutdown</a>, the CMS experiment increased the trigger rate of the detector, therefore increasing the data coming off the detector. &nbsp;The Tier-0 was unable to process all of the events coming off of the detector, therefore the events where only stored and not processed. &nbsp;After the run, the experiment wanted to process the backlog of events, but didn't have the computing power available to do it. &nbsp;So they turned to opportunistic computing and <a href="http://bosco.opensciencegrid.org/">Bosco</a>.<br /><br />The CMS collaborators at UCSD worked with the <a href="http://www.sdsc.edu/">San Diego Supercomputing Resource</a> to run the processing on the <a href="http://www.sdsc.edu/News%20Items/PR030512_gordon.html">Gordon</a> supercomputer. &nbsp;Gordon is an <a href="https://www.xsede.org/web/guest/sdsc-gordon">XSEDE resource</a>&nbsp;and&nbsp;does not include a traditional OSG Globus Gatekeeper. &nbsp;Also, we did not have root access to the cluster to install a gatekeeper. &nbsp;Therefore, Bosco was used to submit and manage the <a href="http://www.uscms.org/SoftwareComputing/Grid/WMS/glideinWMS/doc.prd/index.html">GlidienWMS</a>&nbsp;Condor glideins to the resource.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td><a href="http://3.bp.blogspot.com/-Iu-KOlNG1-s/UVswQYykYoI/AAAAAAAAB5A/0nsceq8Rumk/s1600/sdsc_jobs.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="480" src="http://3.bp.blogspot.com/-Iu-KOlNG1-s/UVswQYykYoI/AAAAAAAAB5A/0nsceq8Rumk/s640/sdsc_jobs.png" width="640" /></a></td></tr><tr><td class="tr-caption" style="font-size: 13px;">Running jobs at Gordon, the SDSC supercomputer</td></tr></tbody></table><br /><br />As you can see from the graph, we reached nearly 4,000 CMS processing jobs on Gordon. &nbsp;4k cores is larger than most CMS Tier 2's, and as big as a European Tier-1. &nbsp;With Bosco, overnight, Gordon became one of the largest CMS clusters in the world.<br /><br />Full details will be written in a submitted paper to <a href="http://www.chep2013.org/">CHEP '13</a> in Amsterdam, and Bosco will be presented in a poster (and paper) as well. &nbsp;I hope to see you there!<br /><br />(If I got any details wrong about the CMS side of this run, please let me know. &nbsp;I have intimate knowledge of the Gordon side, but not so much the CMS side).<br /><br /><br /><center> <a href="http://bosco.opensciencegrid.org/download/">     <img alt="Bosco Download" src="https://raw.github.com/osg-bosco/bosco-download-images/master/images/download-orange.png" style="border-width: 0;" /> </a>   </center><br />

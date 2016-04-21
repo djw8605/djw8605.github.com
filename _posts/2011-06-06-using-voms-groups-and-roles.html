@@ -1,0 +1,12 @@
+---
+title: Using VOMS Groups and Roles
+date: '2011-06-06T22:19:00.000-05:00'
+author: Derek Weitzel
+tags:
+- osg
+modified_time: '2011-06-07T08:28:58.648-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-7456447650407365587
+blogger_orig_url: http://derekweitzel.blogspot.com/2011/06/using-voms-groups-and-roles.html
+---
+
+<p>I’ve been working on gratia graphs with Ashu Guru for the new GlideinWMS probe. I’ve stumbled upon very odd command line usage of voms-proxy-init.<br /></p><br /><p>In order to get a role to work with voms-proxy-init, the command needs to be:<br /><pre>voms-proxy-init -voms hcc:/hcc/Role=collab</pre>This command will give the proxy the role collab in the generic group hcc.<br /></p><br /><p>VOMS also has the ability to use ‘groups’ in the vo to distinguish between users. In order to use a group, the syntax is:<br /><pre>voms-proxy-init -voms hcc:/hcc/testgroup/Role=collab</pre>This command will give the proxy the role collab in the group testgroup of the HCC VO.<br /></p><br /><p>Not necessarily the most complicated command line I have used, but certainly one of the worst documented.<br /><pre>voms-proxy-init -help</pre>doesn’t help at all.<br /></p>

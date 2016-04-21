@@ -1,0 +1,13 @@
+---
+title: 'No devices: No Screens Detected.'
+date: '2009-02-17T14:59:00.001-06:00'
+author: Derek Weitzel
+tags:
+- nvidia
+- X
+modified_time: '2010-10-03T01:03:36.526-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-2059566167687339370
+blogger_orig_url: http://derekweitzel.blogspot.com/2009/02/no-devices-no-screens-detected.html
+---
+
+Had a problem today with the no screens detected on the new Viz wall computers.  Solved it by first installing the Nvidia binaries straight from their website, and then allowing X configure itself:<br /><pre class="prompt">X -configure</pre><pre class="prompt">cp xorg.conf.new /etc/X11/xorg.conf</pre><pre class="prompt">nvidia-xconfig</pre><br /><br />After it configured itself, starting X was only a matter of:<br /><pre class="prompt">init 5</pre><br />Then, I had a problem with getting 3 seperate X screens configured to be on top of each other.  This was to prove that it was possible, for use on the Viz Wall.  I copied over a working xorg.conf from another tile wall with the same configuration, but that one didn't pick up both of the monitors on the single card.  There was an error involving not having DFP-0 and DFP-1 setup to be configured.  So, after much work, I got the cards to recognize the DFP-0 and DFP-1 as seperate screens (ie. in different screen declarations).<br /><br />The <a href="http://docs.google.com/Doc?id=dgjdk82m_26f54m3pc6">Xorg.conf</a> (Google Docs)<br /><br />Moral of the story, Nvidia-Settings is very good at figuring out how to configure monitors.

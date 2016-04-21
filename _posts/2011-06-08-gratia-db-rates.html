@@ -1,0 +1,13 @@
+---
+title: Gratia DB Rates
+date: '2011-06-08T23:40:00.000-05:00'
+author: Derek Weitzel
+tags:
+- osg
+modified_time: '2011-06-08T23:40:20.099-05:00'
+thumbnail: http://2.bp.blogspot.com/-WeHnoavxZhM/TfBK-4-gpdI/AAAAAAAAAfs/kMwBVxKyvlc/s72-c/Screen+shot+2011-06-08+at+11.23.53+PM.png
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-6895353397454465386
+blogger_orig_url: http://derekweitzel.blogspot.com/2011/06/gratia-db-rates.html
+---
+
+In my recent discussions with NCSA on gratia, I found something that is probably obvious to other people, but I would still like to point out.<br /><br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="http://2.bp.blogspot.com/-WeHnoavxZhM/TfBK-4-gpdI/AAAAAAAAAfs/kMwBVxKyvlc/s1600/Screen+shot+2011-06-08+at+11.23.53+PM.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="320" src="http://2.bp.blogspot.com/-WeHnoavxZhM/TfBK-4-gpdI/AAAAAAAAAfs/kMwBVxKyvlc/s320/Screen+shot+2011-06-08+at+11.23.53+PM.png" width="223" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Status captured 6-8-11</td></tr></tbody></table>According to the <a href="http://display.grid.iu.edu/">OSG PR Display</a>, the OSG runs and accounts for 420,000 jobs daily. &nbsp;That's&nbsp;4.8 records a second added into MySQL JobUsageRecord table. &nbsp;Also, for each job, summary data is updated in the summary table. &nbsp;So that's at least 5 inserts/updates a second, but most likely many more. &nbsp;All the while, we are able to interactively query the database (well, a replicated one) using pages such as the <a href="http://red-web.unl.edu/gratia/">UNL graphs</a>.<br /><br />We also keep track of transfers, but they are summarized and&nbsp;aggregated&nbsp;at the probe before reaching the database.<br /><br />So, in summary, kudos to the gratia operations team. <br /><br />(<span class="Apple-style-span" style="color: red;">NOTE</span>: I may have forgotten some optimizations that we use. &nbsp;But still, that's a lot of records)

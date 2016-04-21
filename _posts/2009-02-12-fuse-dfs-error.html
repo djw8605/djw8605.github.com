@@ -1,0 +1,14 @@
+---
+title: Fuse DFS Error
+date: '2009-02-12T13:13:00.000-06:00'
+author: Derek Weitzel
+tags:
+- Fuse
+- Hadoop
+- Cluster
+modified_time: '2010-10-03T01:07:40.041-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-7108290808217649886
+blogger_orig_url: http://derekweitzel.blogspot.com/2009/02/fuse-dfs-error.html
+---
+
+So, today I was having problems getting the fuse-dfs to work with my cluster.  I was an error compiling fuse for my kernel (2.6.18-92.1.17.el5).  It seems that yum has stop providing this kernel, and it's headers (yum install kernel-headers wanted to install a newer version).<br /><br />To solve this problem, I simply compiled with a older kernel-headers already installed on the machine (2.6.18-53.1.13.el5).  To do this:<br /><pre class="prompt">./configure --with-kernel=kernel-dir &amp;&amp; make<br /></pre><br /><br />The kernel module is in the directory kernel/.  Modprobe will not work, instead use insmod.<br /><pre class="prompt">cd kernel</pre><pre class="prompt">insmod fuse.ko</pre><br />This way is probably not the best way to do something like this, but it works.

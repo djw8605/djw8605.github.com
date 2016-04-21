@@ -1,0 +1,13 @@
+---
+title: Upgrading the osg-client to Testing
+date: '2011-08-15T14:58:00.000-05:00'
+author: Derek Weitzel
+tags:
+- osg
+modified_time: '2011-08-15T14:58:23.752-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-7714462326103002799
+blogger_orig_url: http://derekweitzel.blogspot.com/2011/08/upgrading-osg-client-to-testing.html
+---
+
+Another lively blog post about upgrading a set of packages to testing. &nbsp;<a href="http://derekweitzel.blogspot.com/2011/08/upgrading-osg-software-from-development.html">Last time</a> it was the osg-wn-client, this time it's the OSG-Client. &nbsp;I will use a <a href="http://jira.opensciencegrid.org/browse/SOFTWARE-159">jira task</a> to track my time and progress on it.<br /><br />Again, I looked at tickets by component for the<a href="http://jira.opensciencegrid.org/secure/IssueNavigator.jspa?reset=true&amp;jqlQuery=project+%3D+SOFTWARE+AND+resolution+%3D+Unresolved+AND+component+%3D+osg-client+ORDER+BY+priority+DESC&amp;mode=hide"> osg-client</a>. &nbsp;First, there are no bugs, only tasks. &nbsp;Second, the tasks are major or below (and the major one is a documentation task really).<br /><br />So, I went to the <a href="https://koji-hub.batlab.org/koji/buildinfo?buildID=82">osg-client koji page</a>, copied the dependencies to a text document, and started the pushing the dependencies to osg-testing. &nbsp;One by one. &nbsp;Really, a whole lot of:<br /><pre>koji tag-pkg el5-osg-testing owamp-3.2rc4-1
+<br /></pre><br />I found an&nbsp;extraneous&nbsp;package, the osg-voms-compat. &nbsp;It is no longer needed since we distribute LSC files. &nbsp;I removed it as a dependency of osg-client, and rebuilt the osg-client.<br /><br />First iteration... only missed 2 dependencies of dependencies. &nbsp;web100_userland and I2Util (both from Internet 2). &nbsp;Second iteration... Success!<br /><br />We now have osg-client in the testing repo. &nbsp;Took less than an hour.

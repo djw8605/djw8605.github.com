@@ -1,0 +1,11 @@
+---
+title: Adding Routes at startup
+date: '2009-05-14T16:06:00.000-05:00'
+author: Derek Weitzel
+tags: 
+modified_time: '2009-05-14T16:09:11.347-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-2300413642534120676
+blogger_orig_url: http://derekweitzel.blogspot.com/2009/05/adding-routes-at-startup.html
+---
+
+To add routes to be started, the file located at /etc/sysconfig/network-scripts/ifup-routes will parse each file named route-eth*.  The file should end up looking like:<br /><pre><br />ADDRESS0=192.168.2.0<br />NETMASK0=255.255.255.0<br />GATEWAY0=192.168.2.1<br /></pre>

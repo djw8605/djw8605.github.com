@@ -1,0 +1,13 @@
+---
+title: Google Earth Fedora 13 Fixed!
+date: '2010-10-01T16:50:00.001-05:00'
+author: Derek Weitzel
+tags:
+- nvidia
+- X
+modified_time: '2010-10-03T00:48:13.850-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-3346827088283685962
+blogger_orig_url: http://derekweitzel.blogspot.com/2010/10/google-earth-fedora-13-fixed.html
+---
+
+I was able to fix the install of google earth on fedora 13 by installing the i686 nvidia libraries.<br /><br />After adding rpm forge and installing the nvidia drivers (kmod-nvidia).  It only installed the x86_64 nvidia libs.<br /><br /><pre class="prompt">yum install xorg-x11-drv-nvidia-libs.i686<br /></pre><br /><br />Working!!!

@@ -1,0 +1,12 @@
+---
+title: Making a new group in GlideinWMS VO Frontend
+date: '2011-02-17T12:24:00.001-06:00'
+author: Derek Weitzel
+tags:
+- GlideinWMS
+modified_time: '2011-04-28T11:56:32.107-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-9054766181007371590
+blogger_orig_url: http://derekweitzel.blogspot.com/2011/02/making-new-group-in-glideinwms-vo.html
+---
+
+The most difficult thing with the RPM (or the normal install) is making a new group in the GlideinWMS Frontend.<br /><br />The files you need to add are:<br /><pre class="brush: bash">cp -r /usr/share/gwms-frontend/www/monitor/frontend_OSG_gWMSFrontend/group_main /usr/share/gwms-frontend/www/monitor/frontend_OSG_gWMSFrontend/group_<br />cp -r /usr/share/gwms-frontend/www/stage/frontend_OSG_gWMSFrontend/group_main /usr/share/gwms-frontend/www/stage/frontend_OSG_gWMSFrontend/group_<br />cp -r /usr/share/gwms-frontend/frontend-temp/frontend_OSG_gWMSFrontend/group_main /usr/share/gwms-frontend/frontend-temp/frontend_OSG_gWMSFrontend/group_<br />cp -r /var/log/gwms-frontend/frontend_OSG_gWMSFrontend/group_main /var/log/gwms-frontend/frontend_OSG_gWMSFrontend/group_<br /></pre><br /><br />Then chown them all:<br /><pre class="brush: bash">chown -R nobody: /usr/share/gwms-frontend<br />chown -R nobody: /var/log/gwms-frontend<br /><br /></pre><br />Update:<br />New RPM, new directories.<br /><br /><pre class="brush: bash"><br />cp -r /usr/share/gwms-frontend/www/monitor/group_main /usr/share/gwms-frontend/www/monitor/group_<br />cp -r /usr/share/gwms-frontend/www/stage/group_main /usr/share/gwms-frontend/www/stage/group_<br />cp -r /usr/share/gwms-frontend/frontend-temp/group_main /usr/share/gwms-frontend/frontend-temp/group_<br />cp -r /var/log/gwms-frontend/group_main /var/log/gwms-frontend/group_<br />chown -R nobody: /usr/share/gwms-frontend<br />chown -R nobody: /var/log/gwms-frontend<br /></pre>

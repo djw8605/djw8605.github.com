@@ -1,0 +1,14 @@
+---
+title: Querying an Elasticsearch Cluster for Gratia Records
+date: '2016-04-20T14:19:00.001-05:00'
+author: Derek Weitzel
+tags:
+- gratia
+- elasticsearch
+- osg
+modified_time: '2016-04-20T14:19:13.851-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-3835691115704233353
+blogger_orig_url: http://derekweitzel.blogspot.com/2016/04/querying-elasticsearch-cluster-for.html
+---
+
+For the last few days I have been working on email reports for GRACC, OSG's new prototype accounting system. &nbsp;The source of the email reports are located on <a href="https://github.com/opensciencegrid/gracc-email">Github</a>.<br /><br />I have learned a significant amount about queries and aggregations for ElasticSearch. &nbsp;For example, below is the query that counts the number of records for a date range.<br /><br /><script src="https://gist.github.com/djw8605/e3851fe055e6d41575cb3d005a62d240.js"></script> The above query searches for queries in the date range specific, and counts the number of records. &nbsp;It uses the <a href="https://elasticsearch-dsl.readthedocs.org/en/latest/index.html">Elasticsearch-dsl</a> python library. &nbsp;It does not return the actual records, just a number. &nbsp;This is useful for generating raw counts and a delta for records processed over the last few days.<br /><br />The other query I designed is to aggregate the number of records per probe. &nbsp;This query is designed to help us understand differences in specific probe's reporting behavior.<br /><br /><script src="https://gist.github.com/djw8605/4d940c6585ae3d5c086adc4f4cec1b61.js"></script>This query is much more complicated than the simple count query above. &nbsp;First, it creates a search selecting the "gracc-osg-*" indexes. &nbsp;It also creates an aggregation "A" which will be used later to aggregate by the ProbeName field. <br /><br />Next, we create a bucket called day_range which is of type range. &nbsp;It aggregates in two ranges, the last 24 hours and the 24 hours previous to that. &nbsp;Next, we attach our ProbeName aggregation "A" defined above. &nbsp;In return we get an aggregation for each of the ranges, for each of the probes, how many records exist for that probe.<br /><br /> This nested aggregation is a powerful feature that will be used in the summarization of the records.

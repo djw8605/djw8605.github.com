@@ -1,0 +1,13 @@
+---
+title: Initial EL6 Packages for OSG
+date: '2012-01-20T14:14:00.000-06:00'
+author: Derek Weitzel
+tags:
+- software
+- osg
+modified_time: '2012-01-20T14:58:38.069-06:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-5908364533788003344
+blogger_orig_url: http://derekweitzel.blogspot.com/2012/01/initial-el6-packages-for-osg.html
+---
+
+Last night I completed initial packages for EL6 support. &nbsp;Just like for EL5, the first OSG component I created is the osg-wn-client.<br /><br />The osg-wn-client has a complicated <a href="http://dl.dropbox.com/u/114765/osg-wn-client-deps.svg">dependency tree</a>. &nbsp;Easily some of the most difficult packages where form glite.<br /><br />Just some quick tidbits that made the transition easier:<br /><br /><span style="font-size: large;"><b>UUID Differences</b></span><br />uuid.h and the associated library is used by many applications. &nbsp;In el5, uuid is provided by the e2fsprogs package. &nbsp;In el6, it has it's own package, libuuid. &nbsp;It was common for me to copy this tidbit into a few packages:<script src="https://gist.github.com/1649259.js">  </script> <br /><div><span style="font-size: large;"><b>gsoap Differences</b></span><br />glite-fts-client and glite-data-delegation-api-c both use gsoap. &nbsp;In the past, it was common to copy stdsoap2.c from the gsoap distribution and compile that into your program. &nbsp;Now that gsoap is a regular library though, it should be linked into the system's version. &nbsp;In order to do this, I had to add patches to the Makefiles for both packages to link against the system's gsoap.<br /><br /><br /><span style="font-size: large;"><b>What's next? &nbsp;</b></span><br />The next step is the <a href="http://dl.dropbox.com/u/114765/osg-client-deps.svg">osg-client</a>. &nbsp;Since there are no more glite packages for the osg-client, this step should be easier.</div>

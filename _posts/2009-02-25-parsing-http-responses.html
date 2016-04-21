@@ -1,0 +1,13 @@
+---
+title: Parsing HTTP Responses
+date: '2009-02-25T14:56:00.001-06:00'
+author: Derek Weitzel
+tags:
+- Network
+- Class
+modified_time: '2009-02-25T14:59:38.181-06:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-7919870733930834351
+blogger_orig_url: http://derekweitzel.blogspot.com/2009/02/parsing-http-responses.html
+---
+
+Just so I don't have to remember again, in order to seperate a header from the body of a http response, in C:<br /><pre name="code" class="Bash"><br />char* endOfHeader = strstr(buf, "\n\r\n");<br /></pre><br />Notice the \r, that is a carriage return, something that Linux/unix doesn't care much about, but is used more in Windows.  I couldn't find any websites to help with this.

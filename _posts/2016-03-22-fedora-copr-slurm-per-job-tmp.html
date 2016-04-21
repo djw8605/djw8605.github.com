@@ -1,0 +1,14 @@
+---
+title: 'Fedora copr: Slurm per job tmp directories!'
+date: '2016-03-22T16:18:00.000-05:00'
+author: Derek Weitzel
+tags:
+- hcc
+- osg
+modified_time: '2016-03-22T16:18:17.368-05:00'
+thumbnail: https://4.bp.blogspot.com/-tC3O81p0pfI/VvG1f93LgUI/AAAAAAAAE4Q/Y8r5dFBVKbEM8_WFkHJGVA84BbtARP6Dg/s72-c/screenshot-copr.fedorainfracloud.org%2B2016-03-22%2B16-13-03.png
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-8100700851240965809
+blogger_orig_url: http://derekweitzel.blogspot.com/2016/03/fedora-copr-slurm-per-job-tmp.html
+---
+
+A Slurm site on the <a href="http://www.opensciencegrid.org/">OSG</a>&nbsp;was having problems with <span style="font-family: Courier New, Courier, monospace;">/tmp</span> filling up occasionally. &nbsp;Our own clusters have a Slurm <a href="http://www.schedmd.com/slurmdocs/spank.html">Spank</a>&nbsp;plugin that creates a per job tmp directory. &nbsp;This per job directory is useful for grid jobs which may be preempted without time to clean up after themselves. &nbsp;The motivation for this plugin came from HTCondor, where each job has it's own job directory.<br /><br />In order to share this plugin, I started a few Github repos (<a href="https://github.com/djw8605/slurm-tmpdir">slurm-tmpdir</a> and <a href="https://github.com/djw8605/slurm-plugins-lua">slurm-plugins-lua</a>) for the plugin and dependencies. &nbsp;Next, I used Fedora's Copr build system to build a repo that I could share with others, the <a href="https://copr.fedorainfracloud.org/coprs/djw8605/Slurm-Plugins/">Slurm-Plugins</a> repo.<br /><table align="center" cellpadding="0" cellspacing="0" class="tr-caption-container" style="margin-left: auto; margin-right: auto; text-align: center;"><tbody><tr><td style="text-align: center;"><a href="https://4.bp.blogspot.com/-tC3O81p0pfI/VvG1f93LgUI/AAAAAAAAE4Q/Y8r5dFBVKbEM8_WFkHJGVA84BbtARP6Dg/s1600/screenshot-copr.fedorainfracloud.org%2B2016-03-22%2B16-13-03.png" imageanchor="1" style="margin-left: auto; margin-right: auto;"><img border="0" height="347" src="https://4.bp.blogspot.com/-tC3O81p0pfI/VvG1f93LgUI/AAAAAAAAE4Q/Y8r5dFBVKbEM8_WFkHJGVA84BbtARP6Dg/s640/screenshot-copr.fedorainfracloud.org%2B2016-03-22%2B16-13-03.png" width="640" /></a></td></tr><tr><td class="tr-caption" style="text-align: center;">Copr Slurm-Plugins Project</td></tr></tbody></table><br />I'm sure that I don't have an exhaustive list of plugins in my repo. &nbsp;Actually, I only have one. &nbsp;But I can always add more by simply adding a Github repo.<br /><br />Copr was very easy to use to build my packages, and it works for all OS's that I care about. &nbsp;I'm very happy with how Copr worked for sharing Nebraska's Slurm-Plugins.<br /><br />

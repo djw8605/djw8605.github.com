@@ -1,0 +1,12 @@
+---
+title: XWarpPointer
+date: '2009-04-29T13:35:00.000-05:00'
+author: Derek Weitzel
+tags:
+- X
+modified_time: '2010-10-03T01:05:49.324-05:00'
+blogger_id: tag:blogger.com,1999:blog-3007054864987759910.post-6670607988879524138
+blogger_orig_url: http://derekweitzel.blogspot.com/2009/04/xwarppointer.html
+---
+
+Just came across a way to move the mouse pointer to an absolute position in X.  Follow the code below:<br /><pre class="code">int main()<br />{<br />        Display* xdisplay1 = XOpenDisplay(NULL);<br />        if(!xdisplay1) {<br />                printf("display = null\n");<br />        }<br />        Window root = DefaultRootWindow(xdisplay1);<br />        XWarpPointer(xdisplay1, 0, root, 0, 0, 0, 0, 10, 10);<br />        XCloseDisplay(xdisplay1);<br /><br />}<br /></pre>
