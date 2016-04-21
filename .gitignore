@@ -3,7 +3,8 @@ _theme_packages/*
 build/*
 Thumbs.db
 .DS_Store
-
+vendor
+.bundle
 !.gitkeep
 
 .rbenv-version
