@@ -9,7 +9,7 @@ header:
   - teaser: /images/posts/htcondor-ce-bosco/HTCondorCEBosco.png
 ---
 
-The HTCondor-CE-Bosco is one of the largest changes for the upcoming OSG 3.3.12 release, to be released on 2016/05/09.  The HTCondor-CE-Bosco is a special configuration of the [HTCondor-CE](https://twiki.grid.iu.edu/bin/view/Documentation/Release3/InstallHTCondorCE).  The HTCondor-CE-Bosco does not submit directly to a local scheduler such as [Slurm](http://slurm.schedmd.com/) or [PBS](http://www.adaptivecomputing.com/products/open-source/torque/), instead, it will submit jobs to a remote cluster over SSH.
+The HTCondor-CE-Bosco (CE-Bosco) is one of the largest changes for the upcoming OSG 3.3.12 release, to be released on 2016/05/10.  The HTCondor-CE-Bosco is a special configuration of the [HTCondor-CE](https://twiki.grid.iu.edu/bin/view/Documentation/Release3/InstallHTCondorCE).  The HTCondor-CE-Bosco does not submit directly to a local scheduler such as [Slurm](http://slurm.schedmd.com/) or [PBS](http://www.adaptivecomputing.com/products/open-source/torque/), instead, it will submit jobs to a remote cluster over SSH.
 
 The HTCondor-CE-Bosco is designed to make it easier to contribute opportunistic resources to the OSG.  Instead of allocating a special node or VM that can run services as root, and submit to the local cluster to run an OSG CE.  With the HTCondor-CE-Bosco, an organization can setup a separate node with only SSH access to the cluster.  In addition, the OSG can host and manage the CE for an opportunistic resource, reducing the load on the admins completely.
 
@@ -66,4 +66,24 @@ In this configuration, the JobRouter would round-robin between both of the Bosco
 ## Some Conclusions
 
 The HTCondor-CE-Bosco provides a great starting point for opportunistic resource owners that want to contribute to the OSG.  It is easy to setup, and requires minimal resources on the part of the cluster since it simply submits jobs through a SSH connection.
+
+### Decisions, Decisions
+
+The HTCondor-CE and the CE-Bosco have pros and cons for usage.  For example, the HTCondor-CE is designed to scale to thousands of submitted jobs, while the CE-Bosco has not yet been optimized for that use case.  Instead, we have focused on the user friendliness of the CE-Bosco rather than the regular HTCondor-CE.  Listed below is a list of features of the HTCondor-CE and the CE-Bosco.
+
+<!-- 
+&#x2705; - Green Check Mark
+&#x274C; - Red X
+-->
+
+| Features (more to be added)        | HTCondor-CE | CE-Bosco |
+|------------------------------------|:-----------:|:--------:|
+| Scales to >1000s of jobs           | &#x2705;    | &#x274C; |
+| Special cluster submit node        | &#x274C;    | &#x2705; |
+| No special scheduler configuration | &#x274C;    | &#x2705; |
+
+It's difficult to summarize which solution you should choose for your site, the HTCondor-CE or CE-Bosco.  Each site and cluster has it's own special requirements.  If you are hesitant to modify your cluster for grid jobs, for example adding a new submit node and exporting read access to the Slurm Database, then CE-Bosco is your best choice.  If you are willing to make the adjustments to your cluster above, then your cluster can scale to thousands of running grid jobs.
+
+If you are a site that is interested in a HTCondor-CE-Bosco hosted by the OSG, contact [OSG User Support](mailto:user-support@opensciencegrid.org).  This can significantly reduce the administrative effort required for a site to join the OSG.
+
 
