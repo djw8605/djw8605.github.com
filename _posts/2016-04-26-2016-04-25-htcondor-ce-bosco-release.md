@@ -79,7 +79,7 @@ The HTCondor-CE and the CE-Bosco have pros and cons for usage.  For example, the
 | Features (more to be added)        | HTCondor-CE | CE-Bosco |
 |------------------------------------|:-----------:|:--------:|
 | Scales to >1000s of jobs           | &#x2705;    | &#x274C; |
-| Special cluster submit node        | &#x274C;    | &#x2705; |
+| No Special cluster submit node     | &#x274C;    | &#x2705; |
 | No special scheduler configuration | &#x274C;    | &#x2705; |
 
 It's difficult to summarize which solution you should choose for your site, the HTCondor-CE or CE-Bosco.  Each site and cluster has it's own special requirements.  If you are hesitant to modify your cluster for grid jobs, for example adding a new submit node and exporting read access to the Slurm Database, then CE-Bosco is your best choice.  If you are willing to make the adjustments to your cluster above, then your cluster can scale to thousands of running grid jobs.
