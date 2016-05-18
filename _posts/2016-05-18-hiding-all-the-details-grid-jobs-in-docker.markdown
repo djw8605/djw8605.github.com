@@ -137,3 +137,7 @@ Things that would simplify our setup:
 4. Ability to whitelist particular images - evaluated on worker node!
 5. Ability to mark jobs in “untrusted images” with the Linux “NO_NEW_PRIVS” flag (prevents setuid).
 
+## References
+
+* [HTCondor Week 2016 talk](https://research.cs.wisc.edu/htcondor//HTCondorWeek2016/presentations/WedWeitzel_DockerGridJobs.pdf)
+
