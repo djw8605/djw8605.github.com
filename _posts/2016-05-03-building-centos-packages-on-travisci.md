@@ -5,7 +5,7 @@ author: Derek Weitzel
 tags:
   - osg
 header:
-  - teaser: /images/posts/CentOS-TravisCI/passing.svg
+  teaser: /posts/CentOS-TravisCI/passing.svg
 excerpt_separator: <!--more-->
 ---
 

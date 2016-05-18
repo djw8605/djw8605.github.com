@@ -6,7 +6,7 @@ tags:
   - osg
   - bosco
 header:
-  - teaser: /images/posts/htcondor-ce-bosco/HTCondorCEBosco.png
+  teaser: /posts/htcondor-ce-bosco/HTCondorCEBosco.png
 ---
 
 The HTCondor-CE-Bosco (CE-Bosco) is one of the largest changes for the upcoming OSG 3.3.12 release, to be released on 2016/05/10.  The HTCondor-CE-Bosco is a special configuration of the [HTCondor-CE](https://twiki.grid.iu.edu/bin/view/Documentation/Release3/InstallHTCondorCE).  The HTCondor-CE-Bosco does not submit directly to a local scheduler such as [Slurm](http://slurm.schedmd.com/) or [PBS](http://www.adaptivecomputing.com/products/open-source/torque/), instead, it will submit jobs to a remote cluster over SSH.

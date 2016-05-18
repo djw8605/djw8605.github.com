@@ -8,7 +8,7 @@ tags:
   - htcondor
   - docker
 header:
-  - teaser: /images/posts/DockerGrid/DockerLogo.png
+  teaser: /posts/DockerGrid/DockerLogo.png
 excerpt_separator: <!--more-->
 ---
 
