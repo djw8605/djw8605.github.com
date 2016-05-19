@@ -12,6 +12,8 @@ header:
 excerpt_separator: <!--more-->
 ---
 
+{% include toc icon="gears" title="Table of Contents" %}
+
 For a long time, HTCondor has strived to have the job runtime environment be run and defined by the submit host.  But, that is surprisingly difficult to do.  There are many reasons why the environment should be controlled by the submit host, for example:
 <!--more-->
 
