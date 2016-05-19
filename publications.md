@@ -16,3 +16,8 @@ title: Publications
 * Weitzel, D., Fraser, D., Bockelman, B., & Swanson, D. (2012, December). Campus Grids: Bringing Additional Computational Resources to HEP Researchers. In Journal of Physics: Conference Series (Vol. 396, No. 3, p. 032116). IOP Publishing.
 * Weitzel, D., Bockelman, B., Fraser, D., Pordes, R., & Swanson, D. (2011, December). Enabling campus grids with open science grid technology. In Journal of Physics: Conference Series (Vol. 331, No. 6, p. 062025). IOP Publishing.
 * Andrews, W., Bockelman, B., Bradley, D., Dost, J., Evans, D., Fisk, I., ... & Weitzel, D. (2011, December). Early experience on using glideinWMS in the cloud. In Journal of Physics: Conference Series (Vol. 331, No. 6, p. 062014). IOP Publishing.
+
+
+## Presentatations
+
+* Weitzel, Derek; Bockelman, Brian; Thiltges, John.  Hiding All the Details: Running Grid Jobs Inside Docker Containers on the OSG. at HTCondor Week 2016.  ([online](https://research.cs.wisc.edu/htcondor//HTCondorWeek2016/presentations/WedWeitzel_DockerGridJobs.pdf))
