@@ -73,12 +73,14 @@ This submit file adds `--ntasks-per-node` and `--nodes=1` that describes the par
 The R code looks a bit different though.  Here is an example:
 
 ```
-library("parallel")
-...
-mclapply(rep(4, 5), rnorm, mc.cores=16)
+library(“parallel")
+
+a <- function(s) { return (2*s) }
+mclapply(c(1:20), a, mc.cores = 16)
+
 ```
 
-This will run `mclapply` which will apply the `rnorm` function across the list specified in `rep(4, 5)`.  
+This will run `mclapply` which will apply the made up function `a` across the list specified in `c(1, 20)`.  
 
 
 ## Using GridR to submit processing
@@ -101,6 +103,10 @@ x
 ```
 
 This R script submits jobs to the OSG from the Crane cluster.  It will run the simple `a` function on the remote worker nodes on the OSG.
+
+The jobs can run anywhere on the OSG:
+
+![OSG Running Jobs](/images/posts/ROnHCC/WhereDoesItGo.png "Where Does Jobs Go")
 
 ## Conclusion
 
