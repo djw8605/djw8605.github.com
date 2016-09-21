@@ -38,7 +38,7 @@ More on the Slurm configuration is available at [HCC Documentation](https://hcc-
 
 A submit file for Slurm is below:
 
-```
+```bash
 #!/bin/sh
 #SBATCH --time=00:30:00
 #SBATCH --mem-per-cpu=1024
@@ -54,7 +54,7 @@ This submit file describes a job that will run 30 minutes, and require 1024MB of
 
 A parallel submission is:
 
-```
+```bash
 #!/bin/sh
 #SBATCH --ntasks-per-node=16
 #SBATCH --nodes=1
@@ -72,12 +72,11 @@ This submit file adds `--ntasks-per-node` and `--nodes=1` that describes the par
 
 The R code looks a bit different though.  Here is an example:
 
-```
+```R
 library(“parallel")
 
 a <- function(s) { return (2*s) }
 mclapply(c(1:20), a, mc.cores = 16)
-
 ```
 
 This will run `mclapply` which will apply the made up function `a` across the list specified in `c(1, 20)`.  
@@ -91,7 +90,7 @@ The [GridR](https://osg-bosco.github.io/GridR/) package is hosted on Github.  Th
 
 Below is a working example script of using R on HCC's Crane cluster.
 
-```
+```R
 library(GridR)
 grid.init(service="condor.local", localTmpDir="tmp", bootstrap=TRUE, remoteRPath="/util/opt/R/3.3/gcc/4.4/bin/R", Rurl="https://www.dropbox.com/s/s27ngq1rp7e9qeb/el6-R-modified_1.0.tar.gz?dl=0")
 
@@ -107,6 +106,8 @@ This R script submits jobs to the OSG from the Crane cluster.  It will run the s
 The jobs can run anywhere on the OSG:
 
 ![OSG Running Jobs](/images/posts/ROnHCC/WhereDoesItGo.png "Where Does Jobs Go")
+
+Jobs submitted to the OSG can run on multiple sites around the U.S.  They will execute and and return the results.
 
 ## Conclusion
 
