@@ -12,6 +12,7 @@ excerpt_separator: <!--more-->
 date: "2016-09-20 21:27:21 -0500"
 ---
 
+[The full presentation](https://unl.box.com/s/i5zrap6u5uf9kyg7yb5dag5o5lul109k).
 
 There are many methods to run R applications at HCC.  I can break these uses down to:
 
