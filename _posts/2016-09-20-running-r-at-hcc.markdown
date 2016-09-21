@@ -92,12 +92,16 @@ Below is a working example script of using R on HCC's Crane cluster.
 
 ```R
 library(GridR)
+# Initialize the GridR library for submissions
 grid.init(service="condor.local", localTmpDir="tmp", bootstrap=TRUE, remoteRPath="/util/opt/R/3.3/gcc/4.4/bin/R", Rurl="https://www.dropbox.com/s/s27ngq1rp7e9qeb/el6-R-modified_1.0.tar.gz?dl=0")
 
+# Create a quick function to run remotely
 a <- function(s) { return (2*s) }
 
-grid.apply("x", a, 13)
+# Run the apply function, much like lapply.  In this case, with only 1 attribute to apply
+grid.apply("x", a, 13, wait = TRUE)
 
+# Output the results.
 x
 ```
 
