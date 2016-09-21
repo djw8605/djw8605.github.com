@@ -34,6 +34,8 @@ Creating Slurm submit files and writing R scripts is the most common method of R
 4. Submit Slurm submit file
 5. Wait for completion (you can ask to get an email)
 
+More on the Slurm configuration is available at [HCC Documentation](https://hcc-docs.unl.edu/x/4AMg).
+
 A submit file for Slurm is below:
 
 ```
