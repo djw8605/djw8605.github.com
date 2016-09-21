@@ -20,7 +20,7 @@ There are many methods to run R applications at HCC.  I can break these uses dow
 
 In this post, I will discuss and layout the different methods of submitting jobs to HCC and the OSG.  Further these methods lie on a spectrum of both difficulty in using.
 
-![Difficulty Spectrum](/posts/ROnHCC/SpectrumScreenshot.png "Difficult Spectrum")
+![Difficulty Spectrum](/images/posts/ROnHCC/SpectrumScreenshot.png "Difficult Spectrum")
 Each step is more and more difficult.  Running R on your laptop is much easier than running R on a cluster.  And running R on a cluster is less difficult than running it on the Grid.  But there are techniques to bring these closer together.
 
 <!--more-->
@@ -35,6 +35,7 @@ Creating Slurm submit files and writing R scripts is the most common method of R
 5. Wait for completion (you can ask to get an email)
 
 A submit file for Slurm is below:
+
 ```
 #!/bin/sh
 #SBATCH --time=00:30:00
