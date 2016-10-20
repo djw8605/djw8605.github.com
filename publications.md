@@ -7,7 +7,7 @@ title: Publications
 {% include base_path %}
 
 
-* Weitzel, Derek; Bockelman, Brian; Swanson, David. Proceedings of the International Conference on Parallel and Distributed Processing Techniques and Applications (PDPTA): 341-346. Athens: The Steering Committee of The World Congress in Computer Science, Computer Engineering and Applied Computing (WorldComp). (2015). Online
+* Weitzel, D., Bockelman, B. & Swanson, D. Distributed Caching Using the HTCondor CacheD. In Proceedings for Conference on Parallel and Distributed Processing Techniques and Applications, 2015. [Online](http://digitalcommons.unl.edu/hollandfacpub/4/)
 * Weitzel, D., Frey, J., Mambelli, M., Fraser, D., Ahronovitz, M., & Swanson, D. BoscoR: Extending R from the desktop to the Grid. MTAGS’ 14. Online
 * Weitzel, D., Sfiligoi, I., Bockelman, B., Frey, J., Wuerthwein, F., Fraser, D., & Swanson, D. (2014, June). Accessing opportunistic resources with Bosco. In Journal of Physics: Conference Series (Vol. 513, No. 3, p. 032105). IOP Publishing. Online
 * Levshina, T., Sehgal, C., Bockelman, B., Weitzel, D., & Guru, A. (2014, June). Grid accounting service: state and future development. In Journal of Physics: Conference Series (Vol. 513, No. 3, p. 032056). IOP Publishing. Online
