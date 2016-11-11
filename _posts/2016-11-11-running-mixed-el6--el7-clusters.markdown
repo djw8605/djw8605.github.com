@@ -19,6 +19,7 @@ When GlideinWMS factories submit jobs to a CE, they are configured to run on onl
 A HTCondor-CE must be configured to submit to multiple clusters or separate sections of the same cluster.  In the examples below, I will show how a HTCondor-CE-Bosco CE can be configured to submit to multiple clusters, each running a different OS.  But, the examples could be adapted to work for a HTCondor or a Slurm cluster.
 
 Changes for HTCondor or Slurm cluster:
+
 * **HTCondor**: remote_requirements would have to be set so that the jobs only run on Startd's that advertise the correct OS version.
 * **Slurm**: Usually different OS nodes will be in different partitions.  If this is true, then the `default_queue` argument can be used in the route to send the job to the correct partition.
 
