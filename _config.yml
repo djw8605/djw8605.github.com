@@ -13,6 +13,7 @@ name                     : "Derek Weitzel"
 description              : "Thoughts from Derek"
 url                      : "https://djw8605.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
+theme                    : "minimal-mistakes-jekyll"
 gh_repo                  :
 teaser                   : # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 # breadcrumbs            : false # true, false (default)

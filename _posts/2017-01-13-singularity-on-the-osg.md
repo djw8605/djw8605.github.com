@@ -1,6 +1,6 @@
 ---
 title: "Singularity on the OSG"
-date: "2016-01-13 16:08:24 -0600"
+date: "2017-01-12 16:08:24 -0700"
 author: Derek Weitzel
 tags:
   - osg
