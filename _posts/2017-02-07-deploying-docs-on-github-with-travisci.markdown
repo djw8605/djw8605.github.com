@@ -40,8 +40,7 @@ Inside the repository's git repo on your own computer, run the command:
     openssl aes-256-cbc -K $encrypted_1d262b48bc9b_key -iv $encrypted_1d262b48bc9b_iv -in deploy-key.enc -out deploy-key -d
 
 
-This will encrypt the `deploy-key` with the Travis-CI public key, therefore it can only be accessed on the Travis-CI infrastructure.  
-The above line is very important to remember, you will copy / paste it into the `.travis.yml`.
+This will encrypt the `deploy-key` with the Travis-CI public key, therefore it can only be accessed on the Travis-CI infrastructure.  The above line is very important to remember, you will copy / paste it into the `.travis.yml`.
 
 ## Configure Travis-CI
 
