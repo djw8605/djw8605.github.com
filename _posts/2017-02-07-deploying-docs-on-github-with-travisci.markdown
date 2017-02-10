@@ -19,8 +19,7 @@ After the repo is created, the first step is to create a [deploy key](https://de
 
     ssh-keygen -t rsa -b 4096 -C "djw8605@gmail.com" -f deploy-key
 
-Add the `deploy-key.pub` contents to to your repo's settings under Settings -> Deploy Keys.  Be sure to check the "Allow write access".  
-The deploy key will be used to authenticate the travis-ci build in order to push the website.
+Add the `deploy-key.pub` contents to to your repo's settings under Settings -> Deploy Keys.  Be sure to check the "Allow write access".  The deploy key will be used to authenticate the travis-ci build in order to push the website.
 
 We will next have to encrypt the `deploy-key` so we can commit it to our repository safely.
 
@@ -30,8 +29,7 @@ First, you will need to install the travis command line tools, which is a Ruby G
 
     gem install travis
     
-Next, you will need to enable the repo to be build on Travis-CI.  Log into [Travis-CI](https://travis-ci.org/) and go to "Account".
-Within this menu, search for the name of your repo, and click to enable it.
+Next, you will need to enable the repo to be build on Travis-CI.  Log into [Travis-CI](https://travis-ci.org/) and go to "Account".  Within this menu, search for the name of your repo, and click to enable it.
 
 ![Enable Travis-CI Repo](/images/posts/DocsTravisCI/EnableRepoTravis.png)
 
