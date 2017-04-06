@@ -13,6 +13,24 @@ to a [Github Pages](https://pages.github.com/) site.  In the past few days, I ha
 several repos that will push to Github Pages using the [Travis-CI](https://travis-ci.org/) continuous integration, 
 and I wanted to document how easy it is here.
 
+## *Update*
+
+Since I have written this blog post, a commenter pointed out that Travis-CI has built-in support for [deploying to github pages](https://docs.travis-ci.com/user/deployment/pages/).  In fact, the final `.travis.yml` file could be:
+
+    language: python
+    install:
+    - pip install mkdocs
+    script:
+    - mkdocs build --verbose --clean --strict
+    deploy:
+     provider: pages
+     skip_cleanup: true
+     github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
+     local_dir: site
+     on:
+       branch: master
+
+
 ## Create Deploy Key
 
 After the repo is created, the first step is to create a [deploy key](https://developer.github.com/guides/managing-deploy-keys/).
