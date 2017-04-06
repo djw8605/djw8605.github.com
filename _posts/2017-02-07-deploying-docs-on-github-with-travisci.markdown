@@ -13,7 +13,7 @@ to a [Github Pages](https://pages.github.com/) site.  In the past few days, I ha
 several repos that will push to Github Pages using the [Travis-CI](https://travis-ci.org/) continuous integration, 
 and I wanted to document how easy it is here.
 
-## *Update*
+## _Update_
 
 Since I have written this blog post, a commenter pointed out that Travis-CI has built-in support for [deploying to github pages](https://docs.travis-ci.com/user/deployment/pages/).  In fact, the final `.travis.yml` file could be:
 
