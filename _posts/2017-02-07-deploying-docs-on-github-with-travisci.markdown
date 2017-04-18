@@ -30,6 +30,9 @@ Since I have written this blog post, a commenter pointed out that Travis-CI has 
      on:
        branch: master
 
+There is a trade-off with this method though.  Using the built-in travis-ci method utilizes your personal `GITHUB_TOKEN`, which has access to all of the
+repositories that you have access to.  By using a deploy key, as described below, it is a key specific to the single repository.  Therefore, the above 
+method is easier to setup, but could expose your `GITHUB_TOKEN` which has access all of your repos.
 
 ## Create Deploy Key
 
