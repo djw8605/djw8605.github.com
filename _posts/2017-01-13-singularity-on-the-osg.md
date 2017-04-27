@@ -18,8 +18,8 @@ singularity on the OSG.
 
 ## _Update_
 
-Since I have written this blog post, the OSG has modified their support of singularity to greatly increase the ease of use.  
-The documentation for OSG's usage of singularity is on [OSG's support website](https://support.opensciencegrid.org/support/solutions/articles/12000024676-singularity-containers).
+Since I have written this blog post, the OSG has modified their support of singularity to greatly increase the ease of use. The documentation 
+for OSG's usage of singularity is on [OSG's support website](https://support.opensciencegrid.org/support/solutions/articles/12000024676-singularity-containers).
 
 The OSG now hosts a variety of images, and allow for easy loading.  It can be as simple as this to load an EL7 image:
 
