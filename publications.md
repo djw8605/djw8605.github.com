@@ -6,6 +6,11 @@ title: Publications
 
 {% include base_path %}
 
+## Dissertation
+
+* Weitzel, Derek J. "Enabling distributed scientific computing on the campus." (2015). [Online](http://digitalcommons.unl.edu/computerscidiss/88/)
+
+## Publications
 
 * Weitzel, D., Bockelman, B. & Swanson, D. Distributed Caching Using the HTCondor CacheD. In Proceedings for Conference on Parallel and Distributed Processing Techniques and Applications, 2015. [Online](http://digitalcommons.unl.edu/hollandfacpub/4/)
 * Weitzel, D., Frey, J., Mambelli, M., Fraser, D., Ahronovitz, M., & Swanson, D. BoscoR: Extending R from the desktop to the Grid. MTAGS’ 14. Online
