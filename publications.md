@@ -8,7 +8,7 @@ title: Publications
 
 ## Dissertation
 
-* Weitzel, Derek J. "Enabling distributed scientific computing on the campus." (2015). [Online](http://digitalcommons.unl.edu/computerscidiss/88/)
+* Weitzel, Derek. "Enabling Distributed Scientific Computing on the Campus." Diss. U of Nebraska - Lincoln, 2015. [Online](http://digitalcommons.unl.edu/computerscidiss/88/)
 
 ## Publications
 
