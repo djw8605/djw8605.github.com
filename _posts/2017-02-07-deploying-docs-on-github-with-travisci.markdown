@@ -39,6 +39,8 @@ method is easier to setup, but could expose your `GITHUB_TOKEN` which has access
 After the repo is created, the first step is to create a [deploy key](https://developer.github.com/guides/managing-deploy-keys/).
 
     ssh-keygen -t rsa -b 4096 -C "djw8605@gmail.com" -f deploy-key
+    
+Do not enter a password during the key generation.  We will encrypt the `deploy-key` with travis next.
 
 Add the `deploy-key.pub` contents to to your repo's settings under Settings -> Deploy Keys.  Be sure to check the "Allow write access".  The deploy key will be used to authenticate the travis-ci build in order to push the website.
 
@@ -53,6 +55,10 @@ First, you will need to install the travis command line tools, which is a Ruby G
 Next, you will need to enable the repo to be build on Travis-CI.  Log into [Travis-CI](https://travis-ci.org/) and go to "Account".  Within this menu, search for the name of your repo, and click to enable it.
 
 ![Enable Travis-CI Repo](/images/posts/DocsTravisCI/EnableRepoTravis.png)
+
+You will also need to login with the Travis CLI in order to encrypt the deploy-key:
+
+    travis login
 
 Inside the repository's git repo on your own computer, run the command:
 
