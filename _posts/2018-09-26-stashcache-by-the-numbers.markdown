@@ -17,7 +17,9 @@ gallery:
 
 ---
 
-The StashCache federation is comprised of 3 components: Origins, Caches, and Clients.  There are additional components that help the federation in usability which I will also mention in this post.
+The StashCache federation is comprised of 3 components: Origins, Caches, and Clients.  There are additional components that increase the usability of StashCache which I will also mention in this post.
+
+{% include figure image_path="/images/posts/StashCache-By-Numbers/StashCache-Diagram.png" alt="Diagram of StashCache Infrastructure" caption="Diagram of the StashCache Federation" %}
 
 {% include figure image_path="/images/posts/StashCache-By-Numbers/StashCache-Cumulative.png" alt="Cumulative Usage of StashCache" caption="Cumulative Usage of StashCache over the last 90 days" %}
 
