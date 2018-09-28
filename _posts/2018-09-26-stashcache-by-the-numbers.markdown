@@ -17,14 +17,16 @@ gallery:
 
 ---
 
-The StashCache federation is comprised of 3 components: Origins, Caches, and Clients.  There are additional components that help the federation in usability which I will also mention.
+The StashCache federation is comprised of 3 components: Origins, Caches, and Clients.  There are additional components that help the federation in usability which I will also mention in this post.
 
 {% include figure image_path="/images/posts/StashCache-By-Numbers/StashCache-Cumulative.png" alt="Cumulative Usage of StashCache" caption="Cumulative Usage of StashCache over the last 90 days" %}
 
 Origins
 -------
 
-A StashCache Origin is the authoritative source of data.  The origin receives data location requests from the central redirectors.  These requests take the form of "Do you have the file X", to which the origin will respond "Yes" or "No".  The redirector then returns origins that claim to have the requested file.
+A StashCache Origin is the authoritative source of data.  The origin receives data location requests from the central redirectors.  These requests take the form of "Do you have the file X", to which the origin will respond "Yes" or "No".  The redirector then returns a list of origins that claim to have the requested file to the client.
+
+An Origin is a simple XRootD server, exporting a directory or set of directories for access.
 
 | Origin         | Base Directory | Data Read |
 |----------------|----------------|-----------|
