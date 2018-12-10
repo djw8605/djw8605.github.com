@@ -11,6 +11,7 @@ title: Publications
 * Weitzel, Derek. "Enabling Distributed Scientific Computing on the Campus." Diss. U of Nebraska - Lincoln, 2015. [Online](http://digitalcommons.unl.edu/computerscidiss/88/)
 
 ## Publications
+* Zhang, Z., Bockelman, B., Weitzel, D. and Swanson, D. 2018. Discovering Job Preemptions in the Open Science Grid. In Proceedings of the PEARC '18 Proceedings of the Practice and Experience on Advanced Research Computing, Pittsburgh, PA, July 2018, doi:< 10.1145/3219104.3229282
 * Weitzel, D., & Bockelman, B. (2017, October). Contributing opportunistic resources to the grid with HTCondor-CE-Bosco. In Journal of Physics: Conference Series (Vol. 898, No. 9, p. 092026). IOP Publishing. [Online](http://iopscience.iop.org/article/10.1088/1742-6596/898/9/092026/meta)
 * Weitzel, D., Bockelman, B., Dykstra, D., Blomer, J., & Meusel, R. (2017, October). Accessing Data Federations with CVMFS. In Journal of Physics: Conference Series (Vol. 898, No. 6, p. 062044). IOP Publishing. [Online](http://iopscience.iop.org/article/10.1088/1742-6596/898/6/062044/meta)
 * Retzke, K., Weitzel, D., Bhat, S., Levshina, T., Bockelman, B., Jayatilaka, B., ... & Wuerthwein, F. (2017, October). GRACC: New generation of the OSG accounting. In Journal of Physics: Conference Series (Vol. 898, No. 9, p. 092044). IOP Publishing. [Online](http://iopscience.iop.org/article/10.1088/1742-6596/898/9/092044/meta)
