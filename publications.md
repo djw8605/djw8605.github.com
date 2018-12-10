@@ -29,7 +29,7 @@ title: Publications
 * Andrews, W., Bockelman, B., Bradley, D., Dost, J., Evans, D., Fisk, I., ... & Weitzel, D. (2011, December). Early experience on using glideinWMS in the cloud. In Journal of Physics: Conference Series (Vol. 331, No. 6, p. 062014). IOP Publishing.
 
 ## Awards
-* Best paper award: 2017: Data Access for LIGO on the OSG In Proceedings of the PEARC '17 Proceedings of the Practice and Experience on Advanced Research Computing
+* Best Software and Data Paper: Weitzel, D., Bockelman, B., Brown, D.A., Couvares, P., Würthwein, F. and Hernandez, E.F., 2017. Data Access for LIGO on the OSG. In Proceedings of the PEARC '17 Proceedings of the Practice and Experience on Advanced Research Computing, New Orleans, TX, USA, July 2017. DOI: 10.1145/3093338.3093363
 
 ## Presentatations
 
