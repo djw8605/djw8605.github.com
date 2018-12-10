@@ -13,6 +13,7 @@ title: Publications
 ## Publications
 * Withers, A., Bockelman, B., Weitzel, D., Brown, D., Gaynor, J., Basney, J., Tannenbaum, T. and Miller, Z. 2018. SciTokens: Capability-Based Secure Access to Remote Scientific Data. In Proceedings of the PEARC '18: Practice and Experience in Advanced Research Computing, Pittsburgh, PA, July 2018, doi:< 10.1145/3219104.3219135
 * Zhang, Z., Bockelman, B., Weitzel, D. and Swanson, D. 2018. Discovering Job Preemptions in the Open Science Grid. In Proceedings of the PEARC '18 Proceedings of the Practice and Experience on Advanced Research Computing, Pittsburgh, PA, July 2018, doi:< 10.1145/3219104.3229282
+* Weitzel, D., Bockelman, B., Brown, D.A., Couvares, P., Würthwein, F. and Hernandez, E.F., 2017. Data Access for LIGO on the OSG. In Proceedings of the PEARC '17 Proceedings of the Practice and Experience on Advanced Research Computing, New Orleans, TX, USA, July 2017. DOI: 10.1145/3093338.3093363
 * Weitzel, D., & Bockelman, B. (2017, October). Contributing opportunistic resources to the grid with HTCondor-CE-Bosco. In Journal of Physics: Conference Series (Vol. 898, No. 9, p. 092026). IOP Publishing. [Online](http://iopscience.iop.org/article/10.1088/1742-6596/898/9/092026/meta)
 * Weitzel, D., Bockelman, B., Dykstra, D., Blomer, J., & Meusel, R. (2017, October). Accessing Data Federations with CVMFS. In Journal of Physics: Conference Series (Vol. 898, No. 6, p. 062044). IOP Publishing. [Online](http://iopscience.iop.org/article/10.1088/1742-6596/898/6/062044/meta)
 * Retzke, K., Weitzel, D., Bhat, S., Levshina, T., Bockelman, B., Jayatilaka, B., ... & Wuerthwein, F. (2017, October). GRACC: New generation of the OSG accounting. In Journal of Physics: Conference Series (Vol. 898, No. 9, p. 092044). IOP Publishing. [Online](http://iopscience.iop.org/article/10.1088/1742-6596/898/9/092044/meta)
@@ -27,6 +28,8 @@ title: Publications
 * Weitzel, D., Bockelman, B., Fraser, D., Pordes, R., & Swanson, D. (2011, December). Enabling campus grids with open science grid technology. In Journal of Physics: Conference Series (Vol. 331, No. 6, p. 062025). IOP Publishing.
 * Andrews, W., Bockelman, B., Bradley, D., Dost, J., Evans, D., Fisk, I., ... & Weitzel, D. (2011, December). Early experience on using glideinWMS in the cloud. In Journal of Physics: Conference Series (Vol. 331, No. 6, p. 062014). IOP Publishing.
 
+## Awards
+* Best paper award: 2017: Data Access for LIGO on the OSG In Proceedings of the PEARC '17 Proceedings of the Practice and Experience on Advanced Research Computing
 
 ## Presentatations
 
