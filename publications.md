@@ -11,11 +11,11 @@ title: Publications
 * Weitzel, Derek. "Enabling Distributed Scientific Computing on the Campus." Diss. U of Nebraska - Lincoln, 2015. [Online](http://digitalcommons.unl.edu/computerscidiss/88/)
 
 ## Publications
-* Bockelman, B., Hanushekvsky, A., Keeble, O., Lassnig, M., Millar, P.,Weitzel, D., and Yang, W. Bootstrapping a new lhc data transfer ecosystem. In Journal of Physics: Conference Series(Accepted), IOP Publishing
-* Babik, M., McKee, S., Bockelman, B., Fajardo, Edgar Martelli, E., Vukotic,I., Weitzel, D., and Zvada, M.Improving wlcg networks through monitoring and analytics.  In Journal of Physics: Conference Series (Accepted), IOP Publishing
-* Fajardo, E., Rynge, M., Weitzel, D., Merino, G., Shultz, D., Brik, V.,and Skarlupka, H. Osg and gpus: A tale of two use cases.  In Journal of Physics: Conference Series (Accepted), IOP Publishing
-* Weitzel, D., Bockelman, B., Basney, J., Tannenbaum, T., Miller, Z., and Gaynor, J. Capability-based authorization for hep.  In Journal of Physics: Conference Series (Accepted), IOP Publishing
-* Weitzel, D., Bockelman, B., Retzke, K., and Bhat, S. Gracc: Grid accounting collector.  In Journal of Physics: Conference Series (Accepted), IOP Publishing
+* Bockelman, B., Hanushekvsky, A., Keeble, O., Lassnig, M., Millar, P.,Weitzel, D., and Yang, W. Bootstrapping a new lhc data transfer ecosystem. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
+* Babik, M., McKee, S., Bockelman, B., Fajardo, Edgar Martelli, E., Vukotic,I., Weitzel, D., and Zvada, M.Improving wlcg networks through monitoring and analytics. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
+* Fajardo, E., Rynge, M., Weitzel, D., Merino, G., Shultz, D., Brik, V.,and Skarlupka, H. Osg and gpus: A tale of two use cases. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
+* Weitzel, D., Bockelman, B., Basney, J., Tannenbaum, T., Miller, Z., and Gaynor, J. Capability-based authorization for hep. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
+* Weitzel, D., Bockelman, B., Retzke, K., and Bhat, S. Gracc: Grid accounting collector. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
 * Withers, A., Bockelman, B., Weitzel, D., Brown, D., Gaynor, J., Basney, J., Tannenbaum, T. and Miller, Z. 2018. SciTokens: Capability-Based Secure Access to Remote Scientific Data. In Proceedings of the PEARC '18: Practice and Experience in Advanced Research Computing, Pittsburgh, PA, July 2018, doi:< 10.1145/3219104.3219135
 * Zhang, Z., Bockelman, B., Weitzel, D. and Swanson, D. 2018. Discovering Job Preemptions in the Open Science Grid. In Proceedings of the PEARC '18 Proceedings of the Practice and Experience on Advanced Research Computing, Pittsburgh, PA, July 2018, doi:< 10.1145/3219104.3229282
 * Weitzel, D., Bockelman, B., Brown, D.A., Couvares, P., Würthwein, F. and Hernandez, E.F., 2017. Data Access for LIGO on the OSG. In Proceedings of the PEARC '17 Proceedings of the Practice and Experience on Advanced Research Computing, New Orleans, TX, USA, July 2017. DOI: 10.1145/3093338.3093363
