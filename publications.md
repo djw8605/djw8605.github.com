@@ -11,6 +11,7 @@ title: Publications
 * Weitzel, Derek. "Enabling Distributed Scientific Computing on the Campus." Diss. U of Nebraska - Lincoln, 2015. [Online](http://digitalcommons.unl.edu/computerscidiss/88/)
 
 ## Publications
+* Weitzel, D., Zvada, M., Vukotic, I., Gardner, R., Bockelman, B., Rynge, M., Hernandez, E.F., Lin, B. and Selmeci, M., 2019. StashCache: A Distributed Caching Federation for the Open Science Grid. In Practice and Experience in Advanced Research Computing (PEARC 19) (accepted) doi:< 10.1145/3332186.3332212 [online (arxiv)](https://arxiv.org/abs/1905.06911)
 * Bockelman, B., Hanushekvsky, A., Keeble, O., Lassnig, M., Millar, P.,Weitzel, D., and Yang, W. Bootstrapping a new lhc data transfer ecosystem. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
 * Babik, M., McKee, S., Bockelman, B., Fajardo, Edgar Martelli, E., Vukotic,I., Weitzel, D., and Zvada, M.Improving wlcg networks through monitoring and analytics. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
 * Fajardo, E., Rynge, M., Weitzel, D., Merino, G., Shultz, D., Brik, V.,and Skarlupka, H. Osg and gpus: A tale of two use cases. CHEP18 In Journal of Physics: Conference Series (Accepted), IOP Publishing
