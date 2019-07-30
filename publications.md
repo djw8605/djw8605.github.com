@@ -39,6 +39,8 @@ title: Publications
 
 ## Presentatations
 
-* Weitzel, Derek. Enabling Microsoft OneDrive Integration with HTCondor at Humans in the Loop: Enabling and Facilitating Research on Cloud Computing at PEARC19.  ([online](/presentations/OneDrive-HTCondor-PEARC19.pdf))
+* Paper Presentation: Weitzel, Derek. StashCache: A Distributed Caching Federation for the Open Science Grid at Practice and Experience in Advanced Research Computing (PEARC 19) July 30, 2019 ([online](/presentations/StashCache-PEARC19.pdf))
+
+* Invited Talk: Weitzel, Derek. Enabling Microsoft OneDrive Integration with HTCondor at Humans in the Loop: Enabling and Facilitating Research on Cloud Computing at PEARC19. July 29, 2019 ([online](/presentations/OneDrive-HTCondor-PEARC19.pdf)) 
 
 * Weitzel, Derek; Bockelman, Brian; Thiltges, John.  Hiding All the Details: Running Grid Jobs Inside Docker Containers on the OSG. at HTCondor Week 2016.  ([online](https://research.cs.wisc.edu/htcondor//HTCondorWeek2016/presentations/WedWeitzel_DockerGridJobs.pdf))
