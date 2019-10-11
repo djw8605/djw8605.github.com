@@ -1,5 +1,4 @@
 ---
-layout: post
 title: "LetsEncrypt for Multiple Hosts"
 date: "2019-10-11 14:38:14 -0500"
 tags:
