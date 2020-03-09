@@ -18,6 +18,18 @@ Data collection is performed by a probe on each the new and old ElasticSearch cl
 
 The probe is very simple.  It queries ES for all indexes, as well as the number of documents and data size inside the index.
 
+There are also many indexes that the OSG is not transitioning to the new ES.  In order to ignore these indexes, a set of regular expressions is used to remove the indexes from consideration.  Those regular expressions are:
+
+```
+/^osg.*/,           // Start with osg.*
+/^ps_.*/,           // Start with ps_*
+/^shrink\-ps_.*/,   // Start with shrink-ps_*
+/^glidein.*/,       // Start with glidein*
+/^\..*/,            // Start with .
+/^ps\-itb.*/        // Start with ps-itb*
+
+```
+
 ## The Website
 
 ![GRACC Transition Website](/images/posts/gracc-transition/gracc-transition-website.png)
