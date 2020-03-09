@@ -27,7 +27,6 @@ There are also many indexes that the OSG is not transitioning to the new ES.  In
 /^glidein.*/,       // Start with glidein*
 /^\..*/,            // Start with .
 /^ps\-itb.*/        // Start with ps-itb*
-
 ```
 
 ## The Website
