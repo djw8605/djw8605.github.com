@@ -38,7 +38,7 @@ move this over to OSG's production kubernetes installation soon.  The entire
 application is only the web interface and a back-end [Redis](https://redis.io/)
 data store.
 
-{% include figure image_path="/images/posts/XRootDClientManager/interface.png"
+{% include figure image_path="/images/posts/XRootDClientManager/Interface.png"
 alt="Screenshot of web interface" caption="Screenshot of simple web interface"
 %}
 
