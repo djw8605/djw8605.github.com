@@ -60,6 +60,6 @@ Conclusion
 
 Improving the cache selection can improve the download effeciency.  It is left as future work to measure if the nearest geographical cache is the best choice.  While the OSDF is using GeoIP service for cache selection, it is important to select the correct cache.  Using the new Cloudflare service results in **95%** correct cache decision vs. **86%** with the original service.
 
-
+Cloudflare Workers is also very affordable for the scale that the OSDF would require.  The first 100,000 requests are free, while it is $5/mo for the next 10 Million requests.  The OSPool runs between 100,000 to 230,000 jobs per day, easily fitting within the $5/mo tier.
 
 
