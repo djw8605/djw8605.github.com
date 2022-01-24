@@ -52,6 +52,8 @@ The second site where the Cloudflare worker implementation was incorrect was `SI
 
 <!-- TODO: Find out why KC cache was choosen SIUE -->
 
+An example of a site that did not work with GeoIP was `ASU-DELL_M420` (Arizona Statue University).  The original service returned that the KC cache was the nearest.  The Cloudflare service gave the default Lat/Log if GeoIP failed, the middle of Kansas, but the data center serving the request had the airport code of `LAX` (Los Angeles).  The nearest cache to `LAX` is the UCSD cache, which is the correct cache decision.
+
 During the evaluation, I originally used the Cloudflare worker development DNS address, [stash-location.djw8605.workers.dev](https://stash-location.djw8605.workers.dev).  Purdue University and the American Museum of Natural History sites both blocked the development DNS address.  The block was from an OpenDNS service which reported the domain had been linked to malware and phishing.  Since the DNS hostname was hours old, it's likely that most `*workers.dev` domains were blocked.
 
 
