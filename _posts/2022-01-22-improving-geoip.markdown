@@ -6,7 +6,7 @@ tags:
 author: "Derek Weitzel"
 ---
 
-Optimizing data transfers requires tuning many parameters.  High latency between the client and a server can decrease data transfer throughput. The Open Science Data Federation (OSDF) attempts to optimize the latency between a client and cache by using GeoIP to locate the nearest cache to the client.  But, using GeoIP alone has many flaws.  In this post, we utilize [Cloudflare Workers](https://workers.cloudflare.com/) to provide GeoIP information.  During the evaluation, we found that location accuracy grew from **86%** accurate with the original GeoIP service to **95%** accurate with Cloudflare Workers.
+Optimizing data transfers requires tuning many parameters.  High latency between the client and a server can decrease data transfer throughput. The Open Science Data Federation (OSDF) attempts to optimize the latency between a client and cache by using GeoIP to locate the nearest cache to the client.  But, using GeoIP alone has many flaws.  In this post, we utilize [Cloudflare Workers](https://workers.cloudflare.com/) to provide GeoIP information during cache selection.  During the evaluation, we found that location accuracy grew from **86%** accurate with the original GeoIP service to **95%** accurate with Cloudflare Workers.
 
 {% include figure image_path="/images/posts/CloudflareWorkers/CacheMap.png"
 alt="Map of U.S. OSDF" caption="Map of OSDF locations"
