@@ -4,13 +4,13 @@
 
 @charset "utf-8";
 
-$right-sidebar-width: 200px;
+$right-sidebar-width: 250px;
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
 html {
-  font-size: 12px; // change to whatever
+  font-size: 14px; // change to whatever
 
   @include breakpoint($medium) {
     font-size: 14px; // change to whatever
@@ -21,7 +21,7 @@ html {
   }
 
   @include breakpoint($x-large) {
-    font-size: 16px; // change to whatever
+    font-size: 18px; // change to whatever
   }
 }
 
