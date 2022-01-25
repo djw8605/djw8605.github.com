@@ -62,7 +62,7 @@ google_ad_slot           :
 # Site Author
 author:
   name             : "Derek Weitzel"
-  avatar           : "bio-photo.png"
+  avatar           : "images/bio-photo.png"
   bio              : "Research Assistant Professor"
   location         : "Omaha, NE"
   email            : "djw8605@gmail.com"
@@ -145,6 +145,10 @@ kramdown:
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
 
+sass:
+  sass_dir: _sass
+  style: expanded
+  #style: compressed
 
 # Outputting
 permalink: /:categories/:year/:month/:day/:title/
@@ -154,12 +158,13 @@ timezone: # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
 
 # Plugins
-gems:
+plugins:
   - jekyll-paginate
   - jekyll-sitemap
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-include-cache
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -168,6 +173,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jemoji
+  - jekyll-include-cache
 
 
 # Archives
@@ -180,10 +186,10 @@ whitelist:
 #  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
 #  - <base_path/categories/my-awesome-category/index.html ~> path: /categories/
 #  - <base_path/my-awesome-category/index.html ~> path: /
-categories:
+category_archive:
   type: liquid
   path: /categories/
-tags:
+tag_archive:
   type: liquid
   path: /tags/
 # https://github.com/jekyll/jekyll-archives
@@ -208,8 +214,7 @@ compress_html:
     
 defaults:
   # _posts
-  - 
-    scope:
+  - scope:
       path: ""
       type: posts
     values:
