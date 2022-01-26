@@ -28,9 +28,9 @@ StashCP queries the [CVMFS](https://cernvm.cern.ch/fs/) geo location service whi
 
 [Cloudflare Workers](https://workers.cloudflare.com/) are designed to run at Cloudflare's many colocation facilities near the client.  Cloudflare directs a client's request to a nearby data center using DNS.  Each request is annotaed with an approximate location of the client, as well as the colocation center that received the request.  Cloudflare uses a GeoIP database much like MaxMind, but it also falls back to the colocation site that the request was serviced.
 
-I wrote a Cloudflare worker, [`cache-locator`](https://github.com/djw8605/cache-locator), which calculates the nearest cache to the client.  It uses the GeoIP location of the client to calculate the ordered list of nearest caches.  If the GeoIP fails for a location, the incoming request to the worker will not be annotated with the location but will include the `AITA` airport code of the colocation center that received the client request.  We then return the ordered list of nearest caches to the airport.
+I wrote a Cloudflare worker, [`cache-locator`](https://github.com/djw8605/cache-locator), which calculates the nearest cache to the client.  It uses the GeoIP location of the client to calculate the ordered list of nearest caches.  If the GeoIP fails for a location, the incoming request to the worker will not be annotated with the location but will include the `IATA` airport code of the colocation center that received the client request.  We then return the ordered list of nearest caches to the airport.
 
-We imported a [database of airport codes](https://www.partow.net/miscellaneous/airportdatabase/) to locations that is pubically available.  The database is stored in the [Cloudflare Key-Value](https://developers.cloudflare.com/workers/learning/how-kv-works), keyed by the `AITA` code of the airport.
+We imported a [database of airport codes](https://www.partow.net/miscellaneous/airportdatabase/) to locations that is pubically available.  The database is stored in the [Cloudflare Key-Value](https://developers.cloudflare.com/workers/learning/how-kv-works), keyed by the `IATA` code of the airport.
 
 Evaluation
 ----------
@@ -49,7 +49,7 @@ In the spreadsheet, you can see that the correct cache was choosen **86%** of th
 
 ### Notes during the Evaluation
 
-Cloudflare was determined to be incorrect at two sites, the first being `UColorado_HEP` (University of Colorado in Boulder).  In this case, the Colorado clients failed the primary GeoIP lookup and the cloudflare workers fell back to using the `AITA` code from the request.  The requests from Colorado all where recieved by the Cloudflare Dallas colocation site, which is nearest the Houston cache.  The original GeoIP service choose the Kansas City cache, which is the correct decision.  It is unknown if the orignal GeoIP service choose KC cache because it knew the GeoIP location of the clients, or it defaulted to the Kansas default.
+Cloudflare was determined to be incorrect at two sites, the first being `UColorado_HEP` (University of Colorado in Boulder).  In this case, the Colorado clients failed the primary GeoIP lookup and the cloudflare workers fell back to using the `IATA` code from the request.  The requests from Colorado all where recieved by the Cloudflare Dallas colocation site, which is nearest the Houston cache.  The original GeoIP service choose the Kansas City cache, which is the correct decision.  It is unknown if the orignal GeoIP service choose KC cache because it knew the GeoIP location of the clients, or it defaulted to the Kansas default.
 
 The second site where the Cloudflare worker implementation was incorrect was `SIUE-CC-production` (Southern Illinois University Edwardsville).  In this case, the original GeoIP service choose Chicago, while the new service choose Kansas.  Edwardsville is almost equal distance from both the KC cache and Chicago.  The difference in the distance to the caches is ~0.6 KM, with Chicago being closer.
 
