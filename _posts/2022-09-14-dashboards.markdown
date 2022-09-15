@@ -14,7 +14,7 @@ toc_sticky: true
 layout: single
 header:
   image: /images/posts/Dashboards/DashboardsHeader.png
-  og_image: /images/posts/Dashboards/osdf-screenshot.png
+  og_image: /images/posts/Dashboards/osdf-screenshot-twitter.png
 ---
 
 
