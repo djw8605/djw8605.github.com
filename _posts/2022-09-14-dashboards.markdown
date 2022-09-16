@@ -13,7 +13,7 @@ toc_label: "On This Page"
 toc_sticky: true
 layout: single
 header:
-  image: /images/posts/Dashboards/DashboardsHeader.png
+  image: /images/posts/Dashboards/TitleImage.png
   og_image: /images/posts/Dashboards/osdf-screenshot-twitter.png
 ---
 
