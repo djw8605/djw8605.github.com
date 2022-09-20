@@ -219,8 +219,10 @@ defaults:
       type: posts
     values:
       layout: single
-      read_time: false
+      show_date: true
+      read_time: true
       comments: true
       share: true
       related: true
       author_profile: true
+
