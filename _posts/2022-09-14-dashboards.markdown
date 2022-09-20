@@ -15,6 +15,7 @@ layout: single
 header:
   image: /images/posts/Dashboards/TitleImage.png
   og_image: /images/posts/Dashboards/osdf-screenshot-twitter.png
+  teaser: /images/posts/Dashboards/Teaser.png
 ---
 
 
