@@ -96,6 +96,7 @@ include:
   - .htaccess
   - _pages
 exclude:
+  - "*.bak"
   - "*.sublime-project"
   - "*.sublime-workspace"
   - .asset-cache
@@ -225,4 +226,3 @@ defaults:
       share: true
       related: true
       author_profile: true
-
