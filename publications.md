@@ -11,6 +11,8 @@ title: Publications
 * Weitzel, Derek. "Enabling Distributed Scientific Computing on the Campus." Diss. U of Nebraska - Lincoln, 2015. [Online](http://digitalcommons.unl.edu/computerscidiss/88/)
 
 ## Publications
+* Derek Weitzel, Ashton Graves, Sam Albin, Huijun Zhu, Frank Würthwein, Mahidhar Tatineni, Dmitry Mishin, John Graham, Elham E. Khoda, Mohammad Firas Sada, Larry Smarr, and Thomas DeFanti. 2025. "The National Research Platform: Stretched, Multi-Tenant, Scientific Kubernetes Cluster." In Practice and Experience in Advanced Research Computing 2025 (PEARC '25). New York, NY, USA: Association for Computing Machinery. https://doi.org/10.1145/3708035.3736060.
+* Venkat Sai Suman Lamba Karanam, Sarat Sasank Barla, Byrav Ramamurthy, and Derek Weitzel. 2025. "ML-based Adaptive Prefetching and Data Placement for US HEP Systems." arXiv:2503.06015. https://arxiv.org/abs/2503.06015.
 * Sarat Sasank Barla, Venkat Sai Suman Lamba Karanam, Byrav Ramamurthy, and Derek Weitzel. 2024. “Predicting Future Accesses in XRootD Caching Systems Using ML-Based Network Pattern Analysis.” In 2024 IEEE International Conference on Advanced Networks and Telecommunications Systems (ANTS), 1–6. https://doi.org/10.1109/ANTS63515.2024.10898672.
 * Fabio Andrijauskas, Derek Weitzel, and Frank Wuerthwein. 2024. “Open Science Data Federation - Operation and Monitoring.” In Practice and Experience in Advanced Research Computing 2024: Human Powered Computing, 1–5. PEARC ’24. New York, NY, USA: Association for Computing Machinery. https://doi.org/10.1145/3626203.3670557.
 * Borja Garrido, Julia Andreeva, Derek Weitzel, Alessandra Forti, and Shawn McKee. 2024. “New XrootD Monitoring Implementation.” EPJ Web of Conferences 295:01040. https://doi.org/10.1051/epjconf/202429501040.
