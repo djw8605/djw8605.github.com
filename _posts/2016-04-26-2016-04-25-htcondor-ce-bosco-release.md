@@ -6,7 +6,7 @@ tags:
   - osg
   - bosco
 header:
-  teaser: /posts/htcondor-ce-bosco/HTCondorCEBosco.png
+  teaser: /images/posts/htcondor-ce-bosco/HTCondorCEBosco.png
 ---
 
 The HTCondor-CE-Bosco (CE-Bosco) is one of the largest changes for the upcoming OSG 3.3.12 release, to be released on 2016/05/10.  The HTCondor-CE-Bosco is a special configuration of the [HTCondor-CE](https://twiki.grid.iu.edu/bin/view/Documentation/Release3/InstallHTCondorCE).  The HTCondor-CE-Bosco does not submit directly to a local scheduler such as [Slurm](http://slurm.schedmd.com/) or [PBS](http://www.adaptivecomputing.com/products/open-source/torque/), instead, it will submit jobs to a remote cluster over SSH.
@@ -85,5 +85,4 @@ The HTCondor-CE and the CE-Bosco have pros and cons for usage.  For example, the
 It's difficult to summarize which solution you should choose for your site, the HTCondor-CE or CE-Bosco.  Each site and cluster has it's own special requirements.  If you are hesitant to modify your cluster for grid jobs, for example adding a new submit node and exporting read access to the Slurm Database, then CE-Bosco is your best choice.  If you are willing to make the adjustments to your cluster above, then your cluster can scale to thousands of running grid jobs.
 
 If you are a site that is interested in a HTCondor-CE-Bosco hosted by the OSG, contact [OSG User Support](mailto:user-support@opensciencegrid.org).  This can significantly reduce the administrative effort required for a site to join the OSG.
-
 

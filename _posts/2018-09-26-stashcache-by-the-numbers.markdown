@@ -6,12 +6,12 @@ title: "StashCache By The Numbers"
 date: "2018-09-26 00:00:00 -0500"
 
 gallery:
-  - url: /posts/StashCache-By-Numbers/StashCache-CVMFS.png
-    image_path: /posts/StashCache-By-Numbers/StashCache-CVMFS.png
+  - url: /images/posts/StashCache-By-Numbers/StashCache-CVMFS.png
+    image_path: /images/posts/StashCache-By-Numbers/StashCache-CVMFS.png
     alt: "Client Usage By Tool"
     title: "Client Usage By Tool"
-  - url: /posts/StashCache-By-Numbers/StashCP-Usage.png
-    image_path: /posts/StashCache-By-Numbers/StashCP-Usage.png
+  - url: /images/posts/StashCache-By-Numbers/StashCP-Usage.png
+    image_path: /images/posts/StashCache-By-Numbers/StashCP-Usage.png
     alt: "StashCP Usage"
     title: "StashCP Usage"
 
@@ -84,5 +84,4 @@ The cache listens on port 1094 to regular XRootD protocol, and port 8000 for HTT
 Authenticated caches use GSI certificates to authenticate access to files within the cache.  The client will authenticate with the cache using the client's certificate.  If the file is not in the cache, the cache will use it's own certificate to authenticate with the origin to download the file.
 
 Authenticated caches use port 8443 for HTTPS.
-
 

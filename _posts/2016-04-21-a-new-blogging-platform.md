@@ -1,7 +1,7 @@
 ---
 title: A New Blogging Platform
 header:
-  teaser: /posts/jekyll-logo.png
+  teaser: /images/posts/jekyll-logo.png
 author: Derek Weitzel
 tags:
   - osg
@@ -33,5 +33,4 @@ Now, I can include the code directly into the post.  Further, it was difficult t
 There are some downsides to using jekyll though.  For example, image formatting is going to be more difficult.  In blogger, it is just a simple button to push that makes images larger or smaller.  Now, I have to resize them much more manually.
 
 But, overall, I think I will be very happy with this new blogging platorm.  Hopefully, I will be able to post more often.
-
 

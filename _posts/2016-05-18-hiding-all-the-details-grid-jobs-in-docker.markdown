@@ -8,7 +8,7 @@ tags:
   - htcondor
   - docker
 header:
-  teaser: /posts/DockerGrid/DockerLogo.png
+  teaser: /images/posts/DockerGrid/DockerLogo.png
 excerpt_separator: <!--more-->
 ---
 
@@ -142,4 +142,3 @@ Things that would simplify our setup:
 ## References
 
 * [HTCondor Week 2016 talk](https://research.cs.wisc.edu/htcondor//HTCondorWeek2016/presentations/WedWeitzel_DockerGridJobs.pdf)
-

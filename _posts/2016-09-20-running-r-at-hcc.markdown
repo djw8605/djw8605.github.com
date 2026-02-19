@@ -7,7 +7,7 @@ tags:
   - htcondor
   - R
 header:
-  teaser: /posts/ROnHCC/SpectrumScreenshot.png
+  teaser: /images/posts/ROnHCC/SpectrumScreenshot.png
 excerpt_separator: <!--more-->
 date: "2016-09-20 21:27:21 -0500"
 ---
@@ -119,6 +119,5 @@ Jobs submitted to the OSG can run on multiple sites around the U.S.  They will e
 There are many methods to submitting R processing to clusters and the grid.  One has to choose which one best suites them.
 
 The GridR method is easy for experience R programmers.  But, it lacks the flexibility of the Slurm submit file method.  The Slurm submit method requires learning some Linux and Slurm syntax, but offers the flexibility to specify multiple cores per R script or more memory per job.
-
 
 

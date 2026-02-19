@@ -1,12 +1,17 @@
 # main links links
 main:
 
+  - title: "Home"
+    url: /
+
   - title: "About"
     url: /about/
 
   - title: "Blog"
     url: /year-archive/
 
+  - title: "Projects"
+    url: /projects/
+
   - title: "Publications"
     url: /publications/
-

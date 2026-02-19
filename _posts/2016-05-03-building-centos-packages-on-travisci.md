@@ -5,7 +5,7 @@ author: Derek Weitzel
 tags:
   - osg
 header:
-  teaser: /posts/CentOS-TravisCI/passing.svg
+  teaser: /images/posts/CentOS-TravisCI/passing.svg
 excerpt_separator: <!--more-->
 ---
 
@@ -109,4 +109,3 @@ Here is a list of OSG builds using the above configuration:
 * [HTCondor-CE](https://travis-ci.org/opensciencegrid/htcondor-ce) [![Build Status](https://travis-ci.org/opensciencegrid/htcondor-ce.svg?branch=master)](https://travis-ci.org/opensciencegrid/htcondor-ce)
 * [OSG Tarball Client](https://travis-ci.org/opensciencegrid/tarball-client) [![Build Status](https://travis-ci.org/opensciencegrid/tarball-client.svg?branch=master)](https://travis-ci.org/opensciencegrid/tarball-client)
 * [OSG Configure](https://travis-ci.org/opensciencegrid/osg-configure) [![Build Status](https://travis-ci.org/opensciencegrid/osg-configure.svg?branch=master)](https://travis-ci.org/opensciencegrid/osg-configure)
-

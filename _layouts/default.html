@@ -1,42 +1,184 @@
 ---
 ---
-
 <!doctype html>
-<!--
-  Minimal Mistakes Jekyll Theme 4.24.0 by Michael Rose
-  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
-  Free for personal and commercial use under the MIT license
-  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
--->
-<html lang="{{ site.locale | slice: 0,2 | default: "en" }}" class="no-js">
+<html lang="{{ site.locale | slice: 0,2 | default: 'en' }}">
   <head>
     {% include head.html %}
     {% include head/custom.html %}
   </head>
-
-  <body class="layout--{{ page.layout | default: layout.layout }}{% if page.classes or layout.classes %}{{ page.classes | default: layout.classes | join: ' ' | prepend: ' ' }}{% endif %}">
-    {% include_cached skip-links.html %}
-    {% include_cached browser-upgrade.html %}
-    {% include_cached masthead.html %}
-
-    <div class="initial-content">
-      {{ content }}
+  <body class="min-h-screen bg-slate-50 text-slate-900 antialiased dark:bg-night-950 dark:text-slate-100">
+    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div class="absolute -top-32 left-[6%] h-96 w-96 rounded-full bg-cyan-300/30 blur-3xl dark:bg-cyan-500/15"></div>
+      <div class="absolute right-[8%] top-28 h-[28rem] w-[28rem] rounded-full bg-fuchsia-300/30 blur-3xl dark:bg-fuchsia-600/15"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),radial-gradient(circle_at_bottom,rgba(236,72,153,0.08),transparent_45%)]"></div>
     </div>
 
-    {% if site.search == true %}
-      <div class="search-content">
-        {% include_cached search/search_form.html %}
+    {% assign current_path = page.url | replace: 'index.html', '' %}
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/80">
+      <div class="mx-auto flex max-w-7xl items-center gap-5 px-4 py-5 sm:px-6 sm:py-6">
+        <a href="{{ '/' | relative_url }}" class="text-2xl font-bold tracking-tight text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-white dark:focus-visible:ring-offset-slate-900">{{ site.name | default: site.title }}</a>
+
+        <nav class="ml-auto hidden items-center gap-8 md:flex">
+          {%- for link in site.data.navigation.main -%}
+            {% assign normalized_link = link.url | replace: 'index.html', '' %}
+            {% assign is_active = false %}
+            {% if current_path == normalized_link %}
+              {% assign is_active = true %}
+            {% endif %}
+            <a href="{{ link.url | relative_url }}" class="nav-link inline-flex min-h-[44px] items-center px-1 py-2 text-[0.98rem] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 {% if is_active %}nav-link--active text-slate-900 dark:text-slate-100{% else %}text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100{% endif %}">{{ link.title }}</a>
+          {%- endfor -%}
+        </nav>
+
+        <button type="button" data-theme-toggle class="hidden min-h-[44px] items-center gap-2 rounded-full border border-slate-300/85 bg-white/72 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-600 dark:bg-slate-900/55 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-900 md:ml-4 md:inline-flex" aria-label="Toggle color theme" aria-pressed="false">
+          <svg data-theme-icon="sun" xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zm0 11.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zm6.25-3.5a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H17a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5A.75.75 0 012 10zm12.303-5.303a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM4.636 14.364a.75.75 0 011.06 0l1.061 1.061a.75.75 0 11-1.06 1.06l-1.061-1.06a.75.75 0 010-1.06zm11.789 1.06a.75.75 0 01-1.06 1.061l-1.061-1.061a.75.75 0 011.06-1.06l1.061 1.06zM6.757 5.757a.75.75 0 01-1.06 1.06L4.636 5.758a.75.75 0 111.06-1.06l1.061 1.06z"/></svg>
+          <svg data-theme-icon="moon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a.75.75 0 00-.982-.982 9.5 9.5 0 109.55 15.55.75.75 0 00-.982-.982z"/></svg>
+          <span data-theme-label>Dark</span>
+        </button>
+
+        <button type="button" data-menu-toggle class="ml-auto inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-lg border border-slate-300 p-2 text-slate-700 transition hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-600 dark:text-slate-200 dark:hover:bg-slate-800 dark:focus-visible:ring-offset-slate-900 md:hidden" aria-label="Toggle menu">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 5A.75.75 0 012.75 9h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 9.75zm0 5a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" /></svg>
+        </button>
       </div>
+
+      <div data-mobile-menu class="hidden border-t border-slate-200/70 px-4 py-3 dark:border-slate-700/60 md:hidden">
+        <div class="space-y-1">
+          {%- for link in site.data.navigation.main -%}
+            <a href="{{ link.url | relative_url }}" class="block min-h-[44px] rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-200/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70 dark:text-slate-200 dark:hover:bg-slate-700/70">{{ link.title }}</a>
+          {%- endfor -%}
+          <button type="button" data-theme-toggle class="flex min-h-[44px] w-full items-center gap-2 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-200/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70 dark:text-slate-200 dark:hover:bg-slate-700/70" aria-label="Toggle color theme" aria-pressed="false">
+            <svg data-theme-icon="sun" xmlns="http://www.w3.org/2000/svg" class="hidden h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 0110 2zm0 11.5a3.5 3.5 0 100-7 3.5 3.5 0 000 7zm6.25-3.5a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5H17a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h1.5a.75.75 0 010 1.5h-1.5A.75.75 0 012 10zm12.303-5.303a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM4.636 14.364a.75.75 0 011.06 0l1.061 1.061a.75.75 0 11-1.06 1.06l-1.061-1.06a.75.75 0 010-1.06zm11.789 1.06a.75.75 0 01-1.06 1.061l-1.061-1.061a.75.75 0 011.06-1.06l1.061 1.06zM6.757 5.757a.75.75 0 01-1.06 1.06L4.636 5.758a.75.75 0 111.06-1.06l1.061 1.06z"/></svg>
+            <svg data-theme-icon="moon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path d="M17.293 13.293A8 8 0 016.707 2.707a.75.75 0 00-.982-.982 9.5 9.5 0 109.55 15.55.75.75 0 00-.982-.982z"/></svg>
+            <span data-theme-label>Dark</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    {{ content }}
+
+    <footer class="border-t border-slate-200/80 py-8 dark:border-slate-700/50">
+      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 text-sm text-slate-500 dark:text-slate-400 sm:px-6 sm:flex-row sm:items-center sm:justify-between">
+        <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}</p>
+        <p class="font-mono">Built with Jekyll + TailwindCSS</p>
+      </div>
+    </footer>
+
+    {% include analytics.html %}
+    {% include /comments-providers/scripts.html %}
+
+    {% if site.after_footer_scripts %}
+      {% for script in site.after_footer_scripts %}
+        <script src="{{ script | relative_url }}"></script>
+      {% endfor %}
     {% endif %}
 
-    <div id="footer" class="page__footer">
-      <footer>
-        {% include footer/custom.html %}
-        {% include_cached footer.html %}
-      </footer>
-    </div>
+    <script>
+      (function () {
+        var storageKey = 'theme-preference';
+        var menuToggle = document.querySelector('[data-menu-toggle]');
+        var mobileMenu = document.querySelector('[data-mobile-menu]');
+        var themeToggles = document.querySelectorAll('[data-theme-toggle]');
+        var mediaQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+        var themePreference = 'system';
 
-    {% include scripts.html %}
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', function () {
+            mobileMenu.classList.toggle('hidden');
+          });
+        }
 
+        function readThemePreference() {
+          var stored = null;
+
+          try {
+            stored = localStorage.getItem(storageKey);
+          } catch (err) {
+            stored = null;
+          }
+
+          if (stored === 'dark' || stored === 'light') {
+            return stored;
+          }
+
+          return 'system';
+        }
+
+        function resolveTheme(preference) {
+          if (preference === 'dark' || preference === 'light') {
+            return preference;
+          }
+
+          if (mediaQuery && mediaQuery.matches) {
+            return 'dark';
+          }
+
+          return 'light';
+        }
+
+        function syncThemeToggleUi(resolved) {
+          for (var i = 0; i < themeToggles.length; i += 1) {
+            var toggle = themeToggles[i];
+            var sunIcon = toggle.querySelector('[data-theme-icon="sun"]');
+            var moonIcon = toggle.querySelector('[data-theme-icon="moon"]');
+            var label = toggle.querySelector('[data-theme-label]');
+
+            toggle.setAttribute('aria-pressed', resolved === 'dark' ? 'true' : 'false');
+
+            if (sunIcon) {
+              sunIcon.classList.toggle('hidden', resolved !== 'dark');
+            }
+
+            if (moonIcon) {
+              moonIcon.classList.toggle('hidden', resolved === 'dark');
+            }
+
+            if (label) {
+              label.textContent = resolved === 'dark' ? 'Light' : 'Dark';
+            }
+          }
+        }
+
+        function applyTheme(preference) {
+          var resolved = resolveTheme(preference);
+          document.documentElement.classList.toggle('dark', resolved === 'dark');
+          document.documentElement.setAttribute('data-theme', resolved);
+          if (document.body) {
+            document.body.classList.toggle('dark', resolved === 'dark');
+          }
+          document.documentElement.style.colorScheme = resolved;
+          syncThemeToggleUi(resolved);
+        }
+
+        themePreference = readThemePreference();
+        applyTheme(themePreference);
+
+        for (var i = 0; i < themeToggles.length; i += 1) {
+          themeToggles[i].addEventListener('click', function () {
+            var currentResolved = resolveTheme(themePreference);
+            themePreference = currentResolved === 'dark' ? 'light' : 'dark';
+
+            try {
+              localStorage.setItem(storageKey, themePreference);
+            } catch (err) {
+              /* no-op */
+            }
+
+            applyTheme(themePreference);
+          });
+        }
+
+        function handleSystemThemeChange() {
+          if (themePreference === 'system') {
+            applyTheme('system');
+          }
+        }
+
+        if (mediaQuery && mediaQuery.addEventListener) {
+          mediaQuery.addEventListener('change', handleSystemThemeChange);
+        } else if (mediaQuery && mediaQuery.addListener) {
+          mediaQuery.addListener(handleSystemThemeChange);
+        }
+      })();
+    </script>
   </body>
 </html>

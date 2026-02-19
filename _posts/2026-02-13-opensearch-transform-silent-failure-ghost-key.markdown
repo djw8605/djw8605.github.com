@@ -9,13 +9,20 @@ toc: true
 toc_label: "On This Page"
 toc_sticky: true
 layout: single
+header:
+  og_image: /images/posts/opensearch-transform/ai-opensearch-debugging.png
+  teaser: /images/posts/opensearch-transform/ai-opensearch-debugging.png
 ---
 
 Debugging OpenSearch Transform jobs can feel like searching for a needle in a haystack, especially when the error messages are generic. This post chronicles a recent debugging journey, highlighting common pitfalls and the ultimate solution to a persistently failing transform job.
 
 ## The Problem: Summarizing XRootD Stash Data
 
+{% include figure image_path="/images/posts/opensearch-transform/ai-opensearch-debugging.png" alt="OpenSearch transform debugging illustration" caption="Debugging an OpenSearch transform job that failed with 'Failed to index the documents'" class="post-figure--float-right" %}
+
 Our goal was straightforward: aggregate XRootD stash access logs (`xrd-stash*`) into a daily summary index (`osdf-summary-{year}`). This involved grouping by several file path components, server details, and user domains, then calculating sums, averages, and counts of metrics like `filesize`, `read`, and `write`.
+
+<div class="post-figure-clear" aria-hidden="true"></div>
 
 Here is a snippet of the initial (problematic) transform configuration:
 

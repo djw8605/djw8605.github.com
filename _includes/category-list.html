@@ -7,13 +7,10 @@
 
 {% if site.category_archive.path %}
   {% assign categories_sorted = page.categories | sort_natural %}
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-folder-open" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].categories_label | default: "Categories:" }} </strong>
-    <span itemprop="keywords">
+  <p class="page__taxonomy mt-2 text-sm text-slate-600 dark:text-slate-300">
+    <span class="mr-2 font-semibold">Categories:</span>
     {% for category_word in categories_sorted %}
-      <a href="{{ category_word | slugify | prepend: path_type | prepend: site.category_archive.path | relative_url }}" class="page__taxonomy-item p-category" rel="tag">{{ category_word }}</a>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}
+      <a href="{{ category_word | slugify | prepend: path_type | prepend: site.category_archive.path | relative_url }}" class="page__taxonomy-item" rel="tag">{{ category_word }}</a>
     {% endfor %}
-    </span>
   </p>
 {% endif %}

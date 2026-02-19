@@ -7,13 +7,10 @@
 
 {% if site.tag_archive.path %}
   {% assign tags_sorted = page.tags | sort_natural %}
-
-  <p class="page__taxonomy">
-    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].tags_label | default: "Tags:" }} </strong>
-    <span itemprop="keywords">
+  <p class="page__taxonomy text-sm text-slate-600 dark:text-slate-300">
+    <span class="mr-2 font-semibold">Tags:</span>
     {% for tag_word in tags_sorted %}
-      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="page__taxonomy-item p-category" rel="tag">{{ tag_word }}</a>{% unless forloop.last %}<span class="sep">, </span>{% endunless %}
+      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="page__taxonomy-item" rel="tag">{{ tag_word }}</a>
     {% endfor %}
-    </span>
   </p>
 {% endif %}

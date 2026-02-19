@@ -1,0 +1,39 @@
+{% assign document = include.post | default: post | default: page %}
+{% assign post_image = "" %}
+
+{% if document.header %}
+  {% if document.header.teaser %}
+    {% assign post_image = document.header.teaser %}
+  {% elsif document.header.image %}
+    {% assign post_image = document.header.image %}
+  {% elsif document.header.overlay_image %}
+    {% assign post_image = document.header.overlay_image %}
+  {% endif %}
+{% endif %}
+
+{% if post_image == "" and document.image %}
+  {% assign post_image = document.image %}
+{% endif %}
+
+{% if post_image == "" and document.content and document.content contains 'image_path="' %}
+  {% assign post_image = document.content | split: 'image_path="' | last | split: '"' | first %}
+{% endif %}
+
+{% if post_image == "" and document.content and document.content contains '![' %}
+  {% assign markdown_image_chunks = document.content | split: '![' %}
+  {% if markdown_image_chunks.size > 1 %}
+    {% assign first_image_chunk = markdown_image_chunks[1] %}
+    {% if first_image_chunk contains '](' %}
+      {% assign post_image = first_image_chunk | split: '](' | last | split: ')' | first %}
+    {% endif %}
+  {% endif %}
+{% endif %}
+
+{% if post_image == "" and document.content and document.content contains '<img' %}
+  {% assign html_image_chunks = document.content | split: 'src="' %}
+  {% if html_image_chunks.size > 1 %}
+    {% assign post_image = html_image_chunks[1] | split: '"' | first %}
+  {% endif %}
+{% endif %}
+
+{{ post_image | strip }}

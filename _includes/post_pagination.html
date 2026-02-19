@@ -1,14 +1,27 @@
 {% if page.previous or page.next %}
-  <nav class="pagination">
+  <nav class="grid gap-3 sm:grid-cols-2" aria-label="Post navigation">
     {% if page.previous %}
-      <a href="{{ page.previous.url | relative_url }}" class="pagination--pager" title="{{ page.previous.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+      <a href="{{ page.previous.url | relative_url }}" class="glass-card rounded-2xl p-4 transition hover:border-sky-400/70">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Previous</p>
+        <p class="mt-1 font-semibold text-slate-900 dark:text-slate-100">{{ page.previous.title | markdownify | strip_html }}</p>
+      </a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
+      <span class="glass-card rounded-2xl p-4 opacity-55">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Previous</p>
+        <p class="mt-1 font-semibold text-slate-700 dark:text-slate-200">None</p>
+      </span>
     {% endif %}
+
     {% if page.next %}
-      <a href="{{ page.next.url | relative_url }}" class="pagination--pager" title="{{ page.next.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+      <a href="{{ page.next.url | relative_url }}" class="glass-card rounded-2xl p-4 text-left transition hover:border-fuchsia-400/70 sm:text-right">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Next</p>
+        <p class="mt-1 font-semibold text-slate-900 dark:text-slate-100">{{ page.next.title | markdownify | strip_html }}</p>
+      </a>
     {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
+      <span class="glass-card rounded-2xl p-4 opacity-55 sm:text-right">
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-slate-500 dark:text-slate-400">Next</p>
+        <p class="mt-1 font-semibold text-slate-700 dark:text-slate-200">None</p>
+      </span>
     {% endif %}
   </nav>
 {% endif %}
