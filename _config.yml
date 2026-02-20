@@ -106,12 +106,9 @@ exclude:
   - assets/js/plugins
   - assets/js/_main.js
   - assets/js/vendor
-  - assets/css/tailwind-input.css
-  - tailwind.config.js
   - Capfile
   - CHANGELOG
   - config
-  - Gemfile
   - Gruntfile.js
   - gulpfile.js
   - LICENSE
@@ -174,6 +171,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-tailwind
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -183,6 +181,13 @@ whitelist:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-tailwind
+
+# Tailwind CSS (compiled by jekyll-tailwind gem)
+tailwind:
+  config: tailwind.config.js
+  output: _site/assets/css/tailwind.css
+  minify: true
 
 
 # Archives
