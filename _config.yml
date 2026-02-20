@@ -109,13 +109,13 @@ exclude:
   - Capfile
   - CHANGELOG
   - config
-  - Gemfile
   - Gruntfile.js
   - gulpfile.js
   - LICENSE
   - log
   - node_modules
   - package.json
+  - package-lock.json
   - Rakefile
   - README
   - tmp
@@ -171,6 +171,7 @@ plugins:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-tailwind
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -180,6 +181,13 @@ whitelist:
   - jekyll-feed
   - jemoji
   - jekyll-include-cache
+  - jekyll-tailwind
+
+# Tailwind CSS (compiled by jekyll-tailwind gem)
+tailwind:
+  config: tailwind.config.js
+  output: _site/assets/css/tailwind.css
+  minify: true
 
 
 # Archives

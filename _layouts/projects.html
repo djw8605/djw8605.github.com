@@ -14,8 +14,8 @@ layout: default
 
     <div class="projects-grid mt-10 grid items-stretch gap-6 sm:grid-cols-2 xl:grid-cols-3">
       {% for project in projects %}
-        <article class="system-tile flex h-full flex-col">
-          <div class="flex-1">
+        <article class="system-tile projects-list-card">
+          <div class="projects-list-card__body">
             <h2 class="text-xl font-bold leading-tight text-slate-900 dark:text-slate-100">
               <a href="{{ project.url | relative_url }}" class="hover:text-sky-600 dark:hover:text-sky-300">{{ project.title }}</a>
             </h2>
@@ -25,7 +25,7 @@ layout: default
             {% endif %}
           </div>
 
-          <div class="mt-4 flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-slate-800">
+          <div class="projects-list-card__actions mt-4 flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-slate-800">
             {% if project.website %}
               <a href="{{ project.website }}" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-sm">Website</a>
             {% elsif project.websites and project.websites[0] %}

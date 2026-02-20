@@ -51,6 +51,7 @@ body {
   line-height: 1.7;
   background: var(--bg-primary);
   color: var(--text-primary);
+  overflow-x: hidden;
   transition:
     background-color var(--motion-duration) var(--motion-ease),
     color var(--motion-duration) var(--motion-ease);
@@ -106,18 +107,36 @@ select:focus-visible {
 }
 
 .section-block {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
 }
 
 .section-block--hero {
-  padding-top: 4.5rem;
-  padding-bottom: 6rem;
+  padding-top: 3.5rem;
+  padding-bottom: 4rem;
+}
+
+@media (max-width: 639px) {
+  .section-block {
+    padding-top: 2.25rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .section-block--hero {
+    padding-top: 2rem;
+    padding-bottom: 2.25rem;
+  }
+
+  .section-stack > .border-t {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-top-width: 2px;
+  }
 }
 
 @media (min-width: 1024px) {
   .section-block--hero {
-    padding-top: 5rem;
+    padding-top: 4rem;
   }
 }
 
@@ -416,6 +435,7 @@ html.dark .btn-icon[data-tooltip]::after {
   line-height: 1.82;
   color: var(--text-secondary);
   overflow-wrap: anywhere;
+  max-width: 100%;
 }
 
 .post-content h1,
@@ -481,6 +501,15 @@ html.dark .btn-icon[data-tooltip]::after {
   padding: 1rem;
   background: rgba(2, 6, 23, 0.9);
   color: #e2e8f0;
+  max-width: 100%;
+}
+
+@media (max-width: 639px) {
+  .post-content pre {
+    font-size: 0.82em;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
 }
 
 .post-content pre code {
@@ -690,6 +719,28 @@ html.dark .project-strip-item {
   box-shadow: var(--shadow-base);
   transform: translateY(0);
   transition: all 200ms ease-out;
+}
+
+.projects-list-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-list-card__body {
+  flex: 1 1 auto;
+  padding-bottom: 0.9rem;
+}
+
+.projects-list-card__actions {
+  margin-top: auto;
+}
+
+@media (max-width: 639px) {
+  .system-tile {
+    padding: 1.2rem;
+    border-width: 1.5px;
+    box-shadow: 0 2px 6px rgba(15, 23, 42, 0.1);
+  }
 }
 
 .system-tile:hover {
