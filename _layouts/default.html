@@ -24,7 +24,7 @@
             {% if current_path == normalized_link %}
               {% assign is_active = true %}
             {% endif %}
-            <a href="{{ link.url | relative_url }}" class="nav-link inline-flex min-h-[44px] items-center px-1 py-2 text-[0.98rem] font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 {% if is_active %}nav-link--active text-slate-900 dark:text-slate-100{% else %}text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100{% endif %}">{{ link.title }}</a>
+            <a href="{{ link.url | relative_url }}" class="nav-link inline-flex min-h-[44px] items-center px-1 py-2 text-[0.98rem] font-medium tracking-[0.01em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-slate-900 {% if is_active %}nav-link--active font-semibold text-slate-950 dark:text-white{% else %}text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100{% endif %}">{{ link.title }}</a>
           {%- endfor -%}
         </nav>
 
@@ -55,10 +55,13 @@
 
     {{ content }}
 
-    <footer class="border-t border-slate-200/80 py-8 dark:border-slate-700/50">
-      <div class="mx-auto flex max-w-7xl flex-col gap-2 px-4 text-sm text-slate-500 dark:text-slate-400 sm:px-6 sm:flex-row sm:items-center sm:justify-between">
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}</p>
-        <p class="font-mono">Built with Jekyll + TailwindCSS</p>
+    <footer class="border-t border-slate-200/80 py-10 dark:border-slate-700/50">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6">
+        <p class="text-sm font-medium text-slate-600 dark:text-slate-300">Designing production-grade distributed research infrastructure.</p>
+        <div class="mt-3 flex flex-col gap-1 text-sm text-slate-500 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {{ site.time | date: '%Y' }} {{ site.name | default: site.title }}</p>
+          <p class="font-mono">Built with Jekyll + TailwindCSS</p>
+        </div>
       </div>
     </footer>
 
