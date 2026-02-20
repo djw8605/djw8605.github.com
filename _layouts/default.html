@@ -8,15 +8,14 @@
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900 antialiased dark:bg-night-950 dark:text-slate-100">
     <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
-      <div class="absolute -top-32 left-[6%] h-96 w-96 rounded-full bg-cyan-300/30 blur-3xl dark:bg-cyan-500/15"></div>
-      <div class="absolute right-[8%] top-28 h-[28rem] w-[28rem] rounded-full bg-fuchsia-300/30 blur-3xl dark:bg-fuchsia-600/15"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(56,189,248,0.08),transparent_48%),radial-gradient(circle_at_bottom,rgba(236,72,153,0.08),transparent_45%)]"></div>
+      <div class="absolute -top-32 left-[6%] h-96 w-96 rounded-full bg-cyan-300/10 blur-3xl dark:bg-cyan-500/5"></div>
+      <div class="absolute right-[8%] top-28 h-[28rem] w-[28rem] rounded-full bg-fuchsia-300/10 blur-3xl dark:bg-fuchsia-600/5"></div>
     </div>
 
     {% assign current_path = page.url | replace: 'index.html', '' %}
     <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/80 backdrop-blur dark:border-slate-700/50 dark:bg-slate-900/80">
       <div class="mx-auto flex max-w-7xl items-center gap-5 px-4 py-5 sm:px-6 sm:py-6">
-        <a href="{{ '/' | relative_url }}" class="text-2xl font-bold tracking-tight text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-white dark:focus-visible:ring-offset-slate-900">{{ site.name | default: site.title }}</a>
+        <a href="{{ '/' | relative_url }}" class="text-2xl font-bold tracking-tight text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-100 dark:focus-visible:ring-offset-slate-900">{{ site.name | default: site.title }}</a>
 
         <nav class="ml-auto hidden items-center gap-8 md:flex">
           {%- for link in site.data.navigation.main -%}
