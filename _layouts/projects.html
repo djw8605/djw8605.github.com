@@ -4,42 +4,34 @@ layout: default
 
 {% assign projects = site.projects | sort: "order" %}
 
-<div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-12">
-  <section class="glass-card rounded-3xl p-6 sm:p-8 lg:p-10">
-    <p class="font-mono text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">Active Work</p>
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16">
+  <section>
+    <p class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">// active work</p>
     <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-[2.8rem]">{{ page.title | default: "Projects" }}</h1>
     {% if page.excerpt %}
       <p class="mt-4 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300">{{ page.excerpt }}</p>
     {% endif %}
 
-    <div class="projects-grid mt-10 grid items-stretch gap-7 sm:grid-cols-2 xl:grid-cols-3">
+    <div class="projects-grid mt-10 grid items-stretch gap-6 sm:grid-cols-2 xl:grid-cols-3">
       {% for project in projects %}
-        <article class="project-card professional-card interactive-lift flex h-full flex-col rounded-2xl">
-          <div class="project-card__content p-6">
-            {% if project.logo %}
-              <a href="{{ project.url | relative_url }}" class="project-logo-shell mb-5 h-16 w-full">
-                <img src="{{ project.logo | relative_url }}" alt="{{ project.logo_alt | default: project.title }}" class="project-logo-image max-h-12 w-auto max-w-full">
-              </a>
-            {% endif %}
-
-            <h2 class="text-[1.95rem] font-bold leading-tight text-slate-900 dark:text-slate-100">
+        <article class="system-tile flex h-full flex-col">
+          <div class="flex-1">
+            <h2 class="text-xl font-bold leading-tight text-slate-900 dark:text-slate-100">
               <a href="{{ project.url | relative_url }}" class="hover:text-sky-600 dark:hover:text-sky-300">{{ project.title }}</a>
             </h2>
 
             {% if project.summary %}
-              <p class="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">{{ project.summary }}</p>
+              <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{{ project.summary }}</p>
             {% endif %}
           </div>
 
-          <div class="mt-auto px-6 pb-6">
-            <div class="project-card__actions flex flex-wrap gap-2 border-t border-slate-200/70 pt-4 dark:border-slate-700/60">
-              {% if project.website %}
-                <a href="{{ project.website }}" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-sm">Website</a>
-              {% elsif project.websites and project.websites[0] %}
-                <a href="{{ project.websites[0] }}" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-sm">Website</a>
-              {% endif %}
-              <a href="{{ project.url | relative_url }}" class="btn-primary btn-sm">Read Project</a>
-            </div>
+          <div class="mt-4 flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-slate-800">
+            {% if project.website %}
+              <a href="{{ project.website }}" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-sm">Website</a>
+            {% elsif project.websites and project.websites[0] %}
+              <a href="{{ project.websites[0] }}" target="_blank" rel="noopener noreferrer" class="btn-secondary btn-sm">Website</a>
+            {% endif %}
+            <a href="{{ project.url | relative_url }}" class="btn-primary btn-sm">Read Project</a>
           </div>
         </article>
       {% endfor %}

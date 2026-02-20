@@ -2,17 +2,12 @@
 layout: default
 ---
 
-<div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-12">
+<div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:py-16">
   <div class="grid gap-9 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10">
     <article class="space-y-6">
-      <section class="glass-card rounded-3xl p-6 sm:p-8 lg:p-10">
+      <section class="rounded-lg ring-1 ring-slate-200 p-6 shadow-sm dark:ring-slate-800 sm:p-8 lg:p-10">
         <header>
-          {% if page.logo %}
-            <div class="project-logo-shell mb-6 h-20 w-full sm:w-72">
-              <img src="{{ page.logo | relative_url }}" alt="{{ page.logo_alt | default: page.title }}" class="project-logo-image max-h-16 w-auto max-w-full">
-            </div>
-          {% endif %}
-          <p class="font-mono text-xs uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Project</p>
+          <p class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">// project</p>
           <h1 class="mt-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-[2.8rem]">{{ page.title }}</h1>
 
           {% if page.summary %}
@@ -38,8 +33,8 @@ layout: default
     </article>
 
     <aside class="space-y-5 lg:sticky lg:top-24 lg:h-max">
-      <section class="glass-card rounded-2xl p-5 sm:p-6">
-        <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">Other Projects</h2>
+      <section class="rounded-lg ring-1 ring-slate-200 p-5 shadow-sm dark:ring-slate-800 sm:p-6">
+        <h2 class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">Other Projects</h2>
         <ul class="mt-4 space-y-3">
           {% assign sorted_projects = site.projects | sort: "order" %}
           {% for project in sorted_projects %}
@@ -56,8 +51,8 @@ layout: default
         </ul>
       </section>
 
-      <section class="glass-card rounded-2xl p-5 sm:p-6">
-        <h2 class="text-sm font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-slate-400">All Projects</h2>
+      <section class="rounded-lg ring-1 ring-slate-200 p-5 shadow-sm dark:ring-slate-800 sm:p-6">
+        <h2 class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">All Projects</h2>
         <a href="{{ '/projects/' | relative_url }}" class="btn-secondary mt-3">View project grid</a>
       </section>
     </aside>
