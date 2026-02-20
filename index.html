@@ -70,7 +70,7 @@ title: Home
 
         <div class="mt-6 flex flex-wrap gap-3">
           <a href="{{ '/about/' | relative_url }}" class="btn-primary">
-            Work Together
+            About Derek
           </a>
           <a href="{{ '/year-archive/' | relative_url }}" class="btn-secondary">
             Read Blog
@@ -137,8 +137,11 @@ title: Home
                     {% assign path_type = nil %}
                 {% endcase %}
                 {% assign tag_archive_path = site.tag_archive.path | default: "/tags/" %}
+                {% assign tags_sorted = post.tags | sort_natural %}
                 <div class="mb-3">
-                  <a href="{{ post.tags[0] | slugify | prepend: path_type | prepend: tag_archive_path | relative_url }}" class="page__taxonomy-item" rel="tag">{{ post.tags[0] }}</a>
+                  {% for tag_word in tags_sorted %}
+                    <a href="{{ tag_word | slugify | prepend: path_type | prepend: tag_archive_path | relative_url }}" class="page__taxonomy-item" rel="tag">{{ tag_word }}</a>
+                  {% endfor %}
                 </div>
               {% endif %}
               <h3 class="text-xl font-extrabold leading-tight tracking-[-0.01em] text-slate-950 dark:text-slate-100">
