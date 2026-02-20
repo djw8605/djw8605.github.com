@@ -127,7 +127,7 @@ title: Home
           {% assign excerpt = post.excerpt | markdownify | strip_html | strip_newlines %}
           <article class="blog-card overflow-hidden rounded-lg ring-1 ring-slate-200 transition-all duration-200 ease-out hover:ring-slate-400 dark:ring-slate-600/80 dark:hover:ring-slate-400">
             <a href="{{ post.url | relative_url }}" class="block overflow-hidden">
-              <img src="{{ post_image | relative_url }}" alt="{{ post.title }}" class="aspect-[16/9] w-full object-cover transition duration-500 hover:scale-105">
+              <img src="{{ post_image | relative_url }}" alt="{{ post.title }}" class="aspect-[16/9] w-full object-cover transition duration-500 hover:scale-105" loading="lazy">
             </a>
             <div class="p-5">
               {% if post.tags and post.tags.size > 0 %}

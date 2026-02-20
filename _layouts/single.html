@@ -6,7 +6,7 @@ layout: default
 
 <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-12">
   <div class="grid gap-8 {% if page.toc %}lg:grid-cols-[minmax(0,1fr)_300px]{% endif %}">
-    <article class="space-y-6{% if page.url == '/publications/' or page.url == '/publications.html' or page.title == 'Publications' %} publications-page{% endif %}">
+    <article class="space-y-6 overflow-hidden{% if page.url == '/publications/' or page.url == '/publications.html' or page.title == 'Publications' %} publications-page{% endif %}">
       <section class="rounded-lg ring-1 ring-slate-200 p-6 shadow-sm dark:bg-slate-950/60 dark:ring-slate-600/75 sm:p-8 lg:p-10">
         {% assign has_header = false %}
         {% if page.date or page.title or page.excerpt or page.tags or page.categories %}

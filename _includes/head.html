@@ -10,32 +10,10 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
-<script>
-  window.tailwind = window.tailwind || {};
-  window.tailwind.config = {
-    darkMode: 'class',
-    theme: {
-      extend: {
-        colors: {
-          night: {
-            950: '#050a1a',
-            900: '#0a1730',
-            800: '#11264a'
-          }
-        },
-        fontFamily: {
-          sans: ['Space Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-          mono: ['IBM Plex Mono', 'ui-monospace', 'SFMono-Regular', 'monospace']
-        },
-        boxShadow: {
-          glow: '0 20px 60px rgba(56, 189, 248, 0.16)'
-        }
-      }
-    }
-  };
-</script>
 <script>
   (function () {
     var storageKey = 'theme-preference';
@@ -65,8 +43,8 @@
     document.documentElement.style.colorScheme = resolvedTheme;
   })();
 </script>
-<script src="https://cdn.tailwindcss.com?plugins=typography"></script>
 
+<link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 
 {% if site.head_scripts %}
