@@ -60,7 +60,7 @@ GEM
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
     ffi (1.17.3-arm64-darwin)
-    ffi (1.17.3-x86_64-linux)
+    ffi (1.17.3-x86_64-linux-gnu)
     forwardable-extended (2.6.0)
     gemoji (4.1.0)
     html-pipeline (2.14.3)
