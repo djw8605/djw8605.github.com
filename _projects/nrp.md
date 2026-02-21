@@ -18,7 +18,6 @@ technologies:
   - html5
   - vercel
   - nextcloud
-  - calico
   - falco
   - helm
   - github

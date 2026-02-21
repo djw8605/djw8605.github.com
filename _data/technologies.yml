@@ -39,7 +39,7 @@ tailwindcss:
   logo: https://cdn.simpleicons.org/tailwindcss
 css3:
   name: CSS3
-  logo: https://cdn.simpleicons.org/css3
+  logo: https://cdn.simpleicons.org/css
 html5:
   name: HTML5
   logo: https://cdn.simpleicons.org/html5
@@ -52,9 +52,6 @@ flux:
 nextcloud:
   name: Nextcloud
   logo: https://cdn.simpleicons.org/nextcloud
-calico:
-  name: Calico
-  logo: https://cdn.simpleicons.org/calico
 falco:
   name: Falco
   logo: https://cdn.simpleicons.org/falco
