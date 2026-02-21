@@ -258,8 +258,9 @@ jekyll-minifier:
   simple_boolean_attributes: false
   exclude: []                  # Don't exclude any files
 
-# Production environment flag — set JEKYLL_ENV=production in CI
-environment: production
+# Production environment flag — set via JEKYLL_ENV=production in CI.
+# Do NOT set 'environment: production' here, as it would force production
+# mode during local development. Use JEKYLL_ENV or _config.dev.yml instead.
     
 defaults:
   # _posts
