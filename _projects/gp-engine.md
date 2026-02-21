@@ -29,7 +29,9 @@ I am a Co-PI on GP-ENGINE.
 
 ## Technologies
 
+<div markdown="0">
 {% include technology-badges.html technologies=page.technologies label="GP-ENGINE technologies" %}
+</div>
 
 ## NSF Awards
 

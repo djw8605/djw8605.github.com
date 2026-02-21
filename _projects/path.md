@@ -31,7 +31,9 @@ This includes making computing and data services easier to adopt, easier to inte
 
 ## Technologies
 
+<div markdown="0">
 {% include technology-badges.html technologies=page.technologies label="PATh technologies" %}
+</div>
 
 ## NSF Awards
 

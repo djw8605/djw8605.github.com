@@ -30,7 +30,9 @@ I am the PI for GP-STOR.
 
 ## Technologies
 
+<div markdown="0">
 {% include technology-badges.html technologies=page.technologies label="GP-STOR technologies" %}
+</div>
 
 ## NSF Awards
 

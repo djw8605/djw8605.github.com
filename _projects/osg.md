@@ -28,7 +28,9 @@ I serve on the OSG executive team.
 
 ## Technologies
 
+<div markdown="0">
 {% include technology-badges.html technologies=page.technologies label="OSG technologies" %}
+</div>
 
 ## NSF Awards
 

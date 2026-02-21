@@ -21,7 +21,9 @@ My work in this area focuses on secure authorization workflows that are easier f
 
 ## Technologies
 
+<div markdown="0">
 {% include technology-badges.html technologies=page.technologies label="SciTokens technologies" %}
+</div>
 
 ## NSF Awards
 

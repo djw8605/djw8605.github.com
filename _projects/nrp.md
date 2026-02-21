@@ -33,7 +33,9 @@ I am especially focused on practical usability for research groups, from prototy
 
 ## Technologies
 
+<div markdown="0">
 {% include technology-badges.html technologies=page.technologies label="NRP technologies" %}
+</div>
 
 ## NSF Awards
 

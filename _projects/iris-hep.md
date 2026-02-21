@@ -23,7 +23,9 @@ I serve on the IRIS-HEP executive board.
 
 ## Technologies
 
+<div markdown="0">
 {% include technology-badges.html technologies=page.technologies label="IRIS-HEP technologies" %}
+</div>
 
 ## NSF Awards
 
