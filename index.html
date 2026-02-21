@@ -7,7 +7,7 @@ title: Home
   <section class="pt-14 pb-16 max-sm:pt-8 max-sm:pb-9 lg:pt-16">
     <div class="grid gap-8 lg:grid-cols-[minmax(0,0.76fr)_minmax(0,1.24fr)] lg:items-center lg:gap-10 xl:gap-12">
       <figure class="hidden overflow-hidden rounded-lg border border-slate-400/50 bg-slate-50/95 shadow-[0_4px_10px_rgba(15,23,42,0.1)] dark:border-slate-400/60 dark:bg-slate-900/85 dark:shadow-[0_5px_12px_rgba(2,6,23,0.32)] sm:block lg:max-w-[31rem] xl:max-w-[33rem]">
-        <img src="{{ '/images/derek-pearc-25.jpg' | relative_url }}" alt="Derek Weitzel at PEARC 2025" class="aspect-[16/10] w-full object-cover object-center saturate-[0.92] sm:aspect-video">
+        {% picture hero derek-pearc-25.jpg --alt Derek Weitzel at PEARC 2025 --img class="aspect-[16/10] w-full object-cover object-center saturate-[0.92] sm:aspect-video" %}
         <figcaption class="border-t border-slate-400/50 bg-slate-50/95 px-4 py-2.5 text-center font-mono text-xs tracking-[0.16em] text-slate-600 dark:border-slate-500/80 dark:bg-slate-950/95 dark:text-slate-200">
           PEARC 2025
         </figcaption>
@@ -17,7 +17,7 @@ title: Home
         <p class="font-mono text-xs uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">// research infrastructure</p>
         <div class="mt-2 flex items-start gap-2.5 sm:gap-3 lg:gap-4">
           {% if site.author.avatar %}
-            <img src="{{ site.author.avatar | relative_url }}" alt="{{ site.author.name }}" class="mt-0.5 h-11 w-11 shrink-0 rounded-full border border-slate-200 object-cover dark:border-slate-700 sm:h-12 sm:w-12 lg:h-12 lg:w-12 xl:h-14 xl:w-14">
+            <img src="{{ site.author.avatar | relative_url }}" alt="{{ site.author.name }}" class="mt-0.5 h-11 w-11 shrink-0 rounded-full border border-slate-200 object-cover dark:border-slate-700 sm:h-12 sm:w-12 lg:h-12 lg:w-12 xl:h-14 xl:w-14" loading="eager" decoding="async">
           {% endif %}
 
           <div class="min-w-0">

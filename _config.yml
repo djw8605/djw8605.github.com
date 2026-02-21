@@ -172,6 +172,8 @@ plugins:
   - jemoji
   - jekyll-include-cache
   - jekyll-tailwind
+  - jekyll_picture_tag    # Responsive images with srcset and WebP generation
+  - jekyll-minifier       # HTML/CSS/JS minification in production
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -182,6 +184,8 @@ whitelist:
   - jemoji
   - jekyll-include-cache
   - jekyll-tailwind
+  - jekyll_picture_tag
+  - jekyll-minifier
 
 # Tailwind CSS (compiled by jekyll-tailwind gem)
 tailwind:
@@ -219,12 +223,43 @@ tag_archive:
 #     tag: /tags/:name/
 
 
-# HTML Compression
+# HTML Compression (Liquid-based)
 # - http://jch.penibelst.de/
 compress_html:
   clippings: all
   ignore:
     envs: development
+
+# Jekyll Picture Tag — responsive images with srcset and WebP
+# Generates multiple sizes + WebP variants automatically during build.
+# Requires libvips or ImageMagick on the build system.
+picture:
+  source: "images"
+  output: "generated"
+  suppress_warnings: true
+  fast_build: development
+
+# Jekyll Minifier — HTML/CSS/JS minification
+# Active only when JEKYLL_ENV=production (CI builds).
+# Does not touch Tailwind output since it's already minified by the plugin.
+jekyll-minifier:
+  preserve_php: true
+  remove_spaces_inside_tags: true
+  remove_multi_spaces: true
+  remove_comments: true
+  remove_intertag_spaces: false
+  remove_quotes: false
+  compress_css: false          # Tailwind plugin handles CSS minification
+  compress_javascript: true
+  compress_json: false
+  simple_doctype: false
+  remove_script_attributes: false
+  remove_style_attributes: false
+  simple_boolean_attributes: false
+  exclude: []                  # Don't exclude any files
+
+# Production environment flag — set JEKYLL_ENV=production in CI
+environment: production
     
 defaults:
   # _posts

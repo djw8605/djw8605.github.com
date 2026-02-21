@@ -15,3 +15,6 @@ vendor/
 node_modules/
 package.json
 package-lock.json
+
+# Jekyll Picture Tag generated images (rebuilt during CI)
+generated/
