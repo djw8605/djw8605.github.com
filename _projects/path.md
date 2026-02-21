@@ -4,6 +4,22 @@ summary: "Partnership to Advance Throughput Computing, bringing together CHTC an
 website: https://path-cc.io
 logo: /images/projects/path-logo.png
 logo_alt: PATh logo
+technologies:
+  - kubernetes
+  - docker
+  - go
+  - python
+  - react
+  - nodejs
+  - nextjs
+  - tailwindcss
+  - css3
+  - html5
+  - vercel
+  - flux
+  - git
+  - github
+  - githubcopilot
 order: 2
 ---
 
@@ -12,6 +28,10 @@ order: 2
 I contribute to technical operations and service delivery that help researchers move from initial onboarding to scalable production workflows.
 
 This includes making computing and data services easier to adopt, easier to integrate, and more reliable for project teams running high-throughput workloads.
+
+## Technologies
+
+{% include technology-badges.html technologies=page.technologies label="PATh technologies" %}
 
 ## NSF Awards
 

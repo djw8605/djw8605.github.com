@@ -4,6 +4,25 @@ summary: "A community-owned research and education platform for sharing compute,
 website: https://nrp.ai
 logo: /images/projects/nrp-logo.png
 logo_alt: National Research Platform logo
+technologies:
+  - kubernetes
+  - docker
+  - go
+  - python
+  - react
+  - nodejs
+  - nextjs
+  - astrojs
+  - tailwindcss
+  - css3
+  - html5
+  - vercel
+  - nextcloud
+  - calico
+  - falco
+  - helm
+  - github
+  - githubcopilot
 order: 3
 ---
 
@@ -12,6 +31,10 @@ The [National Research Platform (NRP)](https://nrp.ai) is a community-owned plat
 My project work centers on turning shared infrastructure into dependable day-to-day research capability: platform operations, monitoring, data movement, and collaboration across partner sites.
 
 I am especially focused on practical usability for research groups, from prototype workloads to long-running production pipelines.
+
+## Technologies
+
+{% include technology-badges.html technologies=page.technologies label="NRP technologies" %}
 
 ## NSF Awards
 

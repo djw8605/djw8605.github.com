@@ -4,6 +4,12 @@ summary: "An institute advancing software R&D for the HL-LHC era of high energy 
 website: https://iris-hep.org
 logo: /images/projects/iris-hep-logo.png
 logo_alt: IRIS-HEP logo
+technologies:
+  - opensearch
+  - elasticsearch
+  - git
+  - github
+  - githubcopilot
 order: 4
 ---
 
@@ -14,6 +20,10 @@ My contributions align with data-intensive software systems, monitoring, and inf
 This work emphasizes robust services and tooling that can sustain both rapid research iteration and long-term production use.
 
 I serve on the IRIS-HEP executive board.
+
+## Technologies
+
+{% include technology-badges.html technologies=page.technologies label="IRIS-HEP technologies" %}
 
 ## NSF Awards
 

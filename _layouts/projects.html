@@ -23,6 +23,12 @@ layout: default
             {% if project.summary %}
               <p class="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">{{ project.summary }}</p>
             {% endif %}
+
+            {% if project.technologies %}
+              <div class="mt-4">
+                {% include technology-badges.html technologies=project.technologies compact=true label=project.title %}
+              </div>
+            {% endif %}
           </div>
 
           <div class="projects-list-card__actions mt-4 flex flex-wrap gap-2 border-t border-slate-200 pt-4 dark:border-slate-800">

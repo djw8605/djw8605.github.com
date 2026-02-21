@@ -4,6 +4,19 @@ summary: "Great Plains Scalable Tiered Object Repository providing distributed, 
 website: https://gp-stor.org
 logo: /images/projects/gp-stor-logo.png
 logo_alt: GP-STOR logo
+technologies:
+  - kubernetes
+  - helm
+  - react
+  - nodejs
+  - nextjs
+  - astrojs
+  - tailwindcss
+  - css3
+  - html5
+  - nextcloud
+  - github
+  - githubcopilot
 order: 6
 ---
 
@@ -14,6 +27,10 @@ The platform emphasizes practical access for researchers while maintaining multi
 My project focus includes service architecture, integration with research computing environments, and reliable data access patterns for scientific users.
 
 I am the PI for GP-STOR.
+
+## Technologies
+
+{% include technology-badges.html technologies=page.technologies label="GP-STOR technologies" %}
 
 ## NSF Awards
 

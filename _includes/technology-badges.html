@@ -1,0 +1,21 @@
+{% assign badge_keys = include.technologies %}
+{% assign is_compact = include.compact | default: false %}
+{% assign badges_label = include.label | default: "Technologies" %}
+
+{% if badge_keys and badge_keys.size > 0 %}
+  <ul class="m-0 flex list-none flex-wrap p-0{% if is_compact %} gap-1.5{% else %} gap-2.5{% endif %}" aria-label="{{ badges_label }}">
+    {% for tech_key in badge_keys %}
+      {% assign tech = site.data.technologies[tech_key] %}
+      {% if tech %}
+        <li>
+          <span class="inline-flex items-center rounded-full border border-slate-300/85 bg-white/85 text-slate-800 shadow-sm dark:border-slate-600/85 dark:bg-slate-900/75 dark:text-slate-100{% if is_compact %} gap-1.5 px-2 py-1 text-[0.7rem] font-semibold leading-none{% else %} gap-2 px-2.5 py-1.5 text-[0.8rem] font-semibold leading-none{% endif %}">
+            <span class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white{% if is_compact %} h-5 w-5{% else %} h-6 w-6{% endif %}" aria-hidden="true">
+              <img src="{{ tech.logo }}" alt="" class="object-contain{% if is_compact %} h-3 w-3{% else %} h-3.5 w-3.5{% endif %}" loading="lazy" decoding="async">
+            </span>
+            <span class="whitespace-nowrap">{{ tech.name }}</span>
+          </span>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+{% endif %}

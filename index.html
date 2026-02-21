@@ -83,6 +83,13 @@ title: Home
   <div class="border-t border-slate-200 dark:border-slate-800"></div>
 
   {% assign featured_projects = site.projects | sort: "order" %}
+  {% assign expertise_technologies = "" | split: "" %}
+  {% for project in featured_projects %}
+    {% if project.technologies %}
+      {% assign expertise_technologies = expertise_technologies | concat: project.technologies %}
+    {% endif %}
+  {% endfor %}
+  {% assign expertise_technologies = expertise_technologies | uniq %}
   <section class="section-block">
     <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
       <div>
@@ -101,6 +108,16 @@ title: Home
         </a>
       {% endfor %}
     </div>
+  </section>
+
+  <div class="border-t border-slate-200 dark:border-slate-800"></div>
+
+  <section class="section-block">
+    <div class="mb-6">
+      <p class="font-mono text-xs uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">// expertise</p>
+      <h2 class="mt-1 text-[1.95rem] font-bold tracking-tight text-slate-900 dark:text-slate-100">Technologies</h2>
+    </div>
+    {% include technology-badges.html technologies=expertise_technologies label="Technologies I work with" %}
   </section>
 
   <div class="border-t border-slate-200 dark:border-slate-800"></div>

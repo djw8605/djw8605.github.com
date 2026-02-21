@@ -4,6 +4,17 @@ summary: "A national, distributed computing partnership for data-intensive resea
 website: https://osg-htc.org
 logo: /images/projects/osg-logo.svg
 logo_alt: OSG logo
+technologies:
+  - kubernetes
+  - docker
+  - go
+  - python
+  - react
+  - nodejs
+  - nextjs
+  - git
+  - github
+  - githubcopilot
 order: 1
 ---
 
@@ -14,6 +25,10 @@ My work in the OSG ecosystem focuses on production operations and platform engin
 Key areas I am actively supporting include reliability, observability, and researcher onboarding for distributed scientific computing at scale.
 
 I serve on the OSG executive team.
+
+## Technologies
+
+{% include technology-badges.html technologies=page.technologies label="OSG technologies" %}
 
 ## NSF Awards
 

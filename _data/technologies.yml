@@ -1,0 +1,75 @@
+kubernetes:
+  name: Kubernetes
+  logo: https://cdn.simpleicons.org/kubernetes
+react:
+  name: React
+  logo: https://cdn.simpleicons.org/react
+linux:
+  name: Linux
+  logo: https://cdn.simpleicons.org/linux
+python:
+  name: Python
+  logo: https://cdn.simpleicons.org/python
+git:
+  name: Git
+  logo: https://cdn.simpleicons.org/git
+github:
+  name: GitHub
+  logo: https://cdn.simpleicons.org/github
+githubcopilot:
+  name: GitHub Copilot
+  logo: https://cdn.simpleicons.org/githubcopilot
+go:
+  name: Go
+  logo: https://cdn.simpleicons.org/go
+docker:
+  name: Docker
+  logo: https://cdn.simpleicons.org/docker
+nodejs:
+  name: Node.js
+  logo: https://cdn.simpleicons.org/nodedotjs
+nextjs:
+  name: Next.js
+  logo: https://cdn.simpleicons.org/nextdotjs
+astrojs:
+  name: Astro
+  logo: https://cdn.simpleicons.org/astro
+tailwindcss:
+  name: Tailwind CSS
+  logo: https://cdn.simpleicons.org/tailwindcss
+css3:
+  name: CSS3
+  logo: https://cdn.simpleicons.org/css3
+html5:
+  name: HTML5
+  logo: https://cdn.simpleicons.org/html5
+vercel:
+  name: Vercel
+  logo: https://cdn.simpleicons.org/vercel
+flux:
+  name: Flux
+  logo: https://cdn.simpleicons.org/flux
+nextcloud:
+  name: Nextcloud
+  logo: https://cdn.simpleicons.org/nextcloud
+calico:
+  name: Calico
+  logo: https://cdn.simpleicons.org/calico
+falco:
+  name: Falco
+  logo: https://cdn.simpleicons.org/falco
+helm:
+  name: Helm
+  logo: https://cdn.simpleicons.org/helm
+opensearch:
+  name: OpenSearch
+  logo: https://cdn.simpleicons.org/opensearch
+elasticsearch:
+  name: Elasticsearch
+  logo: https://cdn.simpleicons.org/elasticsearch
+nvidia:
+  name: NVIDIA
+  logo: https://cdn.simpleicons.org/nvidia
+jsonwebtokens:
+  name: JWT
+  logo: https://cdn.simpleicons.org/jsonwebtokens
