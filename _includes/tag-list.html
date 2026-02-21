@@ -7,10 +7,10 @@
 
 {% if site.tag_archive.path %}
   {% assign tags_sorted = page.tags | sort_natural %}
-  <p class="page__taxonomy text-sm text-slate-600 dark:text-slate-300">
+  <p class="m-0 text-sm text-slate-600 dark:text-slate-300">
     <span class="mr-2 font-semibold">Tags:</span>
     {% for tag_word in tags_sorted %}
-      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="page__taxonomy-item" rel="tag">{{ tag_word }}</a>
+      <a href="{{ tag_word | slugify | prepend: path_type | prepend: site.tag_archive.path | relative_url }}" class="mr-[0.35rem] mb-[0.35rem] inline-flex items-center rounded-full border border-slate-900/15 bg-cyan-700/15 px-[0.65rem] py-[0.2rem] text-[0.78rem] text-cyan-900 no-underline hover:opacity-80 dark:border-slate-400/25 dark:bg-cyan-300/15 dark:text-cyan-200" rel="tag">{{ tag_word }}</a>
     {% endfor %}
   </p>
 {% endif %}

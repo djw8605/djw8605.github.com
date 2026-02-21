@@ -6,7 +6,7 @@ layout: default
 
 <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:py-12">
   <div class="grid gap-8 {% if page.toc %}lg:grid-cols-[minmax(0,1fr)_300px]{% endif %}">
-    <article class="space-y-6 overflow-hidden{% if page.url == '/publications/' or page.url == '/publications.html' or page.title == 'Publications' %} publications-page{% endif %}">
+    <article class="space-y-6 overflow-hidden">
       <section class="rounded-lg ring-1 ring-slate-200 p-6 shadow-sm dark:bg-slate-950/60 dark:ring-slate-600/75 sm:p-8 lg:p-10">
         {% assign has_header = false %}
         {% if page.date or page.title or page.excerpt or page.tags or page.categories %}
@@ -30,14 +30,14 @@ layout: default
           </header>
         {% endif %}
 
-        <div class="post-content{% if has_header %} mt-9{% endif %}" itemprop="text">
+        <div class="max-w-full text-[1.05rem] leading-[1.82] text-slate-700 [overflow-wrap:anywhere] dark:text-slate-300 [&_h1]:mt-8 [&_h1]:mb-3 [&_h1]:text-[2.2rem] [&_h1]:leading-[1.2] [&_h1]:text-slate-900 dark:[&_h1]:text-slate-100 [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-[1.9rem] [&_h2]:leading-[1.2] [&_h2]:text-slate-900 dark:[&_h2]:text-slate-100 [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-[1.45rem] [&_h3]:leading-[1.2] [&_h3]:text-slate-900 dark:[&_h3]:text-slate-100 [&_h4]:mt-8 [&_h4]:mb-3 [&_h4]:leading-[1.2] [&_h4]:text-slate-900 dark:[&_h4]:text-slate-100 [&_p]:my-4 [&_ul]:my-4 [&_ol]:my-4 [&_blockquote]:my-4 [&_ul]:pl-5 [&_ol]:pl-5 [&_li]:my-[0.45rem] [&_a]:text-sky-500 [&_a]:no-underline [&_a:hover]:text-sky-600 [&_a:hover]:underline [&_code]:rounded-[0.45rem] [&_code]:bg-slate-400/15 [&_code]:px-[0.4rem] [&_code]:py-[0.13rem] [&_code]:font-mono [&_code]:text-[0.9em] [&_pre]:max-w-full [&_pre]:overflow-x-auto [&_pre]:rounded-[0.9rem] [&_pre]:border [&_pre]:border-slate-900/14 [&_pre]:bg-slate-950/90 [&_pre]:p-4 [&_pre]:text-slate-200 [&_pre_code]:bg-transparent [&_pre_code]:p-0 max-sm:[&_pre]:rounded-[0.5rem] max-sm:[&_pre]:p-3 max-sm:[&_pre]:text-[0.82em] [&_figure]:my-6 [&_figure]:max-w-full [&_figure]:overflow-hidden [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_img]:w-auto [&_img]:rounded-[0.85rem] [&_figcaption]:mt-2 [&_figcaption]:text-[0.84rem] [&_figcaption]:text-slate-500 dark:[&_figcaption]:text-slate-400 [&_table]:my-4 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-slate-900/14 [&_th]:bg-slate-400/15 [&_th]:px-[0.7rem] [&_th]:py-[0.6rem] [&_th]:text-left [&_td]:border [&_td]:border-slate-900/14 [&_td]:px-[0.7rem] [&_td]:py-[0.6rem] dark:[&_th]:border-slate-400/22 dark:[&_td]:border-slate-400/22 dark:[&_th]:bg-slate-500/15 [&_hr]:my-8 [&_hr]:border-0 [&_hr]:border-t [&_hr]:border-slate-900/14 dark:[&_hr]:border-slate-400/22{% if has_header %} mt-9{% endif %}{% if page.url == '/publications/' or page.url == '/publications.html' or page.title == 'Publications' %} [&_ul>li]:mb-[1.7rem]{% endif %}" itemprop="text">
           {{ content }}
         </div>
       </section>
 
       {% if page.link %}
         <div>
-          <a href="{{ page.link }}" class="btn-primary">Direct Link</a>
+          <a href="{{ page.link }}" class="inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md bg-slate-900 px-[1.35rem] py-[0.72rem] text-[0.94rem] font-semibold leading-[1.1] text-slate-50 no-underline transition-colors duration-[190ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-slate-800 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-slate-300 dark:focus-visible:ring-offset-slate-900">Direct Link</a>
         </div>
       {% endif %}
 
@@ -53,7 +53,7 @@ layout: default
     {% if page.toc %}
       <aside class="h-max rounded-lg ring-1 ring-slate-200 p-6 shadow-sm dark:bg-slate-950/60 dark:ring-slate-600/75 lg:sticky lg:top-24">
         <h2 class="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300">{{ page.toc_label | default: site.data.ui-text[site.locale].toc_label | default: "On this page" }}</h2>
-        <nav class="journal-toc mt-4" aria-label="Table of contents">
+        <nav class="mt-4 [&_ul]:m-0 [&_ul]:list-none [&_ul]:pl-0 [&_ol]:m-0 [&_ol]:list-none [&_ol]:pl-0 [&_li]:m-0 [&_li+li]:mt-[0.45rem] [&_a]:text-[0.92rem] [&_a]:text-slate-500 [&_a]:no-underline [&_a]:transition-colors [&_a:hover]:text-slate-900 dark:[&_a]:text-slate-400 dark:[&_a:hover]:text-slate-100" aria-label="Table of contents">
           {% include toc.html sanitize=true html=content h_min=1 h_max=6 class="toc__menu" skip_no_ids=true %}
         </nav>
       </aside>

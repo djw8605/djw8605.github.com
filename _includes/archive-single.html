@@ -3,7 +3,7 @@
 {% assign teaser = teaser | strip %}
 {% assign excerpt = document.excerpt | markdownify | strip_html | strip_newlines %}
 
-<article class="blog-card group mb-6 overflow-hidden rounded-lg ring-1 ring-slate-200 p-4 shadow-sm transition-all duration-150 ease-out hover:ring-slate-400 dark:ring-slate-600/80 dark:hover:ring-slate-400 sm:p-5">
+<article class="group mb-6 overflow-hidden rounded-lg bg-white/90 p-4 ring-1 ring-slate-200 shadow-[0_1px_2px_rgba(15,23,42,0.06)] transition-all duration-150 ease-out hover:bg-slate-50/90 hover:ring-slate-400 dark:bg-slate-950/70 dark:ring-slate-600/80 dark:shadow-[0_1px_2px_rgba(2,6,23,0.28)] dark:hover:bg-slate-900/95 dark:hover:ring-slate-400 sm:p-5">
   <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
     {% if teaser != "" %}
       <a href="{{ document.url | relative_url }}" class="block h-32 w-full shrink-0 overflow-hidden rounded-lg sm:w-44">

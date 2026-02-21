@@ -16,17 +16,17 @@ layout: default
 
           <div class="mt-7 flex flex-wrap gap-2.5">
             {% if page.website %}
-              <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="btn-primary">Visit Website</a>
+              <a href="{{ page.website }}" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md bg-slate-900 px-[1.35rem] py-[0.72rem] text-[0.94rem] font-semibold leading-[1.1] text-slate-50 no-underline transition-colors duration-[190ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:bg-slate-800 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:bg-slate-200 dark:text-slate-900 dark:hover:bg-slate-300 dark:focus-visible:ring-offset-slate-900">Visit Website</a>
             {% endif %}
             {% if page.websites %}
               {% for website in page.websites %}
-                <a href="{{ website }}" target="_blank" rel="noopener noreferrer" class="btn-secondary">{{ website | remove: 'https://' | remove: 'http://' }}</a>
+                <a href="{{ website }}" target="_blank" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md border border-slate-600/40 bg-transparent px-[1.35rem] py-[0.72rem] text-[0.94rem] font-semibold leading-[1.1] text-slate-800 no-underline transition-colors duration-[190ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-slate-800/60 hover:bg-slate-100/50 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-400/45 dark:text-slate-200 dark:hover:border-slate-400/70 dark:hover:bg-slate-900/50 dark:focus-visible:ring-offset-slate-900">{{ website | remove: 'https://' | remove: 'http://' }}</a>
               {% endfor %}
             {% endif %}
           </div>
         </header>
 
-        <div class="post-content mt-8">
+        <div class="mt-8 max-w-full text-[1.05rem] leading-[1.82] text-slate-700 [overflow-wrap:anywhere] dark:text-slate-300 [&_h1]:mt-8 [&_h1]:mb-3 [&_h1]:text-[2.2rem] [&_h1]:leading-[1.2] [&_h1]:text-slate-900 dark:[&_h1]:text-slate-100 [&_h2]:mt-8 [&_h2]:mb-3 [&_h2]:text-[1.9rem] [&_h2]:leading-[1.2] [&_h2]:text-slate-900 dark:[&_h2]:text-slate-100 [&_h3]:mt-8 [&_h3]:mb-3 [&_h3]:text-[1.45rem] [&_h3]:leading-[1.2] [&_h3]:text-slate-900 dark:[&_h3]:text-slate-100 [&_h4]:mt-8 [&_h4]:mb-3 [&_h4]:leading-[1.2] [&_h4]:text-slate-900 dark:[&_h4]:text-slate-100 [&_p]:my-4 [&_ul]:my-4 [&_ol]:my-4 [&_blockquote]:my-4 [&_ul]:pl-5 [&_ol]:pl-5 [&_li]:my-[0.45rem] [&_a]:text-sky-500 [&_a]:no-underline [&_a:hover]:text-sky-600 [&_a:hover]:underline [&_code]:rounded-[0.45rem] [&_code]:bg-slate-400/15 [&_code]:px-[0.4rem] [&_code]:py-[0.13rem] [&_code]:font-mono [&_code]:text-[0.9em] [&_pre]:max-w-full [&_pre]:overflow-x-auto [&_pre]:rounded-[0.9rem] [&_pre]:border [&_pre]:border-slate-900/14 [&_pre]:bg-slate-950/90 [&_pre]:p-4 [&_pre]:text-slate-200 [&_pre_code]:bg-transparent [&_pre_code]:p-0 max-sm:[&_pre]:rounded-[0.5rem] max-sm:[&_pre]:p-3 max-sm:[&_pre]:text-[0.82em] [&_figure]:my-6 [&_figure]:max-w-full [&_figure]:overflow-hidden [&_img]:block [&_img]:h-auto [&_img]:max-w-full [&_img]:w-auto [&_img]:rounded-[0.85rem] [&_figcaption]:mt-2 [&_figcaption]:text-[0.84rem] [&_figcaption]:text-slate-500 dark:[&_figcaption]:text-slate-400 [&_table]:my-4 [&_table]:w-full [&_table]:border-collapse [&_th]:border [&_th]:border-slate-900/14 [&_th]:bg-slate-400/15 [&_th]:px-[0.7rem] [&_th]:py-[0.6rem] [&_th]:text-left [&_td]:border [&_td]:border-slate-900/14 [&_td]:px-[0.7rem] [&_td]:py-[0.6rem] dark:[&_th]:border-slate-400/22 dark:[&_td]:border-slate-400/22 dark:[&_th]:bg-slate-500/15 [&_hr]:my-8 [&_hr]:border-0 [&_hr]:border-t [&_hr]:border-slate-900/14 dark:[&_hr]:border-slate-400/22">
           {{ content }}
         </div>
       </section>
@@ -53,7 +53,7 @@ layout: default
 
       <section class="rounded-lg ring-1 ring-slate-200 p-5 shadow-sm dark:ring-slate-800 sm:p-6">
         <h2 class="font-mono text-xs uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">All Projects</h2>
-        <a href="{{ '/projects/' | relative_url }}" class="btn-secondary mt-3">View project grid</a>
+        <a href="{{ '/projects/' | relative_url }}" class="mt-3 inline-flex min-h-[44px] items-center justify-center whitespace-nowrap rounded-md border border-slate-600/40 bg-transparent px-[1.35rem] py-[0.72rem] text-[0.94rem] font-semibold leading-[1.1] text-slate-800 no-underline transition-colors duration-[190ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:border-slate-800/60 hover:bg-slate-100/50 active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-400/45 dark:text-slate-200 dark:hover:border-slate-400/70 dark:hover:bg-slate-900/50 dark:focus-visible:ring-offset-slate-900">View project grid</a>
       </section>
     </aside>
   </div>
