@@ -7,7 +7,14 @@
   <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
     {% if teaser != "" %}
       <a href="{{ document.url | relative_url }}" class="block h-32 w-full shrink-0 overflow-hidden rounded-lg sm:w-44">
-        <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+        {% assign teaser_ext = teaser | split: "." | last | downcase %}
+        {% assign teaser_prefix = teaser | slice: 0, 8 %}
+        {% if teaser contains "://" or teaser_ext == "svg" or teaser_ext == "gif" or teaser_prefix != "/images/" %}
+          <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+        {% else %}
+          {% assign teaser_rel = teaser | slice: 8, teaser.size %}
+          {% picture teaser {{ teaser_rel }} --alt "{{ document.title | strip_html }}" %}
+        {% endif %}
       </a>
     {% else %}
       <a href="{{ document.url | relative_url }}" class="block h-32 w-full shrink-0 rounded-lg bg-slate-100 dark:bg-slate-800 sm:w-44"></a>
