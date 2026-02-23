@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # libvips is needed by jekyll_picture_tag for responsive image generation
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libvips-dev libvips-tools
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Build with Jekyll
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Verify build output
+        run: |
+          # Ensure _site directory was created and contains HTML files
+          test -d _site
+          test -f _site/index.html
+          echo "Build successful — _site/index.html exists"
+          echo "Total files: $(find _site -type f | wc -l)"
