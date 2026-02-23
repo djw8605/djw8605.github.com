@@ -23,7 +23,7 @@ For a long time, HTCondor has strived to have the job runtime environment be run
 Previously we would have considered virtual machines.  But... virtual machines are difficult to author and maintain.  Virtual machines tend to be large (in GBs).  And they can have potentially large overheads, especially for IO.
 
 
-<a href="https://research.cs.wisc.edu/htcondor/HTCondorWeek2013/presentations/ThainG_BoxingUsers.pdf"><img align="right" src="/images/posts/DockerGrid/GregSlide.png"></a>
+<a href="https://research.cs.wisc.edu/htcondor/HTCondorWeek2013/presentations/ThainG_BoxingUsers.pdf">{% picture content posts/DockerGrid/GregSlide.png --alt Greg Thain presenting job isolation --img class="float-right ml-4 mb-4 max-w-xs" %}</a>
 
 
 In 2013, Greg Thain presented putting users in a box for job isolation.  It used three technologies in order to enable the isolation:
@@ -36,7 +36,7 @@ We used these chroot in Nebraska's transition from RHEL5 to RHEL6.  But the `chr
 
 ## A New Approach
 
-<a href="https://www.docker.com/"><img align="right" src="/images/posts/DockerGrid/DockerLogo.png"></a>
+<a href="https://www.docker.com/">{% picture content posts/DockerGrid/DockerLogo.png --alt Docker logo --img class="float-right ml-4 mb-4 max-w-xs" %}</a>
 
 `chroot`, namespaces, and cgroups are all part of [Docker](https://www.docker.com/)'s containerization solution.  Docker provides a very approachable way to compose and publish images.  Further, we don't need to maintain a RHEL6 image, only our local customizations on top.
 
@@ -47,7 +47,7 @@ We decided to use HTCondor's **new** Docker universe.  We want to trnasform inco
 
 We chose Docker over Virtual Machines due to potential IO bottlenecks that have been identified in recent publications.
 
-![Docker Vs VM IO performance](/images/posts/DockerGrid/DockerVsVMs.png)
+{% picture content posts/DockerGrid/DockerVsVMs.png --alt Docker Vs VM IO performance %}
 
 ### Environment
 
@@ -101,7 +101,7 @@ DOCKER_MOUNT_VOLUMES = CVMFS, ETC_CVMFS, HDFS, GRID_SECURITY, SSSD, NSSWITCH
 
 The [HTCondor-CE](https://twiki.grid.iu.edu/bin/view/Documentation/Release3/HTCondorCEOverview) accepts jobs into the cluster from external submitters.
 
-<img align="right" src="/images/posts/DockerGrid/HTCondor-CE-Docker-highlight.png">
+{% picture content posts/DockerGrid/HTCondor-CE-Docker-highlight.png --alt HTCondor-CE Docker architecture --img class="float-right ml-4 mb-4 max-w-xs" %}
 
 1. GlideinWMS factories submit to the HTCondor-CE
 2. The Job Router component transforms the CE job to use Docker universe.

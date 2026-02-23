@@ -17,6 +17,8 @@ group :jekyll_plugins do
   gem "jemoji"
   gem "jekyll-include-cache"
   gem "jekyll-tailwind"
+  gem "jekyll_picture_tag", "~> 2.1"   # Responsive images with srcset and WebP
+  gem "jekyll-minifier", "~> 0.2.2"    # HTML/CSS/JS minification in production
 end
 
 gem "tailwindcss-ruby", "~> 3.4"

@@ -1,0 +1,8 @@
+{% comment %}
+  Cache-busting asset helper.
+  Appends a build-timestamp query string to force browsers to fetch
+  the latest version after each deployment.
+
+  Usage:  {% include cache-bust.html path="/assets/css/tailwind.css" %}
+  Output: /assets/css/tailwind.css?v=1708534288
+{% endcomment %}{{ include.path | relative_url }}?v={{ site.time | date: "%s" }}

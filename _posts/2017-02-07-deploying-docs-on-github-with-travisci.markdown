@@ -54,7 +54,7 @@ First, you will need to install the travis command line tools, which is a Ruby G
     
 Next, you will need to enable the repo to be build on Travis-CI.  Log into [Travis-CI](https://travis-ci.org/) and go to "Account".  Within this menu, search for the name of your repo, and click to enable it.
 
-![Enable Travis-CI Repo](/images/posts/DocsTravisCI/EnableRepoTravis.png)
+{% picture content posts/DocsTravisCI/EnableRepoTravis.png --alt Enable Travis-CI Repo %}
 
 You will also need to login with the Travis CLI in order to encrypt the deploy-key:
 

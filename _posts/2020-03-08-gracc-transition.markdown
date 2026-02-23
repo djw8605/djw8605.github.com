@@ -31,7 +31,7 @@ There are also many indexes that the OSG is not transitioning to the new ES.  In
 
 ## The Website
 
-![GRACC Transition Website](/images/posts/gracc-transition/gracc-transition-website.png)
+{% picture content posts/gracc-transition/gracc-transition-website.png --alt GRACC Transition Website %}
 
 The gracc transition app is hosted on the [Heroku](https://www.heroku.com/).  I choose Heroku because it provides a simple hosting platform with a database for free.
 

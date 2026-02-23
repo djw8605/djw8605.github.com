@@ -1,1 +1,13 @@
 url                      : ""
+
+# Development overrides — applied when running:
+#   bundle exec jekyll serve --config _config.yml,_config.dev.yml
+environment: development
+incremental: true
+
+# Disable minification locally for faster rebuilds
+jekyll-minifier:
+  compress_javascript: false
+  remove_comments: false
+
+# Picture tag uses fast_build in development (see _config.yml)

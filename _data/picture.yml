@@ -1,0 +1,63 @@
+# Jekyll Picture Tag presets
+# See: https://rbuchberger.github.io/jekyll_picture_tag/
+#
+# Presets define how images are resized, what formats are generated,
+# and what markup is output. Used via {% picture preset image.jpg %}
+
+media_presets:
+  mobile: "(max-width: 640px)"
+  tablet: "(max-width: 1024px)"
+  desktop: "(min-width: 1025px)"
+
+presets:
+  # Default — used when no preset name is given
+  default:
+    formats: [webp, original]
+    widths: [400, 800, 1200]
+    fallback_width: 800
+    fallback_format: original
+    quality: 80
+    format_quality:
+      webp: 75
+    strip_metadata: true
+    dimension_attributes: true
+    data_sizes: true
+
+  # Hero images — larger widths for prominent images
+  hero:
+    formats: [webp, original]
+    widths: [600, 900, 1200, 1600]
+    fallback_width: 1200
+    fallback_format: original
+    quality: 82
+    format_quality:
+      webp: 78
+    strip_metadata: true
+    dimension_attributes: true
+    data_sizes: true
+
+  # Blog post teaser cards
+  teaser:
+    formats: [webp, original]
+    widths: [400, 600, 800]
+    fallback_width: 600
+    fallback_format: original
+    quality: 78
+    format_quality:
+      webp: 72
+    strip_metadata: true
+    dimension_attributes: true
+    data_sizes: true
+
+  # Inline content images — used inside blog posts
+  content:
+    formats: [webp, original]
+    widths: [400, 700, 1000]
+    fallback_width: 700
+    fallback_format: original
+    quality: 80
+    format_quality:
+      webp: 75
+    strip_metadata: true
+    dimension_attributes: true
+    data_sizes: true

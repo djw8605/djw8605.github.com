@@ -21,11 +21,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # libvips is needed by jekyll_picture_tag for responsive image generation
+      - name: Install system dependencies
+        run: sudo apt-get update && sudo apt-get install -y libvips-dev libvips-tools
+
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.3'
-          bundler-cache: true
+          bundler-cache: true  # Caches gems automatically
 
       - name: Setup Pages
         id: pages

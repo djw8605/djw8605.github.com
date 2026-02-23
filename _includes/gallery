@@ -18,15 +18,15 @@
 
 <figure class="{{ gallery_layout }} {{ include.class }}">
   {% for img in gallery %}
+    {% assign gallery_img_path = img.image_path | remove_first: "/images/" %}
+    {% assign gallery_img_alt = img.alt | default: "" %}
     {% if img.url %}
       <a href="{{ img.url | relative_url }}"
         {% if img.title %}title="{{ img.title }}"{% endif %}>
-          <img src="{{ img.image_path | relative_url }}"
-               alt="{% if img.alt %}{{ img.alt }}{% endif %}">
+          {% picture content {{ gallery_img_path }} --alt {{ gallery_img_alt }} %}
       </a>
     {% else %}
-      <img src="{{ img.image_path | relative_url }}"
-           alt="{% if img.alt %}{{ img.alt }}{% endif %}">
+      {% picture content {{ gallery_img_path }} --alt {{ gallery_img_alt }} %}
     {% endif %}
   {% endfor %}
   {% if include.caption %}
