@@ -21,7 +21,7 @@ There are many methods to run R applications at HCC.  I can break these uses dow
 
 In this post, I will discuss and layout the different methods of submitting jobs to HCC and the OSG.  Further these methods lie on a spectrum of both difficulty in using.
 
-![Difficulty Spectrum](/images/posts/ROnHCC/SpectrumScreenshot.png "Difficult Spectrum")
+{% picture content posts/ROnHCC/SpectrumScreenshot.png --alt Difficulty Spectrum %}
 Each step is more and more difficult.  Running R on your laptop is much easier than running R on a cluster.  And running R on a cluster is less difficult than running it on the Grid.  But there are techniques to bring these closer together.
 
 <!--more-->
@@ -110,7 +110,7 @@ This R script submits jobs to the OSG from the Crane cluster.  It will run the s
 
 The jobs can run anywhere on the OSG:
 
-![OSG Running Jobs](/images/posts/ROnHCC/WhereDoesItGo.png "Where Does Jobs Go")
+{% picture content posts/ROnHCC/WhereDoesItGo.png --alt OSG Running Jobs %}
 
 Jobs submitted to the OSG can run on multiple sites around the U.S.  They will execute and and return the results.
 

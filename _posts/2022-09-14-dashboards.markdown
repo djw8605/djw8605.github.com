@@ -39,7 +39,7 @@ Technologies used: [React], [NextJS], [Leaflet], [Elasticsearch]
 
 **Repo:** [GP-ARGO Map](https://github.com/djw8605/gp-argo-map)
 
-[![GP-ARGO](/images/posts/Dashboards/gp-argo-screenshot.png)](https://gp-argo.greatplains.net/)
+{% picture content posts/Dashboards/gp-argo-screenshot.png --alt GP-ARGO --link https://gp-argo.greatplains.net/ %}
 
 ## [OSDF Website](https://osdf.osg-htc.org/)
 
@@ -58,7 +58,7 @@ Technologies used: [React], [NextJS], [Globe.gl](https://globe.gl/)
 
 **Repo:** [OSDF Website](https://github.com/djw8605/osdf-website)
 
-[![OSDF](/images/posts/Dashboards/osdf-screenshot.png)](https://osdf.osg-htc.org/)
+{% picture content posts/Dashboards/osdf-screenshot.png --alt OSDF --link https://osdf.osg-htc.org/ %}
 
 ## [NRP Dashboard](https://dash.nrp-nautilus.io/)
 
@@ -70,7 +70,7 @@ Technologies used: [React], [NextJS], [D3.js], [Prometheus], [TailwindCSS]
 
 **Repo:** [NRP Map App](https://github.com/djw8605/nrp-map-app)
 
-[![NRP Dashboard](/images/posts/Dashboards/nrp-dashboard-screenshot.png)](https://dash.nrp-nautilus.io/)
+{% picture content posts/Dashboards/nrp-dashboard-screenshot.png --alt NRP Dashboard --link https://dash.nrp-nautilus.io/ %}
 
 ## [PNRP Website](https://nrp-website.vercel.app/)
 
@@ -84,7 +84,7 @@ Technologies Used: [React], [NextJS], [Mapbox], [TailwindCSS], [Prometheus]
 
 **Repo:** [NRP Website](https://github.com/djw8605/nrp-website)
 
-[![PNRP Website](/images/posts/Dashboards/nrp-website-screenshot.png)](https://nrp-website.vercel.app/)
+{% picture content posts/Dashboards/nrp-website-screenshot.png --alt PNRP Website --link https://nrp-website.vercel.app/ %}
 
 
 [React]: https://reactjs.org/

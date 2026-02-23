@@ -13,7 +13,7 @@ The HTCondor-CE-Bosco (CE-Bosco) is one of the largest changes for the upcoming 
 
 The HTCondor-CE-Bosco is designed to make it easier to contribute opportunistic resources to the OSG.  Instead of allocating a special node or VM that can run services as root, and submit to the local cluster to run an OSG CE.  With the HTCondor-CE-Bosco, an organization can setup a separate node with only SSH access to the cluster.  In addition, the OSG can host and manage the CE for an opportunistic resource, reducing the load on the admins completely.
 
-![HTCondor-CE-Bosco](/images/posts/htcondor-ce-bosco/HTCondorCEBosco.png)
+{% picture content posts/htcondor-ce-bosco/HTCondorCEBosco.png --alt HTCondor-CE-Bosco %}
 
 The HTCondor-CE portion acts just like any other CE.  It can authenticate with GUMS, or use simple grid-mapfile.  It runs the normal HTCondor-CE daemons such as the Collector and Schedd.  But, there is a special route that instructs the HTCondor-CE to submit to a remote resource rather than a local scheduler.
 

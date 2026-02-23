@@ -29,11 +29,31 @@
   {% endif %}
 {% endif %}
 
+{% comment %}Extract image path from {% picture %} tags (relative to images/ source){% endcomment %}
+{% if post_image == "" and document.content contains "picture " %}
+  {% assign picture_chunks = document.content | split: "picture " %}
+  {% if picture_chunks.size > 1 %}
+    {% assign picture_args = picture_chunks[1] | split: " --" | first | strip %}
+    {% assign picture_words = picture_args | split: " " %}
+    {% for word in picture_words %}
+      {% if word contains "." %}
+        {% assign post_image = word | prepend: "/images/" %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endif %}
+
 {% if post_image == "" and document.content and document.content contains '<img' %}
   {% assign html_image_chunks = document.content | split: 'src="' %}
   {% if html_image_chunks.size > 1 %}
     {% assign post_image = html_image_chunks[1] | split: '"' | first %}
   {% endif %}
+{% endif %}
+
+{% comment %}Skip generated/resized images — use the original source path instead{% endcomment %}
+{% if post_image contains "/generated/" %}
+  {% assign post_image = "" %}
 {% endif %}
 
 {{ post_image | strip }}
