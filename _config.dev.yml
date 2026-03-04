@@ -11,3 +11,5 @@ jekyll-minifier:
   remove_comments: false
 
 # Picture tag uses fast_build in development (see _config.yml)
+picture:
+  ignore_missing_images: true   # Tolerate missing images locally; CI enforces strictness

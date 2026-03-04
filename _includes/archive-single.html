@@ -8,16 +8,22 @@
     {% if teaser != "" %}
       <a href="{{ document.url | relative_url }}" class="block h-32 w-full shrink-0 overflow-hidden rounded-lg sm:w-44">
         {% assign teaser_ext = teaser | split: "." | last | downcase %}
-        {% assign teaser_prefix = teaser | slice: 0, 8 %}
+        {% assign images_prefix = "/images/" %}
+        {% assign teaser_prefix = teaser | slice: 0, images_prefix.size %}
+        {% assign raster_exts = "png,jpg,jpeg,webp,bmp,tiff" | split: "," %}
         {% assign teaser_is_raster = false %}
-        {% if teaser_ext == "png" or teaser_ext == "jpg" or teaser_ext == "jpeg" or teaser_ext == "webp" or teaser_ext == "bmp" or teaser_ext == "tiff" %}
+        {% if raster_exts contains teaser_ext %}
           {% assign teaser_is_raster = true %}
         {% endif %}
-        {% if teaser_prefix == "/images/" and teaser_is_raster %}
-          {% assign teaser_rel = teaser | slice: 8, teaser.size %}
-          {% picture teaser {{ teaser_rel }} --alt "{{ document.title | strip_html }}" %}
+        {% assign teaser_http = teaser | slice: 0, 7 %}
+        {% assign teaser_https = teaser | slice: 0, 8 %}
+        {% if teaser_prefix == images_prefix and teaser_is_raster %}
+          {% assign teaser_rel = teaser | slice: images_prefix.size, teaser.size %}
+          {% picture teaser {{ teaser_rel }} --alt "{{ document.title | strip_html | escape }}" %}
+        {% elsif teaser_http == "http://" or teaser_https == "https://" %}
+          <img src="{{ teaser }}" alt="{{ document.title | strip_html | escape }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
         {% else %}
-          <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+          <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html | escape }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
         {% endif %}
       </a>
     {% else %}

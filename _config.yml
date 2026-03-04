@@ -236,9 +236,9 @@ compress_html:
 picture:
   source: "images"
   output: "generated"
-  suppress_warnings: true
+  suppress_warnings: false
   fast_build: development
-  ignore_missing_images: true
+  ignore_missing_images: false
 
 # Jekyll Minifier — HTML/CSS/JS minification
 # Active only when JEKYLL_ENV=production (CI builds).
