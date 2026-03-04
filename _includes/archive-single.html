@@ -7,7 +7,32 @@
   <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
     {% if teaser != "" %}
       <a href="{{ document.url | relative_url }}" class="block h-32 w-full shrink-0 overflow-hidden rounded-lg sm:w-44">
-        <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+        {% assign teaser_url = teaser | split: "?" | first | split: "#" | first %}
+        {% assign teaser_ext = teaser_url | split: "." | last | downcase %}
+        {% assign images_prefix = "/images/" %}
+        {% assign teaser_prefix = teaser_url | slice: 0, images_prefix.size %}
+        {% assign raster_exts = "png,jpg,jpeg,webp,bmp,tiff" | split: "," %}
+        {% assign teaser_is_raster = false %}
+        {% if raster_exts contains teaser_ext %}
+          {% assign teaser_is_raster = true %}
+        {% endif %}
+        {% assign teaser_http = teaser_url | slice: 0, 7 %}
+        {% assign teaser_https = teaser_url | slice: 0, 8 %}
+        {% assign teaser_proto_rel = teaser_url | slice: 0, 2 %}
+        {% assign teaser_data = teaser_url | slice: 0, 5 %}
+        {% assign teaser_is_absolute = false %}
+        {% if teaser_http == "http://" or teaser_https == "https://" or teaser_proto_rel == "//" or teaser_data == "data:" %}
+          {% assign teaser_is_absolute = true %}
+        {% endif %}
+        {% if teaser_prefix == images_prefix and teaser_is_raster %}
+          {% assign teaser_rel = teaser_url | slice: images_prefix.size, teaser_url.size %}
+          {% assign teaser_alt = document.title | strip_html | escape %}
+          {% picture teaser {{ teaser_rel }} --alt "{{ teaser_alt }}" %}
+        {% elsif teaser_is_absolute %}
+          <img src="{{ teaser }}" alt="{{ document.title | strip_html | escape }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+        {% else %}
+          <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html | escape }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+        {% endif %}
       </a>
     {% else %}
       <a href="{{ document.url | relative_url }}" class="block h-32 w-full shrink-0 rounded-lg bg-slate-100 dark:bg-slate-800 sm:w-44"></a>

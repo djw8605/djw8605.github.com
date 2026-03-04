@@ -48,6 +48,9 @@ presets:
     strip_metadata: true
     dimension_attributes: true
     data_sizes: true
+    attributes:
+      picture: 'class="block h-full w-full"'
+      img: 'class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy"'
 
   # Inline content images — used inside blog posts
   content:
