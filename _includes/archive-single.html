@@ -9,11 +9,15 @@
       <a href="{{ document.url | relative_url }}" class="block h-32 w-full shrink-0 overflow-hidden rounded-lg sm:w-44">
         {% assign teaser_ext = teaser | split: "." | last | downcase %}
         {% assign teaser_prefix = teaser | slice: 0, 8 %}
-        {% if teaser contains "://" or teaser_ext == "svg" or teaser_ext == "gif" or teaser_prefix != "/images/" %}
-          <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
-        {% else %}
+        {% assign teaser_is_raster = false %}
+        {% if teaser_ext == "png" or teaser_ext == "jpg" or teaser_ext == "jpeg" or teaser_ext == "webp" or teaser_ext == "bmp" or teaser_ext == "tiff" %}
+          {% assign teaser_is_raster = true %}
+        {% endif %}
+        {% if teaser_prefix == "/images/" and teaser_is_raster %}
           {% assign teaser_rel = teaser | slice: 8, teaser.size %}
           {% picture teaser {{ teaser_rel }} --alt "{{ document.title | strip_html }}" %}
+        {% else %}
+          <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
         {% endif %}
       </a>
     {% else %}
