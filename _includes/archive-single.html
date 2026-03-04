@@ -17,10 +17,17 @@
         {% endif %}
         {% assign teaser_http = teaser | slice: 0, 7 %}
         {% assign teaser_https = teaser | slice: 0, 8 %}
+        {% assign teaser_proto_rel = teaser | slice: 0, 2 %}
+        {% assign teaser_data = teaser | slice: 0, 5 %}
+        {% assign teaser_is_absolute = false %}
+        {% if teaser_http == "http://" or teaser_https == "https://" or teaser_proto_rel == "//" or teaser_data == "data:" %}
+          {% assign teaser_is_absolute = true %}
+        {% endif %}
         {% if teaser_prefix == images_prefix and teaser_is_raster %}
           {% assign teaser_rel = teaser | slice: images_prefix.size, teaser.size %}
-          {% picture teaser {{ teaser_rel }} --alt "{{ document.title | strip_html | escape }}" %}
-        {% elsif teaser_http == "http://" or teaser_https == "https://" %}
+          {% assign teaser_alt = document.title | strip_html | escape %}
+          {% picture teaser teaser_rel --alt teaser_alt %}
+        {% elsif teaser_is_absolute %}
           <img src="{{ teaser }}" alt="{{ document.title | strip_html | escape }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
         {% else %}
           <img src="{{ teaser | relative_url }}" alt="{{ document.title | strip_html | escape }}" class="h-full w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
