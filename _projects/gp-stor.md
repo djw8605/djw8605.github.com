@@ -17,7 +17,7 @@ technologies:
   - nextcloud
   - github
   - githubcopilot
-order: 6
+order: 7
 ---
 
 [GP-STOR](https://gp-stor.org) is a distributed storage initiative for the Great Plains region focused on resilient, tiered object storage for research workloads.

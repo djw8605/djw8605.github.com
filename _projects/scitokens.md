@@ -10,7 +10,7 @@ technologies:
   - jsonwebtokens
   - github
   - githubcopilot
-order: 7
+order: 8
 ---
 
 [SciTokens](https://scitokens.org) provides a federated authorization model for distributed scientific computing, using capability-based access with modern token standards.

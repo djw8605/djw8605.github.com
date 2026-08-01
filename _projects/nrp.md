@@ -22,7 +22,7 @@ technologies:
   - helm
   - github
   - githubcopilot
-order: 3
+order: 4
 ---
 
 The [National Research Platform (NRP)](https://nrp.ai) is a community-owned platform that connects institutions and researchers to shared computing, storage, and networking resources.

@@ -70,3 +70,6 @@ nvidia:
 jsonwebtokens:
   name: JWT
   logo: https://cdn.simpleicons.org/jsonwebtokens
+clickhouse:
+  name: ClickHouse
+  logo: https://cdn.simpleicons.org/clickhouse

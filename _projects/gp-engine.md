@@ -16,7 +16,7 @@ technologies:
   - nvidia
   - github
   - githubcopilot
-order: 5
+order: 6
 ---
 
 [GP-ENGINE](https://gp-engine.org) expands advanced computing adoption in the Great Plains region through coordinated GPU-enabled research infrastructure.

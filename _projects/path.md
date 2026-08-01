@@ -20,7 +20,7 @@ technologies:
   - git
   - github
   - githubcopilot
-order: 2
+order: 3
 ---
 
 [PATh](https://path-cc.io) (Partnership to Advance Throughput Computing) connects the Center for High Throughput Computing and the Open Science Grid to broaden access to distributed HTC for research communities.
