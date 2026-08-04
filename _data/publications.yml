@@ -1,0 +1,873 @@
+# Publications — the canonical record. One entry per work.
+#
+# Maintained in reverse-chronological order. The page groups by `year` and
+# preserves file order within a year, so adding a paper means pasting a block
+# at the top.
+#
+# Author lists, page ranges and DOIs were reconciled against Crossref, so they
+# reflect the publisher record rather than the earlier hand-kept list. Where
+# Crossref itself only carries initials, initials are kept — do not invent a
+# first name.
+#
+# Fields
+#   key         BibTeX citation key AND the page anchor (#key). Must be unique.
+#   type        BibTeX entry type: inproceedings | article | phdthesis |
+#               mastersthesis | techreport. Drives both the .bib output and the
+#               displayed kind label.
+#   title       As published.
+#   authors     In publication order, "Given Family". `et_al: true` marks a list
+#               that is genuinely truncated; `authors_tail` holds authors named
+#               after such a truncation so a final-position author is not lost.
+#   year        Publication year (not conference year — the five CHEP 2018
+#               papers were published in EPJ Web of Conferences 214 in 2019).
+#   venue       Short label, displayed.
+#   venue_full  Full proceedings/journal name. Used in the .bib.
+#   series      pearc | chep | ieee | other. Normalizes the fact that CHEP
+#               proceedings appear under three different journal names. Not
+#               surfaced as a filter today; kept so one is cheap to add.
+#   doi         Bare DOI, no URL prefix.
+#   links       Extra links (arXiv, repository record) when there is no DOI or
+#               a preprint is worth surfacing.
+#   award       Optional. Folds the old "Awards" section into the entry itself.
+#   status      Optional. `unresolved` = citation incomplete or provisional.
+#               Currently unused; every entry below carries a resolved citation
+#               or is a type that legitimately has no DOI.
+
+# ---------------------------------------------------------------- 2026
+- key: aarrestad2026ainative
+  type: article
+  title: "Building an AI-native Research Ecosystem for Experimental Particle Physics: A Community Vision"
+  authors:
+    - Thea Klaeboe Aarrestad
+  et_al: true
+  authors_tail:
+    - Derek Weitzel
+  year: 2026
+  venue: "arXiv"
+  venue_full: "arXiv preprint"
+  series: other
+  doi: "10.48550/arXiv.2602.17582"
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/2602.17582"
+
+# ---------------------------------------------------------------- 2025
+- key: barla2025ants
+  type: inproceedings
+  title: "Dynamic File Access Prediction for Distributed Caching via Semantic-Aware Continual Learning"
+  authors:
+    - Sarat Sasank Barla
+    - Venkat Sai Suman Lamba Karanam
+    - Byrav Ramamurthy
+    - Derek Weitzel
+  year: 2025
+  venue: "IEEE ANTS 2025"
+  venue_full: "2025 IEEE International Conference on Advanced Networks and Telecommunications Systems (ANTS)"
+  pages: "1--6"
+  series: ieee
+  doi: "10.1109/ANTS66931.2025.11429989"
+
+- key: karanam2025prefetching
+  type: article
+  title: "ML-based Adaptive Prefetching and Data Placement for US HEP Systems"
+  authors:
+    - Venkat Sai Suman Lamba Karanam
+    - Sarat Sasank Barla
+    - Byrav Ramamurthy
+    - Derek Weitzel
+  year: 2025
+  venue: "EPJ Web Conf. 337"
+  venue_full: "EPJ Web of Conferences"
+  volume: "337"
+  pages: "01011"
+  series: chep
+  doi: "10.1051/epjconf/202533701011"
+
+- key: albin2025coffeacasa
+  type: article
+  title: "Tuning the CMS Coffea-casa facility for 200 Gbps Challenge"
+  authors:
+    - Sam Albin
+    - Garhan Attebury
+    - Kenneth Bloom
+    - Brian Bockelman
+    - Benjamin Tovar Lopez
+    - Carl Lundstedt
+    - Oksana Shadura
+    - John Thiltges
+    - Derek Weitzel
+    - Andrew Wightman
+  year: 2025
+  venue: "EPJ Web Conf. 337"
+  venue_full: "EPJ Web of Conferences"
+  volume: "337"
+  pages: "01239"
+  series: chep
+  doi: "10.1051/epjconf/202533701239"
+
+- key: weitzel2025nrp
+  type: inproceedings
+  title: "The National Research Platform: Stretched, Multi-Tenant, Scientific Kubernetes Cluster"
+  authors:
+    - Derek Weitzel
+    - Ashton Graves
+    - Sam Albin
+    - Huijun Zhu
+    - Frank Wuerthwein
+    - Mahidhar Tatineni
+    - Dmitry Mishin
+    - Elham Khoda
+    - Mohammad Sada
+    - Larry Smarr
+    - Thomas DeFanti
+    - John Graham
+  year: 2025
+  venue: "PEARC '25"
+  venue_full: "Practice and Experience in Advanced Research Computing 2025: The Power of Collaboration"
+  pages: "1--5"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3708035.3736060"
+
+- key: barla2025aidriven
+  type: inproceedings
+  title: "AI-Driven Strategies for Distributed Caching: A Case Study Using CMS Cache Data"
+  authors:
+    - Sarat Sasank Barla
+    - Venkat Sai Suman Lamba Karanam
+    - Byrav Ramamurthy
+    - Derek Weitzel
+  year: 2025
+  venue: "PEARC '25"
+  venue_full: "Practice and Experience in Advanced Research Computing 2025: The Power of Collaboration"
+  pages: "1--5"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3708035.3736094"
+
+- key: weitzel2025nrdstor
+  type: inproceedings
+  title: "The Nebraska Research Data Storage: NRDStor"
+  authors:
+    - Derek Weitzel
+    - Caughlin Bohn
+  year: 2025
+  venue: "PEARC '25"
+  venue_full: "Practice and Experience in Advanced Research Computing 2025: The Power of Collaboration"
+  pages: "1--3"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3708035.3736029"
+
+# ---------------------------------------------------------------- 2024
+- key: barla2024predicting
+  type: inproceedings
+  title: "Predicting Future Accesses in XRootD Caching Systems Using ML-Based Network Pattern Analysis"
+  authors:
+    - Sarat Sasank Barla
+    - Venkat Sai Suman Lamba Karanam
+    - Byrav Ramamurthy
+    - Derek Weitzel
+  year: 2024
+  venue: "IEEE ANTS 2024"
+  venue_full: "2024 IEEE International Conference on Advanced Networks and Telecommunications Systems (ANTS)"
+  pages: "1--6"
+  series: ieee
+  doi: "10.1109/ANTS63515.2024.10898672"
+
+- key: andrijauskas2024osdf
+  type: inproceedings
+  title: "Open Science Data Federation — Operation and Monitoring"
+  authors:
+    - Fabio Andrijauskas
+    - Derek Weitzel
+    - Frank Wuerthwein
+  year: 2024
+  venue: "PEARC '24"
+  venue_full: "Practice and Experience in Advanced Research Computing 2024: Human Powered Computing"
+  pages: "1--5"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3626203.3670557"
+
+- key: garrido2024xrootdmonitoring
+  type: article
+  title: "New XRootD Monitoring Implementation"
+  authors:
+    - Borja Garrido
+    - Julia Andreeva
+    - Derek Weitzel
+    - Alessandra Forti
+    - Shawn McKee
+  year: 2024
+  venue: "EPJ Web Conf. 295"
+  venue_full: "EPJ Web of Conferences"
+  volume: "295"
+  pages: "01040"
+  series: chep
+  doi: "10.1051/epjconf/202429501040"
+
+- key: schultz2024icecube
+  type: article
+  title: "IceCube Experience Using XRootD-Based Origins with GPU Workflows in PNRP"
+  authors:
+    - David Schultz
+    - Igor Sfiligoi
+    - Benedikt Riedel
+    - Fabio Andrijauskas
+    - Derek Weitzel
+    - Frank Würthwein
+  year: 2024
+  venue: "EPJ Web Conf. 295"
+  venue_full: "EPJ Web of Conferences"
+  volume: "295"
+  pages: "11011"
+  series: chep
+  doi: "10.1051/epjconf/202429511011"
+
+# ---------------------------------------------------------------- 2023
+# A strategic-plan report, not a DOI-registered paper; the CDS record is the
+# citable object.
+- key: bockelman2023irisheplan
+  type: techreport
+  title: "IRIS-HEP Strategic Plan for the Next Phase of Software Upgrades for HL-LHC Physics"
+  authors:
+    - Brian Bockelman
+    - Peter Elmer
+    - Gordon Watts
+    - Kyle Cranmer
+    - Matthew Feickert
+    - Rob Gardner
+    - Heather Gray
+  et_al: true
+  year: 2023
+  venue: "CERN Document Server"
+  venue_full: "CERN Document Server"
+  series: other
+  links:
+    - label: "CERN CDS record"
+      url: "https://cds.cern.ch/record/2848725"
+
+- key: deng2023transatlantic
+  type: inproceedings
+  title: "Analyzing Transatlantic Network Traffic over Scientific Data Caches"
+  authors:
+    - Ziyue Deng
+    - Alex Sim
+    - Kesheng Wu
+    - Chin Guok
+    - Damian Hazen
+    - Inder Monga
+    - Fabio Andrijauskas
+    - Frank Würthwein
+    - Derek Weitzel
+  year: 2023
+  venue: "SNTA '23"
+  venue_full: "Proceedings of the 2023 on Systems and Network Telemetry and Analytics"
+  pages: "19--22"
+  publisher: "Association for Computing Machinery"
+  series: other
+  doi: "10.1145/3589012.3594897"
+
+# ---------------------------------------------------------------- 2022
+- key: desilva2022rnamake
+  type: inproceedings
+  title: "Building the RNAMake Gateway on PATh: A Student-Led Design Project"
+  authors:
+    - Dinuka De Silva
+    - Derek Weitzel
+    - Joseph Yesselman
+    - Marcus Christie
+    - Robert Quick
+    - Eroma Abeysinghe
+    - Marlon Pierce
+  year: 2022
+  venue: "PEARC '22"
+  venue_full: "Practice and Experience in Advanced Research Computing 2022: Revolutionary: Computing, Connections, You"
+  pages: "1--2"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3491418.3535184"
+
+- key: aydemir2022sciauth
+  type: inproceedings
+  title: "SciAuth: A Lightweight End-to-End Capability-Based Authorization Environment for Scientific Computing"
+  authors:
+    - Brian Aydemir
+    - Jim Basney
+    - Brian Bockelman
+    - Jeff Gaynor
+    - Derek Weitzel
+  year: 2022
+  venue: "PEARC '22"
+  venue_full: "Practice and Experience in Advanced Research Computing 2022: Revolutionary: Computing, Connections, You"
+  pages: "1--5"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3491418.3535160"
+
+# ---------------------------------------------------------------- 2021
+- key: weitzel2021sand
+  type: inproceedings
+  title: "The Service Analysis and Network Diagnosis Data Pipeline"
+  authors:
+    - Derek Weitzel
+    - Shawn McKee
+    - Brian Paul Bockelman
+    - John Thiltges
+    - Marian Babik
+    - Ilija Vukotic
+  year: 2021
+  venue: "IEEE INDIS 2021"
+  venue_full: "2021 IEEE Workshop on Innovating the Network for Data-Intensive Science (INDIS)"
+  pages: "1--11"
+  series: ieee
+  doi: "10.1109/INDIS54524.2021.00006"
+
+# ---------------------------------------------------------------- 2020
+- key: zhang2020erasurecoding
+  type: inproceedings
+  title: "Exploring Erasure Coding Techniques for High Availability of Intermediate Data"
+  authors:
+    - Zhe Zhang
+    - Brian Bockelman
+    - Derek Weitzel
+    - David Swanson
+  year: 2020
+  venue: "IEEE/ACM CCGrid 2020"
+  venue_full: "2020 20th IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing (CCGRID)"
+  pages: "865--872"
+  series: ieee
+  doi: "10.1109/CCGrid49817.2020.00012"
+
+- key: zhang2020trua
+  type: inproceedings
+  title: "Trua: Efficient Task Replication for Flexible User-Defined Availability in Scientific Grids"
+  authors:
+    - Zhe Zhang
+    - Brian Bockelman
+    - Derek Weitzel
+    - Xinkai Zhang
+    - Hamid Vakilzadian
+    - David Swanson
+  year: 2020
+  venue: "IEEE/ACM CCGrid 2020"
+  venue_full: "2020 20th IEEE/ACM International Symposium on Cluster, Cloud and Internet Computing (CCGRID)"
+  pages: "360--369"
+  series: ieee
+  doi: "10.1109/CCGrid49817.2020.00-57"
+
+- key: dost2020lightweightdoor
+  type: article
+  title: "A Lightweight Door into Non-Grid Sites"
+  authors:
+    - Jeffrey Dost
+    - Marco Mascheroni
+    - Brian Bockelman
+    - Lincoln Bryant
+    - Timothy Cartwright
+    - Edgar Fajardo
+    - Robert Gardner
+    - James Letts
+    - Brian Lin
+    - Mátyás Selmeci
+    - Igor Sfiligoi
+    - Judith Stephen
+    - Derek Weitzel
+    - Frank Würthwein
+    - Huijun Zhu
+  year: 2020
+  venue: "EPJ Web Conf. 245"
+  venue_full: "EPJ Web of Conferences"
+  volume: "245"
+  pages: "07005"
+  series: chep
+  doi: "10.1051/epjconf/202024507005"
+
+- key: fajardo2020xcaches
+  type: article
+  title: "Creating a Content Delivery Network for General Science on the Internet Backbone Using XCaches"
+  authors:
+    - Edgar Fajardo
+    - Derek Weitzel
+    - Mats Rynge
+    - Marian Zvada
+    - John Hicks
+    - Mat Selmeci
+    - Brian Lin
+    - Pascal Paschos
+    - Brian Bockelman
+    - Andrew Hanushevsky
+    - Frank Würthwein
+    - Igor Sfiligoi
+  year: 2020
+  venue: "EPJ Web Conf. 245"
+  venue_full: "EPJ Web of Conferences"
+  volume: "245"
+  pages: "04041"
+  series: chep
+  doi: "10.1051/epjconf/202024504041"
+
+- key: babik2020wlcgnetworks
+  type: article
+  title: "WLCG Networks: Update on Monitoring and Analytics"
+  authors:
+    - Marian Babik
+    - Shawn McKee
+    - Pedro Andrade
+    - Brian Paul Bockelman
+    - Robert Gardner
+    - Edgar Mauricio Fajardo Hernandez
+    - Edoardo Martelli
+    - Ilija Vukotic
+    - Derek Weitzel
+    - Marian Zvada
+  year: 2020
+  venue: "EPJ Web Conf. 245"
+  venue_full: "EPJ Web of Conferences"
+  volume: "245"
+  pages: "07053"
+  publisher: "EDP Sciences"
+  series: chep
+  doi: "10.1051/epjconf/202024507053"
+
+# ---------------------------------------------------------------- 2019
+- key: withers2019scitokenshtcondor
+  type: inproceedings
+  title: "SciTokens: Demonstrating Capability-Based Access to Remote Scientific Data using HTCondor"
+  authors:
+    - Alex Withers
+    - Brian Bockelman
+    - Derek Weitzel
+    - Duncan Brown
+    - Jason Patton
+    - Jeff Gaynor
+    - Jim Basney
+    - Todd Tannenbaum
+    - You Alex Gao
+    - Zach Miller
+  year: 2019
+  venue: "PEARC '19"
+  venue_full: "Practice and Experience in Advanced Research Computing on Rise of the Machines (learning)"
+  pages: "1--4"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3332186.3333258"
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/1905.09816"
+
+- key: weitzel2019stashcache
+  type: inproceedings
+  title: "StashCache: A Distributed Caching Federation for the Open Science Grid"
+  authors:
+    - Derek Weitzel
+    - Marian Zvada
+    - Ilija Vukotic
+    - Rob Gardner
+    - Brian Bockelman
+    - Mats Rynge
+    - Edgar Fajardo Hernandez
+    - Brian Lin
+    - Mátyás Selmeci
+  year: 2019
+  venue: "PEARC '19"
+  venue_full: "Practice and Experience in Advanced Research Computing on Rise of the Machines (learning)"
+  pages: "1--7"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3332186.3332212"
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/1905.06911"
+
+# The five CHEP 2018 papers, published in EPJ Web of Conferences 214 in 2019.
+# They were previously recorded as "Accepted" with no DOI.
+- key: bockelman2019bootstrapping
+  type: article
+  title: "Bootstrapping a New LHC Data Transfer Ecosystem"
+  authors:
+    - Brian Bockelman
+    - Andrew Hanushevsky
+    - Oliver Keeble
+    - Mario Lassnig
+    - Paul Millar
+    - Derek Weitzel
+    - Wei Yang
+  year: 2019
+  venue: "EPJ Web Conf. 214"
+  venue_full: "EPJ Web of Conferences"
+  volume: "214"
+  pages: "04045"
+  series: chep
+  doi: "10.1051/epjconf/201921404045"
+
+- key: babik2019wlcgmonitoring
+  type: article
+  title: "Improving WLCG Networks Through Monitoring and Analytics"
+  authors:
+    - Marian Babik
+    - Shawn McKee
+    - Brian Paul Bockelman
+    - Edgar Mauricio Fajardo Hernandez
+    - Edoardo Martelli
+    - Ilija Vukotic
+    - Derek Weitzel
+    - Marian Zvada
+  year: 2019
+  venue: "EPJ Web Conf. 214"
+  venue_full: "EPJ Web of Conferences"
+  volume: "214"
+  pages: "08006"
+  series: chep
+  doi: "10.1051/epjconf/201921408006"
+
+- key: fajardo2019osggpus
+  type: article
+  title: "OSG and GPUs: A tale of two use cases"
+  authors:
+    - Edgar Fajardo
+    - Mats Rynge
+    - Derek Weitzel
+    - Gonzalo Merino
+    - David Schultz
+    - Vladimir Brik
+    - Heath Skarlupka
+  year: 2019
+  venue: "EPJ Web Conf. 214"
+  venue_full: "EPJ Web of Conferences"
+  volume: "214"
+  pages: "03034"
+  series: chep
+  doi: "10.1051/epjconf/201921403034"
+
+- key: weitzel2019capabilityauthz
+  type: article
+  title: "Capability-Based Authorization for HEP"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+    - Jim Basney
+    - Todd Tannenbaum
+    - Zach Miller
+    - Jeff Gaynor
+  year: 2019
+  venue: "EPJ Web Conf. 214"
+  venue_full: "EPJ Web of Conferences"
+  volume: "214"
+  pages: "04014"
+  series: chep
+  doi: "10.1051/epjconf/201921404014"
+
+- key: weitzel2019gracc
+  type: article
+  title: "GRACC: GRid ACcounting Collector"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+    - Marian Zvada
+    - Kevin Retzke
+    - Shreyas Bhat
+  year: 2019
+  venue: "EPJ Web Conf. 214"
+  venue_full: "EPJ Web of Conferences"
+  volume: "214"
+  pages: "03032"
+  series: chep
+  doi: "10.1051/epjconf/201921403032"
+
+# ---------------------------------------------------------------- 2018
+- key: withers2018scitokens
+  type: inproceedings
+  title: "SciTokens: Capability-Based Secure Access to Remote Scientific Data"
+  authors:
+    - Alex Withers
+    - Brian Bockelman
+    - Derek Weitzel
+    - Duncan Brown
+    - Jeff Gaynor
+    - Jim Basney
+    - Todd Tannenbaum
+    - Zach Miller
+  year: 2018
+  venue: "PEARC '18"
+  venue_full: "Practice and Experience in Advanced Research Computing"
+  pages: "1--8"
+  address: "Pittsburgh, PA"
+  series: pearc
+  doi: "10.1145/3219104.3219135"
+
+- key: zhang2018jobpreemptions
+  type: inproceedings
+  title: "Discovering Job Preemptions in the Open Science Grid"
+  authors:
+    - Zhe Zhang
+    - Brian Bockelman
+    - Derek Weitzel
+    - David Swanson
+  year: 2018
+  venue: "PEARC '18"
+  venue_full: "Practice and Experience in Advanced Research Computing"
+  address: "Pittsburgh, PA"
+  series: pearc
+  doi: "10.1145/3219104.3229282"
+
+# ---------------------------------------------------------------- 2017
+# Previously listed twice — once with the DOI, once with the arXiv preprint —
+# and a third time in full under "Awards". One entry, one award field.
+- key: weitzel2017ligo
+  type: inproceedings
+  title: "Data Access for LIGO on the OSG"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+    - Duncan A. Brown
+    - Peter Couvares
+    - Frank Würthwein
+    - Edgar Fajardo Hernandez
+  year: 2017
+  venue: "PEARC '17"
+  venue_full: "Practice and Experience in Advanced Research Computing 2017: Sustainability, Success and Impact"
+  pages: "24"
+  address: "New Orleans, LA"
+  publisher: "Association for Computing Machinery"
+  series: pearc
+  doi: "10.1145/3093338.3093363"
+  award: "Best Software and Data Paper"
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/1705.06202"
+
+- key: weitzel2017bosco
+  type: article
+  title: "Contributing opportunistic resources to the grid with HTCondor-CE-Bosco"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+  year: 2017
+  venue: "J. Phys. Conf. Ser. 898"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "898"
+  pages: "092026"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/898/9/092026"
+
+- key: weitzel2017cvmfs
+  type: article
+  title: "Accessing Data Federations with CVMFS"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+    - D. Dykstra
+    - J. Blomer
+    - R. Meusel
+  year: 2017
+  venue: "J. Phys. Conf. Ser. 898"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "898"
+  pages: "062044"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/898/6/062044"
+
+- key: retzke2017gracc
+  type: article
+  title: "GRACC: New generation of the OSG accounting"
+  authors:
+    - K. Retzke
+    - Derek Weitzel
+    - S. Bhat
+    - T. Levshina
+    - Brian Bockelman
+    - B. Jayatilaka
+    - C. Sehgal
+    - R. Quick
+    - F. Wuerthwein
+  year: 2017
+  venue: "J. Phys. Conf. Ser. 898"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "898"
+  pages: "092044"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/898/9/092044"
+
+# ---------------------------------------------------------------- 2015
+- key: weitzel2015dissertation
+  type: phdthesis
+  title: "Enabling Distributed Scientific Computing on the Campus"
+  authors:
+    - Derek Weitzel
+  year: 2015
+  venue: "PhD dissertation"
+  school: "University of Nebraska–Lincoln"
+  series: other
+  links:
+    - label: "UNL Digital Commons"
+      url: "http://digitalcommons.unl.edu/computerscidiss/88/"
+
+- key: weitzel2015cached
+  type: inproceedings
+  title: "Distributed Caching Using the HTCondor CacheD"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+    - David Swanson
+  year: 2015
+  venue: "PDPTA 2015"
+  venue_full: "Proceedings of the Conference on Parallel and Distributed Processing Techniques and Applications"
+  series: other
+  links:
+    - label: "UNL Digital Commons"
+      url: "http://digitalcommons.unl.edu/hollandfacpub/4/"
+
+# ---------------------------------------------------------------- 2014
+- key: weitzel2014boscor
+  type: inproceedings
+  title: "BoscoR: Extending R from the Desktop to the Grid"
+  authors:
+    - Derek Weitzel
+    - J. Frey
+    - M. Mambelli
+    - Dan Fraser
+    - M. Ahronovitz
+    - David Swanson
+  year: 2014
+  venue: "MTAGS '14"
+  venue_full: "7th Workshop on Many-Task Computing on Clouds, Grids, and Supercomputers (MTAGS)"
+  series: other
+
+- key: weitzel2014bosco
+  type: article
+  title: "Accessing opportunistic resources with Bosco"
+  authors:
+    - Derek Weitzel
+    - Igor Sfiligoi
+    - Brian Bockelman
+    - J. Frey
+    - Frank Wuerthwein
+    - Dan Fraser
+    - David Swanson
+  year: 2014
+  venue: "J. Phys. Conf. Ser. 513"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "513"
+  pages: "032105"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/513/3/032105"
+
+- key: levshina2014gridaccounting
+  type: article
+  title: "Grid accounting service: state and future development"
+  authors:
+    - T. Levshina
+    - C. Sehgal
+    - Brian Bockelman
+    - Derek Weitzel
+    - A. Guru
+  year: 2014
+  venue: "J. Phys. Conf. Ser. 513"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "513"
+  pages: "032056"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/513/3/032056"
+
+# ---------------------------------------------------------------- 2012
+- key: he2012hog
+  type: inproceedings
+  title: "HOG: Distributed Hadoop MapReduce on the Grid"
+  authors:
+    - Chen He
+    - Derek Weitzel
+    - David Swanson
+    - Ying Lu
+  year: 2012
+  venue: "SC Companion 2012"
+  venue_full: "2012 SC Companion: High Performance Computing, Networking, Storage and Analysis (SCC)"
+  pages: "1276--1283"
+  publisher: "IEEE"
+  series: ieee
+  doi: "10.1109/SC.Companion.2012.154"
+
+- key: weitzel2012campusgrids
+  type: article
+  title: "Campus Grids: Bringing Additional Computational Resources to HEP Researchers"
+  authors:
+    - Derek Weitzel
+    - Dan Fraser
+    - Brian Bockelman
+    - David Swanson
+  year: 2012
+  venue: "J. Phys. Conf. Ser. 396"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "396"
+  pages: "032116"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/396/3/032116"
+
+# ---------------------------------------------------------------- 2011
+- key: weitzel2011masters
+  type: mastersthesis
+  title: "Campus Grids: A Framework to Facilitate Resource Sharing"
+  authors:
+    - Derek Weitzel
+  year: 2011
+  venue: "Master's thesis"
+  school: "University of Nebraska–Lincoln"
+  series: other
+
+- key: weitzel2011enablingcampusgrids
+  type: article
+  title: "Enabling Campus Grids with Open Science Grid Technology"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+    - Dan Fraser
+    - Ruth Pordes
+    - David Swanson
+  year: 2011
+  venue: "J. Phys. Conf. Ser. 331"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "331"
+  pages: "062025"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/331/6/062025"
+
+- key: andrews2011glideinwms
+  type: article
+  title: "Early experience on using glideinWMS in the cloud"
+  authors:
+    - W. Andrews
+    - B. Bockelman
+    - D. Bradley
+    - J. Dost
+    - D. Evans
+    - I. Fisk
+    - J. Frey
+    - B. Holzman
+    - M. Livny
+    - T. Martin
+    - A. McCrea
+    - A. Melo
+    - S. Metson
+    - H. Pi
+    - I. Sfiligoi
+    - P. Sheldon
+    - T. Tannenbaum
+    - A. Tiradani
+    - F. Würthwein
+    - Derek Weitzel
+  year: 2011
+  venue: "J. Phys. Conf. Ser. 331"
+  venue_full: "Journal of Physics: Conference Series"
+  volume: "331"
+  pages: "062014"
+  publisher: "IOP Publishing"
+  series: chep
+  doi: "10.1088/1742-6596/331/6/062014"
