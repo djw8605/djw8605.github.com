@@ -182,5 +182,81 @@
         }
       })();
     </script>
+
+    <script>
+      (function () {
+        var buttons = document.querySelectorAll('[data-bibtex]');
+        if (!buttons.length) {
+          return;
+        }
+
+        var status = document.querySelector('[data-copy-status]');
+
+        function announce(message) {
+          if (status) {
+            status.textContent = message;
+          }
+        }
+
+        function legacyCopy(text) {
+          var field = document.createElement('textarea');
+          field.value = text;
+          field.setAttribute('readonly', '');
+          field.style.position = 'absolute';
+          field.style.left = '-9999px';
+          document.body.appendChild(field);
+          field.select();
+
+          var copied = false;
+          try {
+            copied = document.execCommand('copy');
+          } catch (err) {
+            copied = false;
+          }
+
+          document.body.removeChild(field);
+          return copied;
+        }
+
+        function flash(button, label) {
+          var original = button.getAttribute('data-label') || button.textContent;
+          button.setAttribute('data-label', original);
+          button.textContent = label;
+          window.setTimeout(function () {
+            button.textContent = button.getAttribute('data-label') || original;
+          }, 1600);
+        }
+
+        function handle(button) {
+          var text = button.getAttribute('data-bibtex');
+          var title = button.getAttribute('data-title') || 'entry';
+
+          function ok() {
+            flash(button, 'Copied');
+            announce('BibTeX for ' + title + ' copied to clipboard.');
+          }
+
+          function fail() {
+            flash(button, 'Copy failed');
+            announce('Could not copy BibTeX for ' + title + '.');
+          }
+
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(ok, function () {
+              if (legacyCopy(text)) { ok(); } else { fail(); }
+            });
+            return;
+          }
+
+          if (legacyCopy(text)) { ok(); } else { fail(); }
+        }
+
+        for (var i = 0; i < buttons.length; i++) {
+          buttons[i].addEventListener('click', function (event) {
+            handle(event.currentTarget);
+          });
+        }
+      })();
+    </script>
   </body>
 </html>

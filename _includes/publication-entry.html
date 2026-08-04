@@ -1,0 +1,107 @@
+{%- comment -%}
+  One publication entry. Params: entry - a _data/publications.yml item
+
+  Flat list with hairline separators rather than cards: 42 same-shaped cards
+  would be the lazy container, and a dense list scans better for someone
+  hunting a specific paper.
+
+  Author display shows the first three, then discloses the rest. Derek's own
+  name is always rendered even when it falls outside those three, because the
+  common task here is confirming his position in an author list.
+{%- endcomment -%}
+
+{%- assign e = include.entry -%}
+{%- assign self = "Derek Weitzel" -%}
+{%- assign visible_count = 3 -%}
+{%- assign head = e.authors | slice: 0, visible_count -%}
+{%- assign self_in_head = false -%}
+{%- for a in head %}{% if a == self %}{% assign self_in_head = true %}{% endif %}{% endfor -%}
+{%- assign self_anywhere = false -%}
+{%- for a in e.authors %}{% if a == self %}{% assign self_anywhere = true %}{% endif %}{% endfor -%}
+{%- assign primary_url = "" -%}
+{%- if e.doi -%}
+  {%- assign primary_url = e.doi | prepend: "https://doi.org/" -%}
+{%- elsif e.links -%}
+  {%- assign primary_url = e.links[0].url -%}
+{%- endif -%}
+
+<li id="{{ e.key }}" class="scroll-mt-28 border-t border-slate-900/10 py-5 first:border-t-0 dark:border-slate-400/15 sm:py-6">
+  <h3 class="text-[1.05rem] font-semibold leading-snug tracking-[-0.01em] text-slate-900 dark:text-slate-100">
+    {%- if primary_url %}
+      {%- comment -%}
+        `py-1` widens the tap area of a one-line title past the 24px floor
+        without changing how a wrapped title lays out — inline padding grows the
+        hit box, not the line box.
+      {%- endcomment -%}
+      <a href="{{ primary_url }}" class="py-1 text-slate-900 no-underline hover:text-sky-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:text-slate-100 dark:hover:text-sky-300 dark:focus-visible:ring-offset-slate-900"{% unless primary_url contains '/presentations/' %} rel="noopener noreferrer"{% endunless %}>{{ e.title }}</a>
+    {%- else %}
+      {{ e.title }}
+    {%- endif %}
+  </h3>
+
+  <div class="mt-1.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+    {%- for a in head -%}
+      {%- if a == self -%}
+        <span class="font-semibold text-slate-900 dark:text-slate-100">{{ a }}</span>
+      {%- else -%}
+        {{ a }}
+      {%- endif -%}
+      {%- unless forloop.last %}, {% endunless -%}
+    {%- endfor -%}
+
+    {%- assign hidden = e.authors | slice: visible_count, 40 -%}
+    {%- comment -%}
+      Surface Derek up front when the disclosure would bury him, and discount
+      him from the "+N more" tally since he is already visible.
+    {%- endcomment -%}
+    {%- assign surfaced = false -%}
+    {%- if self_anywhere and self_in_head == false %}{% assign surfaced = true %}{% endif -%}
+    {%- assign remaining = e.authors.size | minus: visible_count -%}
+    {%- if surfaced %}{% assign remaining = remaining | minus: 1 %}{% endif -%}
+    {%- comment -%}
+      Surfacing is independent of the disclosure: with four authors and Derek
+      fourth, `remaining` is 0 but his name still has to appear.
+    {%- endcomment -%}
+    {%- if surfaced %}, &hellip; <span class="font-semibold text-slate-900 dark:text-slate-100">{{ self }}</span>{% endif -%}
+    {%- if remaining > 0 -%}
+      <details class="ml-1 inline">
+        {%- comment -%}
+          An inline disclosure inside running text is line-height constrained,
+          so it is exempt from the 44px target rule; 32px still makes it a
+          usable tap target without pulling the author line apart.
+        {%- endcomment -%}
+        <summary class="inline-flex min-h-[32px] cursor-pointer list-none items-center px-1 font-mono text-xs text-slate-500 underline decoration-dotted underline-offset-2 hover:text-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 dark:text-slate-400 dark:hover:text-slate-100">+{{ remaining }} more</summary>
+        <span>{% for a in hidden %}{% if a == self and self_in_head == false %}{% continue %}{% endif %}, {% if a == self %}<span class="font-semibold text-slate-900 dark:text-slate-100">{{ a }}</span>{% else %}{{ a }}{% endif %}{% endfor %}</span>
+      </details>
+    {%- endif -%}
+    {%- if e.et_al %} &hellip; et al.{% endif -%}
+    {%- for a in e.authors_tail %}, {% if a == self %}<span class="font-semibold text-slate-900 dark:text-slate-100">{{ a }}</span>{% else %}{{ a }}{% endif %}{% endfor -%}
+  </div>
+
+  <div class="mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-2">
+    <span class="font-mono text-xs uppercase tracking-[0.14em] text-slate-500 dark:text-slate-300">{{ e.venue }}{% if e.volume %}:{{ e.pages }}{% endif %}</span>
+
+    {%- if e.award %}
+      <span class="inline-flex items-center rounded-full border border-slate-900/15 bg-cyan-700/15 px-[0.65rem] py-[0.2rem] text-[0.78rem] text-cyan-900 dark:border-slate-400/25 dark:bg-cyan-300/15 dark:text-cyan-200">{{ e.award }}</span>
+    {%- endif %}
+
+    {%- if e.status == 'unresolved' %}
+      <span class="inline-flex items-center rounded-[0.25rem] bg-slate-500/15 px-[0.4rem] py-[0.15rem] font-mono text-[10px] uppercase tracking-[0.1em] text-slate-600 dark:text-slate-300" title="Published since; citation not yet updated with a DOI">citation incomplete</span>
+    {%- endif %}
+  </div>
+
+  <div class="mt-3 flex flex-wrap items-center gap-x-1 gap-y-1">
+    {%- if e.doi %}
+      <a href="https://doi.org/{{ e.doi }}" rel="noopener noreferrer" class="inline-flex min-h-[44px] items-center rounded-[0.35rem] px-2 font-mono text-xs tracking-[0.06em] text-slate-600 no-underline hover:bg-sky-500/10 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 dark:text-slate-300 dark:hover:bg-sky-400/15 dark:hover:text-slate-100">DOI&nbsp;&#8599;</a>
+    {%- endif %}
+
+    {%- for link in e.links %}
+      <a href="{{ link.url }}"{% unless link.url contains '/presentations/' %} rel="noopener noreferrer"{% endunless %} class="inline-flex min-h-[44px] items-center rounded-[0.35rem] px-2 font-mono text-xs tracking-[0.06em] text-slate-600 no-underline hover:bg-sky-500/10 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 dark:text-slate-300 dark:hover:bg-sky-400/15 dark:hover:text-slate-100">{{ link.label }}&nbsp;&#8599;</a>
+    {%- endfor %}
+
+    {%- capture bib %}{% include bibtex.html entry=e %}{% endcapture %}
+    <button type="button" data-bibtex="{{ bib | strip | escape }}" data-title="{{ e.title | escape }}" class="inline-flex min-h-[44px] items-center rounded-[0.35rem] border-0 bg-transparent px-2 font-mono text-xs tracking-[0.06em] text-slate-600 hover:bg-sky-500/10 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 dark:text-slate-300 dark:hover:bg-sky-400/15 dark:hover:text-slate-100">BibTeX</button>
+
+    <a href="#{{ e.key }}" aria-label="Permalink to &ldquo;{{ e.title | escape }}&rdquo;" class="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-[0.35rem] font-mono text-xs text-slate-400 no-underline hover:bg-sky-500/10 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/85 dark:text-slate-400 dark:hover:bg-sky-400/15 dark:hover:text-slate-100">#</a>
+  </div>
+</li>

@@ -1,0 +1,120 @@
+# Talks and presentations. Reverse-chronological; the page groups by year and
+# preserves file order within a year.
+#
+# Fields
+#   kind     Invited talk | Paper presentation | Poster | Focus talk |
+#            Mini-challenge talk | Workshop presentation | Talk
+#   title    As presented.
+#   authors  Presenters and co-authors, in the order given.
+#   event    Where it was given. Omit when the source did not record one.
+#   date     ISO date, for the displayed date. Omit when the source only
+#            recorded a year — never invent a day.
+#   year     Always present. The page groups on it, so Liquid never has to
+#            parse a date.
+#   links    Slides, poster, or recording.
+
+- kind: Invited talk
+  title: "AI for Research — Harnessing Scientific Cyberinfrastructure in North America"
+  authors:
+    - Jennifer L. Clarke
+    - Derek Weitzel
+  date: 2025-10-22
+  year: 2025
+  links:
+    - label: "Slides"
+      url: "https://zenodo.org/records/17416708"
+
+- kind: Paper presentation
+  title: "The National Research Platform: Stretched, Multi-Tenant, Scientific Kubernetes Cluster"
+  authors:
+    - Derek Weitzel
+  event: "PEARC '25"
+  date: 2025-07-25
+  year: 2025
+  links:
+    - label: "Slides"
+      url: "https://zenodo.org/records/16422100"
+
+- kind: Poster
+  title: "The Nebraska Research Data Storage: NRDStor"
+  authors:
+    - Derek Weitzel
+    - Caughlin Bohn
+  event: "PEARC '25"
+  date: 2025-07-23
+  year: 2025
+  links:
+    - label: "Poster"
+      url: "https://zenodo.org/records/16424381"
+
+- kind: Focus talk
+  title: "OSG Software & Services Needs from LHC Community"
+  authors:
+    - Derek Weitzel
+  event: "IRIS-HEP Institute Retreat"
+  date: 2024-09-05
+  year: 2024
+  links:
+    - label: "Slides"
+      url: "https://indico.cern.ch/event/1374962/contributions/5778762/attachments/2921687/5128284/OSG-LHC%20IRIS-HEP%20Session.pdf"
+
+- kind: Mini-challenge talk
+  title: "Mini-Challenges: Building from DC24"
+  authors:
+    - Derek Weitzel
+    - Shawn McKee
+  event: "IRIS-HEP Institute Retreat"
+  date: 2024-09-04
+  year: 2024
+  links:
+    - label: "Slides"
+      url: "https://indico.cern.ch/event/1374962/contributions/5778763/attachments/2921661/5128230/Mini-Challenges_%20Building%20from%20DC24.pdf"
+
+- kind: Workshop presentation
+  title: "WLCG Monitoring"
+  authors:
+    - Borja Garrido Bear
+    - Alessandra Forti
+    - Derek Weitzel
+    - Julia Andreeva
+    - Shawn McKee
+  event: "Data Challenge 2024 Workshop"
+  date: 2023-11-09
+  year: 2023
+  links:
+    - label: "Slides"
+      url: "https://indico.cern.ch/event/1307338/contributions/5657206/attachments/2749316/4784884/WLCG%20Monitoring%20TF%20%28DC%20Workshop%29.pdf"
+
+- kind: Paper presentation
+  title: "StashCache: A Distributed Caching Federation for the Open Science Grid"
+  authors:
+    - Derek Weitzel
+  event: "PEARC '19"
+  date: 2019-07-30
+  year: 2019
+  links:
+    - label: "Slides"
+      url: "/presentations/StashCache-PEARC19.pdf"
+
+- kind: Invited talk
+  title: "Enabling Microsoft OneDrive Integration with HTCondor"
+  authors:
+    - Derek Weitzel
+  event: "Humans in the Loop: Enabling and Facilitating Research on Cloud Computing, PEARC '19"
+  date: 2019-07-29
+  year: 2019
+  links:
+    - label: "Slides"
+      url: "/presentations/OneDrive-HTCondor-PEARC19.pdf"
+
+- kind: Talk
+  title: "Hiding All the Details: Running Grid Jobs Inside Docker Containers on the OSG"
+  authors:
+    - Derek Weitzel
+    - Brian Bockelman
+    - John Thiltges
+  event: "HTCondor Week 2016"
+  year: 2016          # source recorded no specific date
+  links:
+    - label: "Slides"
+      url: "https://research.cs.wisc.edu/htcondor//HTCondorWeek2016/presentations/WedWeitzel_DockerGridJobs.pdf"

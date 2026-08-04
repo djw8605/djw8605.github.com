@@ -18,3 +18,8 @@ package-lock.json
 
 # Jekyll Picture Tag generated images (rebuilt during CI)
 generated/
+
+# Claude Code worktrees and Impeccable runtime state
+.claude/worktrees/
+.impeccable/hook.cache.json
+.impeccable/live/

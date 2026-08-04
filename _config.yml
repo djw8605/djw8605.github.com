@@ -63,8 +63,8 @@ google_ad_slot           :
 author:
   name             : "Derek Weitzel"
   avatar           : "images/bio-photo.png"
-  bio              : "Research Associate Professor"
-  location         : "Omaha, NE"
+  bio              : "Research Associate Professor, School of Computing, University of Nebraska–Lincoln"
+  location         : "Lincoln, NE"
   email            : "djw8605@gmail.com"
   uri              :
   bitbucket        :
@@ -74,6 +74,8 @@ author:
   facebook         :
   foursquare       :
   github           : "djw8605"
+  orcid           : "0000-0002-8115-7573"
+  scholar         : "https://scholar.google.com/citations?user=DV6Z_q4AAAAJ&hl=en"
   google_plus      :
   keybase          :
   instagram        :

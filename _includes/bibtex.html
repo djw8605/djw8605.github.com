@@ -1,0 +1,28 @@
+{%- comment -%}
+  Emits a BibTeX record for one publication entry, generated at build time.
+
+  Params: entry - a _data/publications.yml item
+
+  `others` is BibTeX's own convention for a truncated author list and renders as
+  "et al." in every style, so a source list that ended in "et al." stays honest
+  in the exported record.
+{%- endcomment -%}
+{%- assign e = include.entry -%}
+{%- capture author_string -%}
+{%- for a in e.authors -%}{{ a }}{% unless forloop.last %} and {% endunless %}{%- endfor -%}
+{%- if e.et_al %} and others{% endif -%}
+{%- for a in e.authors_tail %} and {{ a }}{% endfor -%}
+{%- endcapture -%}
+@{{ e.type }}{ {{- e.key -}} ,
+  author    = { {{- author_string -}} },
+  title     = { {{- e.title -}} },
+{% if e.type == 'inproceedings' %}  booktitle = { {{- e.venue_full | default: e.venue -}} },
+{% elsif e.type == 'article' %}  journal   = { {{- e.venue_full | default: e.venue -}} },
+{% endif %}{% if e.volume %}  volume    = { {{- e.volume -}} },
+{% endif %}{% if e.pages %}  pages     = { {{- e.pages -}} },
+{% endif %}{% if e.school %}  school    = { {{- e.school -}} },
+{% endif %}{% if e.address %}  address   = { {{- e.address -}} },
+{% endif %}{% if e.publisher %}  publisher = { {{- e.publisher -}} },
+{% endif %}{% if e.doi %}  doi       = { {{- e.doi -}} },
+{% endif %}  year      = { {{- e.year -}} }
+}
