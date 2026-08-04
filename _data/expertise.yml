@@ -1,0 +1,32 @@
+# Grouped technology badges for the home page "Technologies" section.
+#
+# Hand-curated on purpose. This used to be the union of every project's
+# `technologies` list, which produced a 25-badge wall that said less than four
+# short groups do. Keep each group to six or fewer, and keep the keys valid
+# against _data/technologies.yml.
+
+- label: Data federation & caching
+  technologies:
+    - xrootd
+    - osdf
+    - cvmfs
+    - ceph
+
+- label: Throughput computing
+  technologies:
+    - htcondor
+    - kubernetes
+    - helm
+    - docker
+
+- label: Authorization & telemetry
+  technologies:
+    - scitokens
+    - jsonwebtokens
+    - opensearch
+
+- label: Languages & runtime
+  technologies:
+    - go
+    - python
+    - linux

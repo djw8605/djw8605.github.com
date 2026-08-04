@@ -1,35 +1,25 @@
 ---
 title: National Research Platform
-summary: "A community-owned research and education platform for sharing compute, data, and advanced cyberinfrastructure resources."
+summary: "Community-owned Kubernetes platform sharing compute, storage, and networking across institutions."
 website: https://nrp.ai
 logo: /images/projects/nrp-logo.png
 logo_alt: National Research Platform logo
 technologies:
   - kubernetes
-  - docker
-  - go
-  - python
-  - react
-  - nodejs
-  - nextjs
-  - astrojs
-  - tailwindcss
-  - css3
-  - html5
-  - vercel
-  - nextcloud
-  - falco
   - helm
-  - github
-  - githubcopilot
+  - ceph
+  - osdf
+  - xrootd
+  - opensearch
+  - python
 order: 4
 ---
 
 The [National Research Platform (NRP)](https://nrp.ai) is a community-owned platform that connects institutions and researchers to shared computing, storage, and networking resources.
 
-My project work centers on turning shared infrastructure into dependable day-to-day research capability: platform operations, monitoring, data movement, and collaboration across partner sites.
+My contribution is platform operations: keeping the multi-tenant Kubernetes environment, its Ceph storage, and its Open Science Data Federation (OSDF) caches dependable for the groups running on them.
 
-I am especially focused on practical usability for research groups, from prototype workloads to long-running production pipelines.
+Multi-tenancy is the hard part. Dozens of research groups share one cluster, so a single workload that misbehaves is everyone's problem — most of this work is about isolation, observability, and making the platform's limits legible before a researcher hits them.
 
 ## Technologies
 

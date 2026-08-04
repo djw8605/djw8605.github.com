@@ -7,17 +7,21 @@ websites:
 logo: /images/projects/scitokens-logo.png
 logo_alt: SciTokens logo
 technologies:
+  - scitokens
   - jsonwebtokens
-  - github
-  - githubcopilot
+  - htcondor
+  - xrootd
+  - python
 order: 8
 ---
 
-[SciTokens](https://scitokens.org) provides a federated authorization model for distributed scientific computing, using capability-based access with modern token standards.
+[SciTokens](https://scitokens.org) provides a federated authorization model for distributed scientific computing: instead of identifying who you are at every resource, a job carries a token that states what it is allowed to do.
 
-The companion [SciAuth](https://sciauth.org) effort focused on broad adoption and practical integration of SciTokens patterns for interoperable, least-privilege resource sharing in science collaborations.
+The companion [SciAuth](https://sciauth.org) effort focused on adoption — getting these patterns into the software that resource providers actually run, so least-privilege sharing across collaborations becomes the default rather than a project-specific integration.
 
-My work in this area focuses on secure authorization workflows that are easier for resource providers and scientific projects to operate at scale.
+My contribution is that integration and deployment work: making token-based authorization function in the systems researchers already use — HTCondor job submission and XRootD data access — and helping resource providers turn it on without breaking the workflows already running through them.
+
+Capability-based access is straightforward to specify and unforgiving to retrofit. The engineering is mostly in migration: honoring existing credentials while the token path is proven, then removing the old one.
 
 ## Technologies
 

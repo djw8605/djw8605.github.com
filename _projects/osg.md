@@ -1,28 +1,27 @@
 ---
 title: OSG
-summary: "A national, distributed computing partnership for data-intensive research."
+summary: "National distributed computing partnership delivering throughput computing and data access to research teams."
 website: https://osg-htc.org
 logo: /images/projects/osg-logo.svg
 logo_alt: OSG logo
 technologies:
+  - htcondor
+  - xrootd
+  - osdf
+  - cvmfs
+  - scitokens
+  - opensearch
   - kubernetes
-  - docker
-  - go
   - python
-  - react
-  - nodejs
-  - nextjs
-  - git
-  - github
-  - githubcopilot
+  - go
 order: 1
 ---
 
 [OSG](https://osg-htc.org) is a national-scale, distributed computing partnership that enables data-intensive research across campuses, labs, and scientific collaborations.
 
-My work in the OSG ecosystem focuses on production operations and platform engineering for throughput computing and data services, including integration points with OSPool and OSDF-style workflows.
+My work in the OSG ecosystem is production operations and platform engineering for throughput computing and data services — the OSPool, and the Open Science Data Federation (OSDF) caches and origins that feed it.
 
-Key areas I am actively supporting include reliability, observability, and researcher onboarding for distributed scientific computing at scale.
+Day to day that means keeping data movement fast and correct, keeping the accounting and monitoring pipelines honest about what actually happened, and shortening the path from a researcher's first job to a running production workload.
 
 I serve on the OSG executive team.
 

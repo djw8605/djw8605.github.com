@@ -1,75 +1,51 @@
+# Technologies referenced by _projects/*.md front matter and the home page.
+#
+# `name` is the visible badge label. `expansion` is optional and is read only by
+# screen readers and search engines, so an acronym badge still resolves to its
+# full name without widening the pill. Add an expansion for any entry whose
+# label is not self-explanatory outside this field.
+#
+# Keep this list to substrate that is actually operated or written. A badge that
+# every project on earth would also claim carries no information here.
+
+# --- Data federation and caching ---
+xrootd:
+  name: XRootD
+  expansion: XRootD distributed data access framework
+osdf:
+  name: OSDF
+  expansion: Open Science Data Federation
+cvmfs:
+  name: CVMFS
+  expansion: CernVM File System
+ceph:
+  name: Ceph
+
+# --- Throughput computing and platforms ---
+htcondor:
+  name: HTCondor
+  expansion: HTCondor high-throughput computing scheduler
 kubernetes:
   name: Kubernetes
-  logo: https://cdn.simpleicons.org/kubernetes
-react:
-  name: React
-  logo: https://cdn.simpleicons.org/react
-linux:
-  name: Linux
-  logo: https://cdn.simpleicons.org/linux
-python:
-  name: Python
-  logo: https://cdn.simpleicons.org/python
-git:
-  name: Git
-  logo: https://cdn.simpleicons.org/git
-github:
-  name: GitHub
-  logo: https://cdn.simpleicons.org/github
-githubcopilot:
-  name: GitHub Copilot
-  logo: https://cdn.simpleicons.org/githubcopilot
-go:
-  name: Go
-  logo: https://cdn.simpleicons.org/go
-docker:
-  name: Docker
-  logo: https://cdn.simpleicons.org/docker
-nodejs:
-  name: Node.js
-  logo: https://cdn.simpleicons.org/nodedotjs
-nextjs:
-  name: Next.js
-  logo: https://cdn.simpleicons.org/nextdotjs
-astrojs:
-  name: Astro
-  logo: https://cdn.simpleicons.org/astro
-tailwindcss:
-  name: Tailwind CSS
-  logo: https://cdn.simpleicons.org/tailwindcss
-css3:
-  name: CSS3
-  logo: https://cdn.simpleicons.org/css
-html5:
-  name: HTML5
-  logo: https://cdn.simpleicons.org/html5
-vercel:
-  name: Vercel
-  logo: https://cdn.simpleicons.org/vercel
-flux:
-  name: Flux
-  logo: https://cdn.simpleicons.org/flux
-nextcloud:
-  name: Nextcloud
-  logo: https://cdn.simpleicons.org/nextcloud
-falco:
-  name: Falco
-  logo: https://cdn.simpleicons.org/falco
 helm:
   name: Helm
-  logo: https://cdn.simpleicons.org/helm
-opensearch:
-  name: OpenSearch
-  logo: https://cdn.simpleicons.org/opensearch
-elasticsearch:
-  name: Elasticsearch
-  logo: https://cdn.simpleicons.org/elasticsearch
-nvidia:
-  name: NVIDIA
-  logo: https://cdn.simpleicons.org/nvidia
+docker:
+  name: Docker
+
+# --- Authorization and telemetry ---
+scitokens:
+  name: SciTokens
+  expansion: SciTokens capability-based authorization
 jsonwebtokens:
   name: JWT
-  logo: https://cdn.simpleicons.org/jsonwebtokens
-clickhouse:
-  name: ClickHouse
-  logo: https://cdn.simpleicons.org/clickhouse
+  expansion: JSON Web Tokens
+opensearch:
+  name: OpenSearch
+
+# --- Languages and runtime ---
+go:
+  name: Go
+python:
+  name: Python
+linux:
+  name: Linux

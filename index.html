@@ -83,13 +83,6 @@ title: Home
   <div class="my-2 border-t-2 border-slate-200 dark:border-slate-800 sm:my-0 sm:border-t"></div>
 
   {% assign featured_projects = site.projects | sort: "order" %}
-  {% assign expertise_technologies = "" | split: "" %}
-  {% for project in featured_projects %}
-    {% if project.technologies %}
-      {% assign expertise_technologies = expertise_technologies | concat: project.technologies %}
-    {% endif %}
-  {% endfor %}
-  {% assign expertise_technologies = expertise_technologies | uniq %}
   <section class="py-16 max-sm:py-9">
     <div class="mb-6 flex flex-wrap items-center justify-between gap-3">
       <div>
@@ -103,7 +96,7 @@ title: Home
         <a href="{{ project.url | relative_url }}" class="block rounded-md border border-slate-900/15 bg-transparent p-[1.4rem] shadow-[0_1px_3px_rgba(15,23,42,0.08)] transition-all duration-200 ease-out hover:-translate-y-1 hover:border-slate-500/50 hover:bg-slate-50/60 max-sm:border-[1.5px] max-sm:p-[1.2rem] max-sm:shadow-[0_2px_6px_rgba(15,23,42,0.1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/80 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:border-slate-400/20 dark:hover:border-slate-400/40 dark:hover:bg-slate-900/50 dark:focus-visible:ring-offset-slate-900">
           <span class="block text-sm font-bold tracking-tight text-slate-950 dark:text-slate-50">{{ project.title }}</span>
           {% if project.summary %}
-            <span class="mt-3 block text-xs leading-[1.45] text-slate-700 dark:text-slate-300">{{ project.summary | truncate: 80 }}</span>
+            <span class="mt-3 block text-xs leading-[1.45] text-slate-700 dark:text-slate-300">{{ project.summary }}</span>
           {% endif %}
         </a>
       {% endfor %}
@@ -117,7 +110,16 @@ title: Home
       <p class="font-mono text-xs uppercase tracking-[0.28em] text-slate-400 dark:text-slate-500">// expertise</p>
       <h2 class="mt-1 text-[1.95rem] font-bold tracking-tight text-slate-900 dark:text-slate-100">Technologies</h2>
     </div>
-    {% include technology-badges.html technologies=expertise_technologies label="Technologies I work with" %}
+    <div class="grid gap-x-10 gap-y-7 sm:grid-cols-2">
+      {% for group in site.data.expertise %}
+        <div>
+          <h3 class="font-mono text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-300">{{ group.label | escape }}</h3>
+          <div class="mt-3">
+            {% include technology-badges.html technologies=group.technologies label=group.label %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
   </section>
 
   <div class="my-2 border-t-2 border-slate-200 dark:border-slate-800 sm:my-0 sm:border-t"></div>

@@ -1,108 +1,37 @@
+{% comment %}
+  Technology badges.
+
+  Params:
+    technologies - array of keys into site.data.technologies (required)
+    label        - accessible name for the list (optional)
+
+  Labels carry the meaning here, so there is no logo well: the substrate that
+  matters most on this site (XRootD, HTCondor, CVMFS, OSDF, SciTokens) has no
+  vendor mark, and a half-empty icon column made the commodity tools read as the
+  important ones. Acronyms resolve for screen readers via `expansion`.
+{% endcomment %}
+
 {% assign badge_keys = include.technologies %}
-{% assign is_compact = include.compact | default: false %}
 {% assign badges_label = include.label | default: "Technologies" %}
-{% assign mobile_preview_limit = include.mobile_preview_limit | default: 6 %}
-{% assign mobile_collapsible = true %}
-{% if include.mobile_collapsible == false or include.mobile_collapsible == "false" %}
-  {% assign mobile_collapsible = false %}
-{% endif %}
 
 {% assign available_badge_count = 0 %}
 {% if badge_keys and badge_keys.size > 0 %}
   {% for tech_key in badge_keys %}
-    {% assign tech = site.data.technologies[tech_key] %}
-    {% if tech %}
+    {% if site.data.technologies[tech_key] %}
       {% assign available_badge_count = available_badge_count | plus: 1 %}
     {% endif %}
   {% endfor %}
 {% endif %}
 
 {% if available_badge_count > 0 %}
-  {% assign container_class = "m-0 flex list-none flex-wrap items-center gap-4 p-0" %}
-  {% assign badge_class = "inline-flex items-center rounded-full border border-gray-200 bg-white px-3.5 py-1.5 shrink-0 min-h-[44px] dark:border-slate-700 dark:bg-slate-900/60" %}
-  {% assign icon_wrap_class = "flex h-8 w-8 shrink-0 items-center justify-center" %}
-  {% assign icon_class = "h-5 w-5 object-contain" %}
-  {% assign text_class = "ml-2 whitespace-nowrap text-sm font-medium text-gray-800 sm:ml-1.5 dark:text-slate-200" %}
-
-  {% if is_compact or mobile_collapsible != true or available_badge_count <= mobile_preview_limit %}
-    <ul class="{{ container_class }}" aria-label="{{ badges_label }}">
-      {% for tech_key in badge_keys %}
-        {% assign tech = site.data.technologies[tech_key] %}
-        {% if tech %}
-          <li class="shrink-0">
-            <div class="{{ badge_class }}">
-              <div class="{{ icon_wrap_class }}" aria-hidden="true">
-                <img src="{{ tech.logo }}" alt="{{ tech.name }} logo" width="20" height="20" class="{{ icon_class }}" loading="lazy" decoding="async" onerror="this.style.display='none';">
-              </div>
-              <span class="{{ text_class }}">{{ tech.name }}</span>
-            </div>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-  {% else %}
-    <ul class="hidden sm:flex {{ container_class }}" aria-label="{{ badges_label }}">
-      {% for tech_key in badge_keys %}
-        {% assign tech = site.data.technologies[tech_key] %}
-        {% if tech %}
-          <li class="shrink-0">
-            <div class="{{ badge_class }}">
-              <div class="{{ icon_wrap_class }}" aria-hidden="true">
-                <img src="{{ tech.logo }}" alt="{{ tech.name }} logo" width="20" height="20" class="{{ icon_class }}" loading="lazy" decoding="async" onerror="this.style.display='none';">
-              </div>
-              <span class="{{ text_class }}">{{ tech.name }}</span>
-            </div>
-          </li>
-        {% endif %}
-      {% endfor %}
-    </ul>
-
-    <div class="sm:hidden">
-      <ul class="{{ container_class }}" aria-label="{{ badges_label }}">
-        {% assign shown_badges = 0 %}
-        {% for tech_key in badge_keys %}
-          {% assign tech = site.data.technologies[tech_key] %}
-          {% if tech %}
-            {% assign shown_badges = shown_badges | plus: 1 %}
-            {% if shown_badges <= mobile_preview_limit %}
-              <li class="shrink-0">
-                <div class="{{ badge_class }}">
-                  <div class="{{ icon_wrap_class }}" aria-hidden="true">
-                    <img src="{{ tech.logo }}" alt="{{ tech.name }} logo" width="20" height="20" class="{{ icon_class }}" loading="lazy" decoding="async" onerror="this.style.display='none';">
-                  </div>
-                  <span class="{{ text_class }}">{{ tech.name }}</span>
-                </div>
-              </li>
-            {% endif %}
-          {% endif %}
-        {% endfor %}
-      </ul>
-
-      <details class="mt-3">
-        <summary class="inline-flex min-h-[40px] cursor-pointer list-none items-center rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-semibold text-gray-700 dark:border-slate-700 dark:bg-slate-900/60 dark:text-slate-200">
-          <span>Show all technologies ({{ available_badge_count }})</span>
-        </summary>
-
-        <ul class="mt-3 {{ container_class }}" aria-label="{{ badges_label }} expanded">
-          {% assign shown_badges = 0 %}
-          {% for tech_key in badge_keys %}
-            {% assign tech = site.data.technologies[tech_key] %}
-            {% if tech %}
-              {% assign shown_badges = shown_badges | plus: 1 %}
-              {% if shown_badges > mobile_preview_limit %}
-                <li class="shrink-0">
-                  <div class="{{ badge_class }}">
-                    <div class="{{ icon_wrap_class }}" aria-hidden="true">
-                      <img src="{{ tech.logo }}" alt="{{ tech.name }} logo" width="20" height="20" class="{{ icon_class }}" loading="lazy" decoding="async" onerror="this.style.display='none';">
-                    </div>
-                    <span class="{{ text_class }}">{{ tech.name }}</span>
-                  </div>
-                </li>
-              {% endif %}
-            {% endif %}
-          {% endfor %}
-        </ul>
-      </details>
-    </div>
-  {% endif %}
+  <ul role="list" class="m-0 flex list-none flex-wrap items-center gap-2.5 p-0" aria-label="{{ badges_label | escape }}">
+    {% for tech_key in badge_keys %}
+      {% assign tech = site.data.technologies[tech_key] %}
+      {% if tech %}
+        <li class="inline-flex min-h-[44px] shrink-0 items-center rounded-full border border-slate-900/15 bg-white px-4 text-sm font-medium text-slate-800 dark:border-slate-400/25 dark:bg-slate-900/60 dark:text-slate-200">
+          {{ tech.name }}{% if tech.expansion %}<span class="sr-only"> — {{ tech.expansion }}</span>{% endif %}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
 {% endif %}

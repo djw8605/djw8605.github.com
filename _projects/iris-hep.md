@@ -1,23 +1,24 @@
 ---
 title: IRIS-HEP
-summary: "An institute advancing software R&D for the HL-LHC era of high energy physics data and analysis."
+summary: "Institute advancing software and computing R&D for the HL-LHC era of high energy physics."
 website: https://iris-hep.org
 logo: /images/projects/iris-hep-logo.png
 logo_alt: IRIS-HEP logo
 technologies:
+  - xrootd
+  - osdf
+  - cvmfs
   - opensearch
-  - elasticsearch
-  - git
-  - github
-  - githubcopilot
+  - htcondor
+  - python
 order: 5
 ---
 
-[IRIS-HEP](https://iris-hep.org) advances software and computing R&D needed for the data scale of upgraded Large Hadron Collider experiments.
+[IRIS-HEP](https://iris-hep.org) advances the software and computing R&D needed for the data scale of the upgraded Large Hadron Collider experiments.
 
-My contributions align with data-intensive software systems, monitoring, and infrastructure integration that support scientific analysis and operations.
+My contribution is on data access and the telemetry around it: XRootD monitoring, the analytics pipelines that turn raw transfer records into something operators can act on, and the data federation that puts LHC datasets within reach of an analysis job.
 
-This work emphasizes robust services and tooling that can sustain both rapid research iteration and long-term production use.
+At HL-LHC data rates, the question stops being whether a transfer succeeds and becomes whether anyone can tell why it was slow. Most of this work is measurement.
 
 I serve on the IRIS-HEP executive board.
 
