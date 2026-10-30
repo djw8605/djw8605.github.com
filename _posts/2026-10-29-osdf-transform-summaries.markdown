@@ -1,6 +1,6 @@
 ---
 title: "Summarizing Billions of File Transfers a Month: OpenSearch Transforms for OSDF"
-date: "2026-10-30 00:00:00 -0500"
+date: "2026-10-29 00:00:00 -0500"
 tags:
   - osg
   - opensearch
