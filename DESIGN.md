@@ -286,6 +286,15 @@ A ```` ```mermaid ```` fence in a post renders as a `<figure>` (usage in `README
 - **Type:** Node labels use Space Grotesk. Subgraph titles and edge labels are annotations, so they use IBM Plex Mono; subgraph titles are uppercase and tracked, like an eyebrow.
 - **Source of truth:** Both palettes live in `_includes/mermaid.html`. The plate colors in `assets/css/main.scss` must match the palettes' `background`, `clusterBkg` and `edgeLabelBackground`, or edge labels show as boxes.
 
+### Charts
+The `chart.html` include renders a Chart.js `<figure>` from a `_data` file (usage in `README.md`).
+- **Plate:** The diagram plate. The title, subtitle, legend, plot and data-table disclosure sit on it; the prose figcaption sits underneath.
+- **Text:** The title states the finding, in bold `ink` at 1.2rem. The subtitle says what is counted and over what span, in `slate-500` (#9db2c8 in dark). Ticks, legend and series labels are `ink-secondary`; callouts are `ink-secondary`, and the headline callout is semibold `ink`. Everything is Space Grotesk. Text never takes a series color, so it keeps its contrast.
+- **Marks:** The series a chart is about is sky (#0ea5e9) in both themes, turning sky-deep (#0284c7) under the pointer. This is the one sanctioned exception to the Sky-Is-Interaction Rule: a chart responds to hover, and one focal hue keeps everything else quiet. Context series are 2px lines with small points, `slate-500` in light and `slate-400` in dark (the diagram edge pairing), so they read above the gridlines. Gridlines are horizontal `rule` hairlines (#475569 at 60% in dark), with no vertical grid and no axis lines. Light-mode sky is 2.65:1 against the plate, so a sky series always gets a legend entry, a direct label or callout, and the data table.
+- **Identity:** An HTML legend above the plot names every series. From a 560px plot width each series is also named at its right-hand end.
+- **Fallback:** The canvas carries an `aria-label` summarizing the finding. Every value is in a collapsible table under the plot, which is what feeds, readers without JavaScript and screen readers get.
+- **Source of truth:** Both palettes are the `--chart-*` custom properties in `assets/css/main.scss`. The chart script reads them, so the legend and the canvas can't drift apart. A new series color needs a token in both themes.
+
 ### Inputs / Fields
 The site has no forms. If one is added, it inherits the global transition and the global focus outline (`2px solid rgba(14,165,233,0.85)`, 3px offset); match panel geometry — `0.5rem` radius with a `slate-200` hairline — rather than inventing a field style.
 

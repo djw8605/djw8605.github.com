@@ -1,0 +1,42 @@
+# Chart spec for {% include chart.html id="..." data="osdf_monthly" %}.
+# Rows come from _data/osdf_monthly.csv: OSDF counts are sums of
+# transform._doc_count in osdf-summary-*, GRACC counts are gracc.osg.raw3-*
+# records by EndTime, both as of Oct 30, 2026.
+title: OSDF transfer records grew from about 0.1 billion to 3 billion a month
+subtitle: Transfer records per month, Jan 2021 to Sep 2026, with GRACC job records for scale
+description: >-
+  Bar chart of OSDF transfer records per month. They stay below 0.6 billion
+  from January 2021 through April 2025, pass 1 billion in May 2025 and reach
+  3.01 billion in September 2026, with dips along the way. A grey line shows
+  GRACC job records for scale, near 51 million a month throughout.
+
+x:
+  column: month
+  label: Month
+  format: month
+
+y:
+  step: 1000000000
+
+series:
+  - column: osdf_transfers
+    label: OSDF transfers
+    type: bar
+    color: accent
+    unit: OSDF transfer records
+  - column: gracc_jobs
+    label: GRACC jobs
+    type: line
+    color: reference
+    unit: GRACC job records
+    note: avg 51M/month
+
+annotations:
+  - at: "2021-01"
+    series: osdf_transfers
+    label: "Jan 2021: 78M"
+    lift: 56
+  - at: "2026-09"
+    series: osdf_transfers
+    label: "Sep 2026: 3.01B"
+    strong: true

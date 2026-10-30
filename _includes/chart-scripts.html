@@ -1,0 +1,355 @@
+{%- comment -%}
+  Loads Chart.js and its annotation plugin, then draws every chart.html figure
+  on the page. _layouts/default.html includes this only when the page sets
+  `charts: true`, so no other page loads chart JS.
+
+  Both builds are pinned with SRI hashes. To upgrade, change a version and its
+  integrity value together, then check a chart in both themes and at phone
+  width.
+
+  Colours come from the --chart-* custom properties in assets/css/main.scss, so
+  the HTML legend and the canvas share one palette per theme. A class change on
+  <html> (the theme toggle or the system preference) redraws every chart.
+
+  The renderer is a module script: module scripts run after the deferred builds
+  above, in document order, and jekyll-minifier leaves them alone.
+{%- endcomment -%}
+<script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.1.0/dist/chartjs-plugin-annotation.min.js" integrity="sha384-3N9GHhCtN3CQef6tNfqgZlv7sQLYIkcChN+uaTZ7xVdzKYp/SjBNPxa92+hM7EAY" crossorigin="anonymous"></script>
+<noscript><style>.chart-legend, .chart-plot { display: none; }</style></noscript>
+<script type="module">
+  const FONT_SANS = '"Space Grotesk", ui-sans-serif, system-ui, sans-serif';
+  const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  // Below this plot width the series labels at the right edge give way to the
+  // legend above the plot, and type and points shrink.
+  const NARROW = 560;
+
+  const compact = new Intl.NumberFormat('en', { notation: 'compact', maximumFractionDigits: 1 });
+  const figures = Array.from(document.querySelectorAll('figure[data-chart]'));
+  const drawn = new Map();
+
+  // Tooltip and callout values: two decimals for billions, whole numbers below
+  // that, so 3013398784 reads "3.01B" and 77526703 reads "78M".
+  function short(value) {
+    const size = Math.abs(value);
+    if (size >= 1e9) return `${(value / 1e9).toFixed(2)}B`;
+    if (size >= 1e6) return `${Math.round(value / 1e6)}M`;
+    if (size >= 1e3) return `${Math.round(value / 1e3)}K`;
+    return String(value);
+  }
+
+  function monthLabel(value) {
+    const [year, month] = String(value).split('-');
+    return `${MONTHS[Number(month) - 1]} ${year}`;
+  }
+
+  function palette(figure) {
+    const style = getComputedStyle(figure);
+    return (name) => style.getPropertyValue(`--chart-${name}`).trim();
+  }
+
+  // Show the table instead of an empty plot when the builds fail to load or a
+  // spec is broken.
+  function fallBack(figure, err) {
+    console.error('Chart could not render; showing its data table instead.', err);
+    figure.classList.add('chart-figure--static');
+    const details = figure.querySelector('details');
+    if (details) details.open = true;
+  }
+
+  // Names each series at the end of its data, in secondary ink beside the mark
+  // (the colour stays on the mark). Only drawn when the plot is wide enough to
+  // give these labels their own right-hand column.
+  const seriesLabels = {
+    id: 'seriesLabels',
+    afterDatasetsDraw(chart, args, opts) {
+      if (!opts.display) return;
+      const { ctx, chartArea } = chart;
+      const lineHeight = opts.size + 4;
+      const blocks = [];
+
+      opts.series.forEach((s, index) => {
+        const points = chart.getDatasetMeta(index).data;
+        const end = points[points.length - 1];
+        if (!end || !s.label) return;
+        const lines = s.note ? [s.label, s.note] : [s.label];
+        const height = lines.length * lineHeight;
+        blocks.push({ lines, height, top: end.y - height / 2 });
+      });
+
+      // Push overlapping labels apart, then keep the stack on the canvas.
+      blocks.sort((a, b) => a.top - b.top);
+      for (let i = 1; i < blocks.length; i += 1) {
+        const above = blocks[i - 1];
+        blocks[i].top = Math.max(blocks[i].top, above.top + above.height + 6);
+      }
+      const overflow = blocks.length ? blocks[blocks.length - 1].top + blocks[blocks.length - 1].height - chart.height : 0;
+      if (overflow > 0) blocks.forEach((block) => { block.top -= overflow; });
+
+      ctx.save();
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'middle';
+      for (const block of blocks) {
+        block.lines.forEach((text, line) => {
+          ctx.font = `${line ? 400 : 500} ${line ? opts.size - 1 : opts.size}px ${FONT_SANS}`;
+          ctx.fillStyle = line ? opts.muted : opts.color;
+          ctx.fillText(text, chartArea.right + 12, block.top + lineHeight * (line + 0.5));
+        });
+      }
+      ctx.restore();
+    },
+  };
+
+  function render(figure) {
+    const previous = drawn.get(figure);
+    if (previous) previous.chart.destroy();
+
+    const { spec, rows } = figure.chartData;
+    const canvas = figure.querySelector('canvas');
+    const narrow = figure.querySelector('.chart-plot').clientWidth < NARROW;
+    const color = palette(figure);
+    const size = narrow ? 12 : 13;
+    const xColumn = (spec.x && spec.x.column) || 'x';
+    const byMonth = spec.x && spec.x.format === 'month';
+    const xText = (value) => (byMonth ? monthLabel(value) : String(value));
+    const series = spec.series || [];
+    const labels = rows.map((row) => String(row[xColumn]));
+
+    const datasets = series.map((s) => {
+      const fill = color(s.color || 'accent');
+      const data = rows.map((row) => Number(row[s.column]));
+      if (s.type === 'line') {
+        return {
+          type: 'line',
+          label: s.label,
+          data,
+          borderColor: fill,
+          backgroundColor: fill,
+          borderWidth: 2,
+          // At phone width the points would merge into a beaded smear; they
+          // still appear under the pointer.
+          pointRadius: narrow ? 0 : 2.5,
+          pointHoverRadius: 5,
+          pointHoverBorderColor: color('surface'),
+          pointHoverBorderWidth: 2,
+          pointStyle: 'circle',
+          order: 0,
+        };
+      }
+      return {
+        type: 'bar',
+        label: s.label,
+        data,
+        backgroundColor: fill,
+        hoverBackgroundColor: color(`${s.color || 'accent'}-hover`) || fill,
+        borderRadius: 2,
+        borderSkipped: 'start',
+        barPercentage: 0.8,
+        categoryPercentage: 0.9,
+        pointStyle: 'rect',
+        order: 1,
+      };
+    });
+
+    const values = datasets.flatMap((dataset) => dataset.data).filter(Number.isFinite);
+    const step = spec.y && spec.y.step;
+    // With a fixed step, leave a little headroom over the tallest mark; the
+    // ticks stay on the step (includeBounds: false below).
+    const yMax = step ? Math.max(...values) * 1.06 : undefined;
+
+    // Callouts sit on a data point. A lifted callout hangs from a leader line;
+    // points in the left half label to the right, the rest to the left.
+    const annotations = {};
+    (spec.annotations || []).forEach((note, index) => {
+      const s = series.find((candidate) => candidate.column === note.series) || series[0];
+      const at = labels.indexOf(String(note.at));
+      if (!s || at < 0) return;
+      const lift = note.lift ? Math.round(note.lift * (narrow ? 0.5 : 1)) : 0;
+      const align = note.align || (at < labels.length / 2 ? 'start' : 'end');
+      annotations[`callout${index}`] = {
+        type: 'label',
+        xValue: labels[at],
+        yValue: Number(rows[at][s.column]),
+        content: note.label || `${xText(labels[at])}: ${short(Number(rows[at][s.column]))}`,
+        color: note.strong ? color('ink') : color('ink-secondary'),
+        font: { family: FONT_SANS, size, weight: note.strong ? 600 : 400 },
+        padding: { top: 0, right: 0, bottom: 4, left: 0 },
+        position: { x: align, y: 'end' },
+        yAdjust: -(lift || 2),
+        // The plugin underlines the label unless it has a border and the
+        // callout no margin; a clear border leaves just the vertical leader.
+        borderWidth: 1,
+        borderColor: 'transparent',
+        callout: {
+          display: lift > 0,
+          position: 'bottom',
+          borderColor: color('ink-muted'),
+          borderWidth: 1,
+          margin: 0,
+          side: 0,
+          start: align === 'start' ? 0 : '100%',
+        },
+      };
+    });
+
+    // Room on the right for the series labels, measured in their own font.
+    let labelWidth = 0;
+    if (!narrow) {
+      const measure = canvas.getContext('2d');
+      series.forEach((s) => {
+        measure.font = `500 ${size}px ${FONT_SANS}`;
+        labelWidth = Math.max(labelWidth, measure.measureText(s.label || '').width);
+        measure.font = `400 ${size - 1}px ${FONT_SANS}`;
+        labelWidth = Math.max(labelWidth, measure.measureText(s.note || '').width);
+      });
+    }
+
+    const chart = new Chart(canvas, {
+      type: series.some((s) => s.type !== 'line') ? 'bar' : 'line',
+      data: { labels, datasets },
+      plugins: [seriesLabels],
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        animation: false,
+        color: color('ink-secondary'),
+        font: { family: FONT_SANS, size },
+        layout: { padding: { top: 6, right: narrow ? 4 : Math.ceil(labelWidth) + 16 } },
+        interaction: { mode: 'index', intersect: false },
+        scales: {
+          x: {
+            grid: { display: false },
+            border: { display: false },
+            ticks: {
+              color: color('ink-secondary'),
+              font: { family: FONT_SANS, size },
+              maxRotation: 0,
+              autoSkip: !byMonth || labels.length <= 24,
+              // Long monthly runs label each January with its year.
+              callback(value) {
+                const label = this.getLabelForValue(value);
+                if (!byMonth) return label;
+                if (labels.length <= 24) return monthLabel(label);
+                return label.endsWith('-01') ? label.slice(0, 4) : null;
+              },
+            },
+          },
+          y: {
+            beginAtZero: true,
+            max: yMax,
+            grace: step ? undefined : '5%',
+            grid: { color: color('grid'), drawTicks: false },
+            border: { display: false },
+            ticks: {
+              color: color('ink-secondary'),
+              font: { family: FONT_SANS, size },
+              padding: 8,
+              stepSize: step,
+              // Otherwise Chart.js adds a tick at the max, and on a short plot
+              // it replaces the last step (3B) with it.
+              includeBounds: !step,
+              callback: (value) => (value === 0 ? '0' : compact.format(value)),
+            },
+          },
+        },
+        plugins: {
+          legend: { display: false },
+          tooltip: {
+            backgroundColor: color('surface'),
+            borderColor: color('border'),
+            borderWidth: 1,
+            bodyColor: color('ink'),
+            bodyFont: { family: FONT_SANS, size: 13 },
+            cornerRadius: 6,
+            padding: 10,
+            boxPadding: 6,
+            usePointStyle: true,
+            itemSort: (a, b) => a.datasetIndex - b.datasetIndex,
+            callbacks: {
+              title: () => [],
+              label(item) {
+                const s = series[item.datasetIndex];
+                return `${xText(item.label)}: ${short(item.raw)} ${s.unit || s.label}`;
+              },
+            },
+          },
+          annotation: { clip: false, annotations },
+          seriesLabels: {
+            display: !narrow,
+            series,
+            size,
+            color: color('ink-secondary'),
+            muted: color('ink-muted'),
+          },
+        },
+      },
+    });
+
+    drawn.set(figure, { chart, narrow });
+  }
+
+  // Triggers that land together (fonts, theme, resize) share one redraw. A
+  // microtask rather than requestAnimationFrame, so charts in a background tab
+  // are drawn before anyone looks at them.
+  let queued = false;
+  function renderAll() {
+    if (queued) return;
+    queued = true;
+    queueMicrotask(() => {
+      queued = false;
+      for (const figure of figures) {
+        if (!figure.chartData) continue;
+        try {
+          render(figure);
+        } catch (err) {
+          fallBack(figure, err);
+        }
+      }
+    });
+  }
+
+  if (figures.length) {
+    for (const figure of figures) {
+      try {
+        if (typeof window.Chart !== 'function') throw new Error('Chart.js did not load');
+        figure.chartData = JSON.parse(figure.dataset.chart);
+      } catch (err) {
+        fallBack(figure, err);
+      }
+    }
+
+    if (typeof window.Chart === 'function') {
+      renderAll();
+
+      // The theme toggle and the system-preference listener both flip html.dark;
+      // the --chart-* properties follow it, so a redraw picks up the new palette.
+      let dark = document.documentElement.classList.contains('dark');
+      new MutationObserver(() => {
+        const now = document.documentElement.classList.contains('dark');
+        if (now !== dark) {
+          dark = now;
+          renderAll();
+        }
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+      // Chart.js handles ordinary resizes; crossing NARROW changes the layout.
+      const resized = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const figure = entry.target.closest('figure[data-chart]');
+          const state = drawn.get(figure);
+          if (state && (entry.contentRect.width < NARROW) !== state.narrow) renderAll();
+        }
+      });
+      figures.forEach((figure) => resized.observe(figure.querySelector('.chart-plot')));
+
+      // Google Fonts swaps in asynchronously; redraw once Space Grotesk arrives
+      // so labels are measured and drawn in it.
+      if (document.fonts) {
+        document.fonts.ready.then(renderAll);
+        document.fonts.addEventListener('loadingdone', (event) => {
+          if (event.fontfaces.some((face) => face.family.replace(/["']/g, '') === 'Space Grotesk')) renderAll();
+        });
+      }
+    }
+  }
+</script>

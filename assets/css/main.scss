@@ -157,3 +157,205 @@ html.dark .text-slate-400 {
 html.dark .text-slate-300 {
   color: #c8d6e5 !important;
 }
+
+/* Charts (_includes/chart.html). The chart script reads the --chart-* tokens,
+   so the canvas and the HTML legend share one palette per theme. The plate
+   matches the Mermaid diagram plate; the figcaption sits under it and picks up
+   the prose figure rules in _layouts/single.html. */
+.chart-figure {
+  --chart-ink: #0f172a;
+  --chart-ink-secondary: #334155;
+  --chart-ink-muted: #64748b;
+  --chart-grid: #e2e8f0;
+  --chart-surface: #ffffff;
+  --chart-border: #e2e8f0;
+  --chart-accent: #0ea5e9;
+  --chart-accent-hover: #0284c7;
+  --chart-reference: #64748b;
+}
+
+html.dark .chart-figure {
+  --chart-ink: #e5edf8;
+  --chart-ink-secondary: #c8d6e5;
+  --chart-ink-muted: #9db2c8;
+  --chart-grid: rgba(71, 85, 105, 0.6);
+  --chart-surface: #0f172a;
+  --chart-border: #475569;
+  --chart-reference: #94a3b8;
+}
+
+.chart-plate {
+  padding: 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.85rem;
+  background: #ffffff;
+}
+
+html.dark .chart-plate {
+  border-color: rgba(71, 85, 105, 0.75);
+  background: #020617;
+}
+
+.chart-figure .chart-title {
+  margin: 0;
+  color: var(--chart-ink);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.015em;
+}
+
+.chart-figure .chart-subtitle {
+  margin: 0.3rem 0 0;
+  color: var(--chart-ink-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.chart-figure .chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: var(--chart-ink-secondary);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.chart-figure .chart-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0;
+}
+
+.chart-key {
+  position: relative;
+  flex: none;
+  background: var(--chart-key);
+}
+
+.chart-key--bar {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 2px;
+}
+
+.chart-key--line {
+  width: 1.1rem;
+  height: 2px;
+}
+
+.chart-key--line::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: inherit;
+  transform: translate(-50%, -50%);
+}
+
+.chart-plot {
+  position: relative;
+  height: clamp(15rem, 44vw, 26rem);
+  margin-top: 0.75rem;
+}
+
+.chart-figure--static .chart-legend,
+.chart-figure--static .chart-plot {
+  display: none;
+}
+
+.chart-data {
+  margin-top: 0.5rem;
+}
+
+.chart-data summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 44px;
+  color: var(--chart-ink-muted);
+  font-size: 0.84rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.chart-data summary::-webkit-details-marker {
+  display: none;
+}
+
+.chart-data summary::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(-45deg);
+  transition: transform var(--motion-duration) var(--motion-ease);
+}
+
+.chart-data[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.chart-data summary:hover {
+  color: var(--chart-ink);
+}
+
+.chart-data summary:focus-visible {
+  border-radius: 0.25rem;
+  outline: 2px solid rgba(14, 165, 233, 0.85);
+  outline-offset: 3px;
+}
+
+.chart-table {
+  overflow-x: auto;
+}
+
+.chart-figure .chart-table table {
+  margin: 0.25rem 0 0;
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.chart-figure .chart-table th,
+.chart-figure .chart-table td {
+  padding: 0.35rem 0.6rem;
+  overflow-wrap: normal;
+}
+
+.chart-figure .chart-table td,
+.chart-figure .chart-table thead th:not(:first-child) {
+  text-align: right;
+}
+
+.chart-figure .chart-table td,
+.chart-figure .chart-table tbody th {
+  white-space: nowrap;
+}
+
+.chart-figure .chart-table tbody th {
+  font-weight: 400;
+}
+
+@media (max-width: 639px) {
+  .chart-plate {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+
+  .chart-figure .chart-table table {
+    font-size: 0.8rem;
+  }
+
+  .chart-figure .chart-table th,
+  .chart-figure .chart-table td {
+    padding: 0.3rem 0.35rem;
+  }
+}

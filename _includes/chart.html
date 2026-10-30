@@ -1,0 +1,82 @@
+{%- comment -%}
+  A Chart.js figure for data posts. The page needs `charts: true` in its front
+  matter; that flag makes _layouts/default.html include chart-scripts.html,
+  which draws every chart on the page.
+
+    {% include chart.html id="osdf-monthly" data="osdf_monthly" caption="Source: ..." %}
+
+  id       unique on the page; becomes the figure's id
+  data     a _data file (CSV, YAML or JSON) with one row per x value
+  config   a chart spec in _data/charts/, defaulting to the same name as data
+  caption  optional markdown for the figcaption (sources, notes)
+
+  The spec (see _data/charts/osdf_monthly.yml) holds the title, subtitle, the
+  canvas's aria-label (description), the x column, the series and any callouts.
+  Every value is also in the <details> table, which is what feeds, no-JS
+  readers and screen readers get. Rows and spec reach the script as JSON in
+  the figure's data-chart attribute, which feed readers drop or ignore.
+{%- endcomment -%}
+{%- assign rows = site.data[include.data] -%}
+{%- assign config_name = include.config | default: include.data -%}
+{%- assign spec = site.data.charts[config_name] -%}
+{%- if rows == nil or spec == nil -%}
+<p><strong>chart.html: missing _data/{{ include.data }} or _data/charts/{{ config_name }}.yml</strong></p>
+{%- else -%}
+{%- assign x_column = spec.x.column | default: 'x' -%}
+{%- capture payload -%}{"spec":{{ spec | jsonify }},"rows":{{ rows | jsonify }}}{%- endcapture -%}
+<figure class="chart-figure" id="{{ include.id }}" data-chart="{{ payload | escape }}">
+<div class="chart-plate">
+{%- if spec.title %}
+<p class="chart-title">{{ spec.title }}</p>
+{%- endif -%}
+{%- if spec.subtitle %}
+<p class="chart-subtitle">{{ spec.subtitle }}</p>
+{%- endif %}
+<ul class="chart-legend" aria-hidden="true">
+{%- for s in spec.series %}
+<li><span class="chart-key chart-key--{{ s.type | default: 'bar' }}" style="--chart-key: var(--chart-{{ s.color | default: 'accent' }})"></span>{{ s.label }}</li>
+{%- endfor %}
+</ul>
+<div class="chart-plot"><canvas role="img" aria-label="{{ spec.description | default: spec.title | escape }}"></canvas></div>
+<details class="chart-data">
+<summary>Data table</summary>
+<div class="chart-table">
+<table>
+<thead><tr><th scope="col">{{ spec.x.label | default: x_column }}</th>{% for s in spec.series %}<th scope="col">{{ s.label }}</th>{% endfor %}</tr></thead>
+<tbody>
+{%- for row in rows -%}
+{%- if spec.x.format == 'month' -%}
+{%- assign x_text = row[x_column] | append: '-01' | date: '%b %Y' -%}
+{%- else -%}
+{%- assign x_text = row[x_column] -%}
+{%- endif %}
+<tr><th scope="row">{{ x_text }}</th>
+{%- for s in spec.series -%}
+{%- assign raw = row[s.column] | append: '' | strip -%}
+{%- assign non_digits = raw | remove: '0' | remove: '1' | remove: '2' | remove: '3' | remove: '4' | remove: '5' | remove: '6' | remove: '7' | remove: '8' | remove: '9' -%}
+{%- if raw != '' and non_digits == '' -%}
+{%- comment -%} Group a whole number's digits in threes: 3013398784 → 3,013,398,784. {%- endcomment -%}
+{%- assign digits = raw | split: '' | reverse -%}
+{%- assign cell = '' -%}
+{%- for digit in digits -%}
+{%- assign place = forloop.index0 | modulo: 3 -%}
+{%- if place == 0 and forloop.index0 > 0 -%}{%- assign cell = ',' | append: cell -%}{%- endif -%}
+{%- assign cell = digit | append: cell -%}
+{%- endfor -%}
+{%- else -%}
+{%- assign cell = raw -%}
+{%- endif -%}
+<td>{{ cell }}</td>
+{%- endfor -%}
+</tr>
+{%- endfor %}
+</tbody>
+</table>
+</div>
+</details>
+</div>
+{%- if include.caption %}
+<figcaption>{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip }}</figcaption>
+{%- endif %}
+</figure>
+{%- endif -%}
