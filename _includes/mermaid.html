@@ -1,0 +1,179 @@
+{%- comment -%}
+  Renders ```mermaid fences as diagrams. _layouts/default.html includes this only
+  on pages whose content contains a mermaid block, so no other page loads Mermaid.
+
+  Kramdown emits <pre><code class="language-mermaid">; Rouge has no Mermaid lexer,
+  so the source arrives unhighlighted, and textContent would read it back even if
+  a future lexer wrapped it in spans. Until Mermaid renders (or if the CDN is
+  unreachable) the source stays visible as a normal code block.
+
+  An optional caption comes from a kramdown IAL after the fence:
+    {: data-caption="What the diagram shows."}
+
+  The version is pinned; bump it deliberately and recheck both themes.
+  The module script is left alone by jekyll-minifier, which only compresses
+  classic scripts.
+{%- endcomment -%}
+<script type="module">
+  import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11.17.2/dist/mermaid.esm.min.mjs';
+
+  const FONT_SANS = '"Space Grotesk", ui-sans-serif, system-ui, sans-serif';
+  const FONT_MONO = '"IBM Plex Mono", ui-monospace, SFMono-Regular, monospace';
+
+  // Palettes from DESIGN.md. Slate only: sky is reserved for things that respond.
+  // background, clusterBkg and edgeLabelBackground match the .mermaid-diagram
+  // plate in assets/css/main.scss so subgraphs read as hairline frames.
+  const PALETTES = {
+    light: {
+      darkMode: false,
+      background: '#ffffff',
+      primaryColor: '#f8fafc',
+      primaryTextColor: '#0f172a',
+      primaryBorderColor: '#94a3b8',
+      secondaryColor: '#f1f5f9',
+      tertiaryColor: '#ffffff',
+      lineColor: '#64748b',
+      arrowheadColor: '#64748b',
+      textColor: '#334155',
+      titleColor: '#64748b',
+      clusterBkg: '#ffffff',
+      clusterBorder: '#cbd5e1',
+      edgeLabelBackground: '#ffffff',
+    },
+    dark: {
+      darkMode: true,
+      background: '#020617',
+      primaryColor: '#0f172a',
+      primaryTextColor: '#e5edf8',
+      primaryBorderColor: '#64748b',
+      secondaryColor: '#1e293b',
+      tertiaryColor: '#020617',
+      lineColor: '#94a3b8',
+      arrowheadColor: '#94a3b8',
+      textColor: '#c8d6e5',
+      titleColor: '#9db2c8',
+      clusterBkg: '#020617',
+      clusterBorder: '#475569',
+      edgeLabelBackground: '#020617',
+    },
+  };
+
+  // Subgraph titles and edge labels are annotations, so they take the mono face
+  // (the Mono-Is-Metadata rule); node labels stay in the sans.
+  const THEME_CSS = `
+    .cluster rect { rx: 8px; ry: 8px; }
+    .cluster-label .nodeLabel {
+      font-family: ${FONT_MONO};
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .edgeLabel { font-family: ${FONT_MONO}; font-size: 13px; }
+  `;
+
+  const diagrams = Array.from(document.querySelectorAll('pre > code.language-mermaid'), (code) => {
+    const pre = code.parentElement;
+    const block = pre.closest('div.language-mermaid') || pre;
+    return {
+      block,
+      source: code.textContent,
+      caption: pre.dataset.caption || block.dataset.caption,
+    };
+  });
+
+  let renderedDark = null;
+  let pass = 0;
+  let queue = Promise.resolve();
+
+  function isDark() {
+    return document.documentElement.classList.contains('dark');
+  }
+
+  // Swap the code block for a figure the first time its diagram renders, so a
+  // diagram that fails to parse keeps showing its source.
+  function mount(diagram) {
+    if (diagram.canvas) {
+      return;
+    }
+
+    const figure = document.createElement('figure');
+    figure.className = 'mermaid-figure';
+
+    const canvas = document.createElement('div');
+    canvas.className = 'mermaid-diagram';
+    figure.appendChild(canvas);
+
+    if (diagram.caption) {
+      const caption = document.createElement('figcaption');
+      caption.textContent = diagram.caption;
+      figure.appendChild(caption);
+    }
+
+    diagram.block.replaceWith(figure);
+    diagram.canvas = canvas;
+  }
+
+  async function renderAll() {
+    const dark = isDark();
+
+    mermaid.initialize({
+      startOnLoad: false,
+      securityLevel: 'strict',
+      suppressErrorRendering: true,
+      theme: 'base',
+      themeVariables: { ...PALETTES[dark ? 'dark' : 'light'], fontFamily: FONT_SANS, fontSize: '16px' },
+      themeCSS: THEME_CSS,
+      flowchart: { subGraphTitleMargin: { top: 4, bottom: 4 } },
+    });
+
+    // A fresh id each pass: mermaid.render removes any element that already has
+    // the id, which would blank the current diagram while the new one renders.
+    pass += 1;
+
+    for (const [index, diagram] of diagrams.entries()) {
+      try {
+        const { svg, bindFunctions } = await mermaid.render(`mermaid-${pass}-${index}`, diagram.source);
+        mount(diagram);
+        diagram.canvas.innerHTML = svg;
+        if (bindFunctions) {
+          bindFunctions(diagram.canvas);
+        }
+      } catch (err) {
+        console.error('Mermaid could not render a diagram; leaving its source in place.', err);
+      }
+    }
+
+    renderedDark = dark;
+  }
+
+  function schedule() {
+    queue = queue.then(renderAll);
+  }
+
+  if (diagrams.length) {
+    // Labels are measured at render time, so wait for the web fonts first.
+    if (document.fonts) {
+      await document.fonts.ready;
+    }
+
+    schedule();
+
+    // The theme toggle and the system-preference listener both flip html.dark.
+    new MutationObserver(() => {
+      if (isDark() !== renderedDark) {
+        schedule();
+      }
+    }).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+    // Google Fonts loads asynchronously; if a face arrives after the first
+    // render, re-render so labels are sized for it.
+    if (document.fonts) {
+      document.fonts.addEventListener('loadingdone', (event) => {
+        const families = event.fontfaces.map((face) => face.family.replace(/["']/g, ''));
+        if (families.includes('Space Grotesk') || families.includes('IBM Plex Mono')) {
+          schedule();
+        }
+      });
+    }
+  }
+</script>

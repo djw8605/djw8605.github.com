@@ -279,6 +279,13 @@ The home hero figure is the one framed object in the system: a bordered containe
 - **Mobile** (below `md`): A hamburger toggling a bordered panel of full-width `0.5rem`-radius rows with a slate hover wash. The theme toggle joins the stack as the last row.
 - **Theme toggle:** A fully-round bordered button with a sun/moon icon and a text label that names the *destination* state ("Dark" when light). Carries `aria-pressed` and stays in sync across both instances. Hidden below `md`; lifts 2px on hover.
 
+### Diagrams
+A ```` ```mermaid ```` fence in a post renders as a `<figure>` (usage in `README.md`).
+- **Plate:** The SVG sits on a surface plate: white in light, `slate-950` (#020617) in dark, with a `rule` hairline, a `0.85rem` radius and `1.25rem` padding (`0.5rem` and `0.75rem` below `sm`). The prose figcaption sits underneath, as it does for images.
+- **Palette:** Slate only. Sky stays off diagrams under the Sky-Is-Interaction Rule. Nodes fill `slate-50` / `slate-900` with a `slate-400` / `slate-500` border; edges are `slate-500` / `slate-400`; subgraphs are hairline frames with no fill.
+- **Type:** Node labels use Space Grotesk. Subgraph titles and edge labels are annotations, so they use IBM Plex Mono; subgraph titles are uppercase and tracked, like an eyebrow.
+- **Source of truth:** Both palettes live in `_includes/mermaid.html`. The plate colors in `assets/css/main.scss` must match the palettes' `background`, `clusterBkg` and `edgeLabelBackground`, or edge labels show as boxes.
+
 ### Inputs / Fields
 The site has no forms. If one is added, it inherits the global transition and the global focus outline (`2px solid rgba(14,165,233,0.85)`, 3px offset); match panel geometry — `0.5rem` radius with a `slate-200` hairline — rather than inventing a field style.
 

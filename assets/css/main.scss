@@ -77,6 +77,44 @@ select:focus-visible {
   outline-offset: 3px;
 }
 
+/* Mermaid diagrams (_includes/mermaid.html). The <figure> and <figcaption> pick
+   up the prose figure rules in _layouts/single.html; this is the plate the SVG
+   sits on. Its background must match the palettes' background, clusterBkg and
+   edgeLabelBackground in the include. */
+.mermaid-diagram {
+  padding: 1.25rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.85rem;
+  background: #ffffff;
+  line-height: normal;
+  overflow-wrap: normal;
+}
+
+.mermaid-diagram svg {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* The prose spaces paragraphs and main.scss colours them; Mermaid wraps every
+   label in a <p>, so hand both back to the diagram. */
+.mermaid-diagram p {
+  margin: 0;
+  color: inherit;
+}
+
+html.dark .mermaid-diagram {
+  border-color: rgba(71, 85, 105, 0.75);
+  background: #020617;
+}
+
+@media (max-width: 639px) {
+  .mermaid-diagram {
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+}
+
 /* Fallback palette for utility-heavy sections when Tailwind dark variants don't flip */
 html.dark body {
   background: #050b17 !important;
