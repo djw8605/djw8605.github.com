@@ -262,5 +262,9 @@
     {% if content contains 'language-mermaid' %}
       {% include mermaid.html %}
     {% endif %}
+
+    {% if page.charts %}
+      {% include chart-scripts.html %}
+    {% endif %}
   </body>
 </html>
