@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>How the National Research Platform works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --font:'Space Grotesk',ui-sans-serif,system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --bg:#E9EEF0;--panel:#F5F8F9;--ink:#17242F;--muted:#56666F;--line:#C9D3D8;
+  --land:#DAE2E5;--land-edge:#BAC6CC;--net:#8D9CA6;--box:#FFFFFF;--box-edge:#B7C3C9;
+  --term:#17242F;--term-ink:#DDE7EC;--term-ok:#7AD9BB;
+  --c-train:#2F6FB0;--c-infer:#7A4FB0;--c-hep:#178A70;--c-bio:#C98302;--c-class:#CF4256;--ok:#178A70;
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#101B23;--panel:#15222C;--ink:#E3EBEF;--muted:#98A8B2;--line:#2C3D49;
+    --land:#1C2B36;--land-edge:#2F424F;--net:#516676;--box:#1B2A35;--box-edge:#3A4F5D;
+    --term:#0A1218;--term-ink:#CFE0E8;--term-ok:#5ED2AC;
+    --c-train:#5E9BE0;--c-infer:#A782E3;--c-hep:#3CC29E;--c-bio:#EDB23C;--c-class:#EE6F82;--ok:#3CC29E;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#101B23;--panel:#15222C;--ink:#E3EBEF;--muted:#98A8B2;--line:#2C3D49;
+  --land:#1C2B36;--land-edge:#2F424F;--net:#516676;--box:#1B2A35;--box-edge:#3A4F5D;
+  --term:#0A1218;--term-ink:#CFE0E8;--term-ok:#5ED2AC;
+  --c-train:#5E9BE0;--c-infer:#A782E3;--c-hep:#3CC29E;--c-bio:#EDB23C;--c-class:#EE6F82;--ok:#3CC29E;
+  color-scheme:dark;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1120px;margin:0 auto;padding:36px 20px 44px}
+h1{font-weight:800;font-size:clamp(30px,4.4vw,48px);line-height:1.04;letter-spacing:-0.015em;margin:0 0 12px;max-width:18ch}
+.lede{margin:0 0 26px;color:var(--muted);font-size:18px;line-height:1.5;max-width:58ch}
+.stage-wrap{margin:0;background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+#stage{display:block;width:100%;height:auto}
+.steps{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin:16px 0 0}
+.step{appearance:none;background:none;border:0;padding:6px 2px 4px;text-align:left;color:var(--muted);font:600 14px/1.2 var(--font);cursor:pointer;border-radius:6px}
+.step[aria-current="step"]{color:var(--ink)}
+.step .n{font-weight:800;margin-right:6px}
+.track{display:block;height:4px;border-radius:2px;background:var(--line);margin-top:8px;overflow:hidden}
+.fill{display:block;height:100%;width:0;background:var(--ink)}
+.below{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:start;margin-top:22px}
+.count{margin:0 0 4px;color:var(--muted);font-size:14px;font-weight:600}
+h2{margin:0 0 8px;font-size:clamp(22px,2.6vw,28px);font-weight:800;line-height:1.15;letter-spacing:-0.01em}
+#scene-body{margin:0;font-size:17px;line-height:1.58;max-width:66ch}
+.controls{display:flex;gap:8px;padding-top:22px}
+.controls button{font:700 15px var(--font);padding:10px 18px;border-radius:999px;border:1.5px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;min-width:86px}
+.controls #play{background:var(--ink);color:var(--bg)}
+button:focus-visible{outline:3px solid var(--c-train);outline-offset:3px}
+.legend{list-style:none;padding:18px 0 0;margin:26px 0 0;display:flex;flex-wrap:wrap;gap:10px 24px;font-size:15px;border-top:1px solid var(--line)}
+.legend li{display:flex;align-items:center;gap:8px}
+.sw{width:14px;height:14px;border-radius:4px;flex:none}
+.note{margin:14px 0 0;color:var(--muted);font-size:14px;line-height:1.5}
+.end-cta{display:none;margin-top:24px;padding:20px 22px;border:1px solid var(--line);border-radius:14px;background:var(--panel);align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.end-cta.show{display:flex}
+.end-cta h3{margin:0 0 4px;font-size:20px;font-weight:800}
+.end-cta p{margin:0;color:var(--muted);line-height:1.45}
+.end-cta .links{display:flex;gap:10px;flex-wrap:wrap}
+.btn{display:inline-block;font:700 15px var(--font);padding:11px 18px;border-radius:999px;text-decoration:none;border:1.5px solid var(--ink);color:var(--ink)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn:focus-visible{outline:3px solid var(--c-train);outline-offset:3px}
+html.embed header,html.embed .note{display:none}
+html.embed body{background:transparent}
+html.embed .wrap{padding-top:18px}
+@media (max-width:760px){
+  .wrap{padding:24px 14px 36px}
+  .below{grid-template-columns:1fr;gap:6px}
+  .controls{padding-top:6px}
+  .controls button{flex:1}
+  .step .label{display:none}
+  .lede{font-size:16px}
+  #scene-body{font-size:16px}
+}
+
+/* SVG */
+.land{fill:var(--land);stroke:var(--land-edge);stroke-width:1.5;stroke-linejoin:round}
+.land-dots{fill:url(#dots)}
+.dotfill{fill:var(--land-edge)}
+.net{fill:none;stroke:var(--net);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.net.sea{stroke-dasharray:1 11;stroke-width:4}
+.site{fill:var(--box);stroke:var(--ink);stroke-width:3;transition:fill .2s}
+.site.hit{fill:var(--ink)}
+.site-dot{fill:var(--net)}
+.inset{fill:none;stroke:var(--land-edge);stroke-width:1.5;stroke-dasharray:4 4}
+.island{fill:var(--land);stroke:var(--land-edge);stroke-width:1.2}
+.lbl{font:700 15px var(--font);fill:var(--ink)}
+.sub{font:400 13px var(--font);fill:var(--muted)}
+.big{font:800 36px var(--font);fill:var(--ink);letter-spacing:-0.01em}
+.tiny{font:700 12px var(--font);fill:var(--bg)}
+.box{fill:var(--box);stroke:var(--box-edge);stroke-width:1.5;transition:stroke .2s}
+.box.strong,.box.active{stroke:var(--ink);stroke-width:2.2}
+.pill{fill:var(--box);stroke:var(--ink);stroke-width:1.8}
+.wire{fill:none;stroke:var(--net);stroke-width:2.5;stroke-linecap:round}
+.wire.strong{stroke:var(--ink)}
+.term{fill:var(--term)}
+.termdot{fill:var(--term-ink);opacity:.35}
+.mono{font:500 13px var(--mono);fill:var(--term-ink);white-space:pre}
+.mono.okay{fill:var(--term-ok)}
+.mono-ink{font:500 14px var(--mono);fill:var(--ink)}
+.podbox{fill:none;stroke:var(--ink);stroke-width:2;stroke-dasharray:7 5}
+.layer{fill:var(--ink)}
+.gpu{fill:var(--box);stroke:var(--box-edge);stroke-width:1.5}
+.token{fill:var(--ink)}
+.token.ok{fill:var(--ok)}
+.usage{fill:var(--muted)}
+.k-train{fill:var(--c-train)}.k-infer{fill:var(--c-infer)}.k-hep{fill:var(--c-hep)}.k-bio{fill:var(--c-bio)}.k-class{fill:var(--c-class)}
+.win{fill:var(--box);stroke:var(--box-edge);stroke-width:1.5}
+.chrome{fill:var(--land)}
+.chromedot{fill:var(--land-edge)}
+.side{fill:var(--panel)}
+.divider{stroke:var(--line);stroke-width:1}
+.sel{fill:var(--land)}
+.cell{fill:var(--panel);stroke:var(--line);stroke-width:1}
+.code{font:500 13px var(--mono);fill:var(--ink);white-space:pre}
+.prompt{font:500 12px var(--mono);fill:var(--muted)}
+.body{font:400 15px var(--font);fill:var(--ink)}
+.bubble{fill:var(--land)}
+.kernel{fill:none;stroke:var(--ink);stroke-width:2}
+.kernel.busy{fill:var(--ink)}
+.barbg{fill:var(--line)}
+.axis{stroke:var(--net);stroke-width:1.5}
+.curve{fill:none;stroke:var(--c-train);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+#map{transition:opacity .6s ease}
+@media (prefers-reduced-motion: reduce){#map{transition:none}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <h1>How the National Research Platform works</h1>
+    <p class="lede">Follow a job from sign-in to results on NRP, a single Kubernetes cluster built from computers at campuses across the country.</p>
+  </header>
+
+  <figure class="stage-wrap">
+    <svg id="stage" viewBox="0 0 1000 620" role="img" aria-label="Animated diagram"></svg>
+  </figure>
+
+  <nav class="steps" id="steps" aria-label="Steps"></nav>
+
+  <div class="below">
+    <section aria-live="polite">
+      <p class="count" id="scene-count"></p>
+      <h2 id="scene-title"></h2>
+      <p id="scene-body"></p>
+    </section>
+    <div class="controls">
+      <button type="button" id="prev">Back</button>
+      <button type="button" id="play">Pause</button>
+      <button type="button" id="next">Next</button>
+    </div>
+  </div>
+
+  <div class="end-cta" id="end-cta" role="region" aria-label="Next steps">
+    <div><h3>Ready to try it?</h3><p>NRP is free for U.S. nonprofit research and education.</p></div>
+    <div class="links">
+      <a class="btn primary" id="cta-start" href="https://nrp.ai/documentation/userdocs/start/getting-started/">Get started</a>
+      <a class="btn" id="cta-llm" href="https://nrp.ai/llms">Explore hosted LLMs</a>
+    </div>
+  </div>
+
+  <ul class="legend" aria-label="Workload colors">
+    <li><span class="sw" style="background:var(--c-train)"></span>AI training</li>
+    <li><span class="sw" style="background:var(--c-infer)"></span>LLM inference</li>
+    <li><span class="sw" style="background:var(--c-hep)"></span>Physics (LHC)</li>
+    <li><span class="sw" style="background:var(--c-bio)"></span>Genomics</li>
+    <li><span class="sw" style="background:var(--c-class)"></span>Classes and notebooks</li>
+  </ul>
+  <p class="note">Labeled sites are a sample of NRP's contributing sites, and the small dots stand in for the rest. Positions are approximate.</p>
+</main>
+
+<script>
+(function(){
+const NS='http://www.w3.org/2000/svg';
+const svg=document.getElementById('stage');
+const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const params=new URLSearchParams(location.search);
+const EMBED=params.get('embed')==='1';
+const AUTOH=EMBED&&params.get('autoheight')==='1';
+if(EMBED)document.documentElement.classList.add('embed');
+const theme=params.get('theme');if(theme==='light'||theme==='dark')document.documentElement.setAttribute('data-theme',theme);
+function post(type){if(EMBED&&window.parent!==window){try{window.parent.postMessage({type:type},'*');}catch(e){}}}
+const endEl=document.getElementById('end-cta');
+['cta-start','cta-llm'].forEach(id=>{const a=document.getElementById(id);
+  const onNrp=/(^|\.)nrp\.ai$/.test(location.hostname);
+  if(EMBED&&onNrp){a.href=new URL(a.href).pathname;a.target='_top';}else{a.target='_blank';a.rel='noopener';}
+  a.addEventListener('click',()=>post('nrp-how:cta'));});
+
+function el(tag,attrs,parent){const n=document.createElementNS(NS,tag);if(attrs)for(const k in attrs)n.setAttribute(k,attrs[k]);if(parent)parent.appendChild(n);return n;}
+function txt(parent,x,y,s,cls,anchor){const n=el('text',{x:x,y:y,class:cls,'text-anchor':anchor||'middle'},parent);n.textContent=s;return n;}
+const clamp=(v,a,b)=>Math.min(b===undefined?1:b,Math.max(a===undefined?0:a,v));
+const ease=u=>u<.5?4*u*u*u:1-Math.pow(-2*u+2,3)/2;
+const P=(t,s,d)=>clamp((t-s)/d);
+const lerp=(a,b,u)=>a+(b-a)*u;
+function project(lon,lat){return [60+(lon+125)/58*900,100+(49-lat)/24*460];}
+function bez(c,u){const v=1-u;const f=i=>v*v*v*c[0][i]+3*v*v*u*c[1][i]+3*v*u*u*c[2][i]+u*u*u*c[3][i];return [f(0),f(1)];}
+function linkH(x0,y0,x1,y1){const m=(x0+x1)/2;const c=[[x0,y0],[m,y0],[m,y1],[x1,y1]];return {d:`M${x0} ${y0}C${m} ${y0} ${m} ${y1} ${x1} ${y1}`,at:u=>bez(c,u)};}
+function linkV(x0,y0,x1,y1){const m=(y0+y1)/2;const c=[[x0,y0],[x0,m],[x1,m],[x1,y1]];return {d:`M${x0} ${y0}C${x0} ${m} ${x1} ${m} ${x1} ${y1}`,at:u=>bez(c,u)};}
+function op(n,v){n.setAttribute('opacity',(+v).toFixed(3));}
+function mv(n,x,y){n.setAttribute('transform',`translate(${x.toFixed(1)} ${y.toFixed(1)})`);}
+function pod(parent,kind,s){s=s||14;const g=el('g',{},parent);el('rect',{x:-s/2,y:-s/2,width:s,height:s,rx:s*0.26,class:'k-'+kind},g);op(g,0);return g;}
+function box(parent,cx,cy,w,h,title,sub,cls){const g=el('g',{},parent);const r=el('rect',{x:cx-w/2,y:cy-h/2,width:w,height:h,rx:10,class:cls||'box'},g);const ty=sub?cy-3:cy+5;txt(g,cx,ty,title,'lbl');if(sub)txt(g,cx,ty+19,sub,'sub');g.rect=r;op(g,0);return g;}
+function rng(seed){return function(){seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+const KINDS=['train','infer','hep','bio','class'];
+
+/* ---------- Map (persistent) ---------- */
+const defs=el('defs',{},svg);
+const pat=el('pattern',{id:'dots',width:9,height:9,patternUnits:'userSpaceOnUse'},defs);
+el('circle',{cx:4.5,cy:4.5,r:1,class:'dotfill'},pat);
+const mapG=el('g',{id:'map'},svg);
+const layer=el('g',{id:'scene'},svg);
+
+const OUTLINE=[[-124.7,48.4],[-123,49],[-95.2,49],[-94.8,49.4],[-89.6,48],[-84.8,46.5],[-82.4,44],[-82.5,42.5],[-79,43.3],[-76.5,44.2],[-74.8,45],[-71.5,45],[-69.2,47.4],[-67.8,47.1],[-67,44.8],[-70.2,43.6],[-70.6,42.6],[-70,41.7],[-71.9,41.3],[-74,40.6],[-74,39.5],[-75.5,38.5],[-76,37],[-75.7,35.2],[-77.9,34],[-79.9,32.6],[-81.4,30.7],[-80.6,28.4],[-80.1,26],[-80.4,25.2],[-81.1,25.1],[-81.8,26.5],[-82.7,28],[-83.6,29.9],[-85.4,29.7],[-87.5,30.3],[-89.6,30.2],[-89.4,29],[-91,29.4],[-93.8,29.7],[-94.8,29.3],[-97.2,27.6],[-97.4,26],[-99.2,26.6],[-101.4,29.8],[-103.1,29],[-104.5,29.6],[-106.5,31.8],[-108.2,31.3],[-111.1,31.3],[-114.8,32.5],[-117.1,32.5],[-118.5,34],[-120.6,34.6],[-121.9,36.6],[-122.5,37.8],[-123.8,39.8],[-124.2,41.8],[-124.5,43],[-124,46.2]];
+const landD=OUTLINE.map((p,i)=>{const q=project(p[0],p[1]);return (i?'L':'M')+q[0].toFixed(1)+' '+q[1].toFixed(1);}).join(' ')+'Z';
+el('path',{d:landD,class:'land'},mapG);
+el('path',{d:landD,class:'land-dots'},mapG);
+
+// Hawaii inset
+el('rect',{x:62,y:516,width:160,height:94,rx:10,class:'inset'},mapG);
+txt(mapG,74,536,'Hawaiʻi','sub','start');
+[[88,556,4],[108,562,4.5],[124,567,3],[137,572,4],[160,586,8]].forEach(c=>el('circle',{cx:c[0],cy:c[1],r:c[2],class:'island'},mapG));
+
+const SITES=[
+  {name:'UC Santa Cruz',ll:[-122.06,36.99]},
+  {name:'UC San Diego',ll:[-117.2,32.88]},
+  {name:'UNL',ll:[-96.7,40.82]},
+  {name:'Mizzou',ll:[-92.33,38.94]},
+  {name:'OU',ll:[-97.44,35.21]},
+  {name:'StarLight',ll:[-87.62,41.9]},
+  {name:'U Hawaiʻi',xy:[108,562],ly:600}
+];
+SITES.forEach(s=>{const q=s.xy||project(s.ll[0],s.ll[1]);s.x=q[0];s.y=q[1];});
+const S=i=>[SITES[i].x,SITES[i].y];
+const X=(lon,lat)=>project(lon,lat);
+const LINES=[
+  [S(0),X(-111.9,40.76),S(2),S(3),S(5)],
+  [S(1),X(-106.6,35.1),S(4),S(3)],
+  [S(0),S(1)],
+  [S(5),X(-83,40),X(-77,38.9)],
+  [S(4),X(-97.7,30.3),X(-84.4,33.8)],
+  [S(5),X(-89.4,43.07),X(-93.2,44.97)]
+];
+LINES.forEach(l=>el('polyline',{points:l.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' '),class:'net'},mapG));
+el('line',{x1:S(6)[0],y1:S(6)[1],x2:S(1)[0],y2:S(1)[1],class:'net sea'},mapG);
+
+const EXTRA=[[-111.9,40.76],[-105.27,40.0],[-97.7,30.3],[-84.4,33.8],[-78.9,36.0],[-77,38.9],[-71.1,42.4],[-73.9,40.8],[-75.2,39.95],[-83,40],[-86.5,39.2],[-89.4,43.07],[-93.2,44.97],[-96.6,39.2],[-106.6,35.1],[-111.9,33.4],[-117.8,33.65],[-119.7,36.8],[-122.3,47.65],[-123.1,44.05],[-90.2,38.6],[-82.8,34.68],[-80.4,25.95],[-96.93,42.78],[-96.8,46.9],[-104.8,41.1]];
+const EXTRA_XY=EXTRA.map(p=>X(p[0],p[1]));
+EXTRA_XY.forEach(p=>el('circle',{cx:p[0],cy:p[1],r:3.5,class:'site-dot'},mapG));
+SITES.forEach(s=>{s.c=el('circle',{cx:s.x,cy:s.y,r:7,class:'site'},mapG);txt(mapG,s.x,s.ly||s.y+25,s.name,'lbl');});
+const slot=(s,n)=>[s.x+14+(n%3)*15,s.y-24-Math.floor(n/3)*15];
+
+function busy(){
+  const r=rng(11);const out=[];const counts=[6,6,6,5,4,5,4];
+  SITES.forEach((s,si)=>{for(let n=0;n<counts[si];n++){const q=slot(s,n);out.push({x:q[0],y:q[1],kind:KINDS[(si*2+n)%5],size:13,main:true,order:r()});}});
+  EXTRA_XY.forEach(p=>{const m=1+Math.floor(r()*2);for(let n=0;n<m;n++)out.push({x:p[0]+9+n*10,y:p[1]-9,kind:KINDS[Math.floor(r()*5)],size:8,main:false,order:r()});});
+  return out;
+}
+
+/* ---------- Scene 1: sign in ---------- */
+function s1(g){
+  const xs=[170,500,830],y=300,hw=105;
+  const items=[['You','researcher or student'],['Your institution','the login you already use'],['NRP','notebooks, GPUs, and LLMs']];
+  const wires=[0,1].map(i=>{const w=el('line',{x1:xs[i]+hw,y1:y,x2:xs[i+1]-hw,y2:y,class:'wire'},g);op(w,0);return w;});
+  const boxes=items.map((it,i)=>box(g,xs[i],y,2*hw,84,it[0],it[1]));
+  const tokG=el('g',{},g);const tok=el('circle',{r:9,class:'token'},tokG);
+  const tokLbl=txt(tokG,0,-18,'','sub');
+  const nsLine=el('line',{x1:830,y1:342,x2:830,y2:398,class:'wire strong'},g);
+  const ns=el('g',{},g);el('rect',{x:740,y:400,width:180,height:44,rx:22,class:'pill'},ns);txt(ns,830,427,'namespace: my-lab','mono-ink');
+  const nsNote=txt(g,722,427,'A group admin adds you to your lab\u2019s namespace','sub','end');
+  return {dur:9,update(t){
+    boxes.forEach((b,i)=>op(b,ease(P(t,.2+i*.35,.5))));
+    wires.forEach((w,i)=>op(w,ease(P(t,.55+i*.35,.5))));
+    const on=t>=2&&t<5.3, second=t>=3.6;
+    const x=second?lerp(500,830,ease(P(t,3.6,1.4))):lerp(170,500,ease(P(t,2,1.4)));
+    mv(tokG,x,y-52);op(tokG,on?1:0);
+    tok.setAttribute('class',second?'token ok':'token');
+    tokLbl.textContent=second?'verified':'sign in';
+    boxes.forEach((b,i)=>b.rect.classList.toggle('active',on&&Math.abs(x-xs[i])<hw));
+    op(nsLine,P(t,5.4,.4));
+    op(ns,ease(P(t,5.6,.5)));mv(ns,0,(1-ease(P(t,5.6,.5)))*10);
+    op(nsNote,P(t,6.1,.5));
+  }};
+}
+
+/* ---------- Scene 2: submit ---------- */
+function s2(g){
+  const you=box(g,100,330,150,70,'You','');
+  const wy=[170,330,490].map(yy=>{const w=el('path',{d:linkH(175,330,255,yy).d,class:'wire'},g);op(w,0);return w;});
+  const kube=el('g',{},g);op(kube,0);
+  el('rect',{x:255,y:125,width:260,height:90,rx:10,class:'term'},kube);
+  [0,1,2].forEach(i=>el('circle',{cx:271+i*12,cy:141,r:3.5,class:'termdot'},kube));
+  const l1=txt(kube,270,172,'','mono','start');const l2=txt(kube,270,197,'','mono okay','start');l1.style.fontSize='12px';l2.style.fontSize='12px';
+  const jup=box(g,385,330,260,80,'JupyterHub','notebooks on shared GPUs');
+  const llm=box(g,385,490,260,80,'Hosted LLMs','chat in a browser or call the API');
+  const hub=el('g',{},g);op(hub,0);
+  el('rect',{x:585,y:195,width:230,height:110,rx:10,class:'box strong'},hub);
+  txt(hub,700,228,'Kubernetes API','lbl');txt(hub,700,248,'queues pods for the scheduler','sub');
+  const gw=box(g,680,490,170,70,'AI gateway','routes each request');
+  const mdl=el('g',{},g);op(mdl,0);
+  el('rect',{x:800,y:455,width:170,height:70,rx:10,class:'box'},mdl);txt(mdl,885,482,'Model servers','lbl');
+  [860,885,910].forEach(x=>{const p=pod(mdl,'infer',12);op(p,1);mv(p,x,505);});
+  const hw=[el('path',{d:linkH(515,170,585,235).d,class:'wire'},g),el('path',{d:linkH(515,330,585,265).d,class:'wire'},g),el('line',{x1:515,y1:490,x2:595,y2:490,class:'wire'},g),el('line',{x1:765,y1:490,x2:800,y2:490,class:'wire'},g)];
+  hw.forEach(w=>op(w,0));
+  const cmd='$ kubectl apply -f train-job.yaml', res='job.batch/train created';
+  const pods=[[170,'train',3.6],[170,'hep',4.2],[330,'class',4.8],[330,'bio',5.4]].map((d,k)=>({g:pod(g,d[1]),l:linkH(515,d[0],670+k*20,282),t0:d[2]}));
+  const reqs=[];for(let j=0;j<10;j++){const c=el('circle',{r:4.5,class:'k-infer'},g);op(c,0);reqs.push({c,t0:2.4+j*.7});}
+  return {dur:9.5,update(t){
+    op(you,ease(P(t,.1,.5)));
+    wy.forEach(w=>op(w,P(t,.3,.5)));
+    op(kube,ease(P(t,.4,.5)));op(jup,ease(P(t,.7,.5)));op(llm,ease(P(t,1,.5)));
+    op(hub,ease(P(t,1.3,.5)));op(gw,ease(P(t,1.6,.5)));op(mdl,ease(P(t,1.8,.5)));
+    hw.forEach((w,i)=>op(w,P(t,1.4+i*.2,.4)));
+    l1.textContent=cmd.slice(0,Math.floor(P(t,1.6,1.6)*cmd.length));
+    l2.textContent=t>3.4?res:'';
+    pods.forEach(p=>{if(t<p.t0){op(p.g,0);return;}op(p.g,1);const q=p.l.at(ease(P(t,p.t0,1.1)));mv(p.g,q[0],q[1]);});
+    reqs.forEach(r=>{const u=P(t,r.t0,1.3);if(t<r.t0||u>=1){op(r.c,0);return;}const x=lerp(515,860,u);op(r.c,(x>598&&x<762)?0:1);mv(r.c,x,490);});
+  }};
+}
+
+/* ---------- Shared window frame ---------- */
+function winFrame(g,title){
+  const W=el('g',{},g);op(W,0);
+  el('rect',{x:80,y:36,width:840,height:548,rx:12,class:'win'},W);
+  el('path',{d:'M80 48a12 12 0 0 1 12-12h816a12 12 0 0 1 12 12v24H80z',class:'chrome'},W);
+  [0,1,2].forEach(i=>el('circle',{cx:102+i*16,cy:54,r:5,class:'chromedot'},W));
+  txt(W,500,59,title,'sub');
+  el('rect',{x:81,y:72,width:170,height:505,class:'side'},W);
+  el('line',{x1:251,y1:72,x2:251,y2:583,class:'divider'},W);
+  return W;
+}
+function typed(n,full,t,start,dur){n.textContent=full.slice(0,Math.floor(P(t,start,dur)*full.length));}
+
+/* ---------- Scene: Jupyter example ---------- */
+function sJup(g){
+  const W=winFrame(g,'JupyterLab on NRP');
+  txt(W,98,100,'Files','lbl','start');
+  el('rect',{x:90,y:136,width:152,height:22,rx:5,class:'sel'},W);
+  [['data/',126],['train.ipynb',152],['results.csv',178]].forEach(f=>txt(W,100,f[1]+0,f[0],'code','start'));
+  txt(W,276,100,'train.ipynb','lbl','start');
+  const busy=el('circle',{cx:892,cy:95,r:6,class:'kernel'},W);txt(W,878,100,'Python 3 (GPU)','sub','end');
+  function cell(y,lines){
+    const h=12+lines.length*20+2;
+    const pr=txt(W,312,y+20,'[ ]:','prompt','end');
+    el('rect',{x:320,y:y,width:575,height:h,rx:6,class:'cell'},W);
+    const ts=lines.map((l,i)=>txt(W,332,y+20+i*20,'','code','start'));
+    return {pr,ts,lines,h};
+  }
+  const c1=cell(118,['import torch','torch.cuda.get_device_name(0)']);
+  const o1=txt(W,332,190,"'NVIDIA A100-SXM4-80GB'",'code','start');
+  const c2=cell(206,['model = build_model().cuda()','history = train(model, data, epochs=20)']);
+  const barBg=el('rect',{x:332,y:262,width:300,height:10,rx:5,class:'barbg'},W);
+  const bar=el('rect',{x:332,y:262,width:0,height:10,rx:5,class:'k-train'},W);
+  const barL=txt(W,646,272,'','code','start');
+  const c3=cell(292,['plot(history)']);
+  const ch=el('g',{},W);
+  el('line',{x1:350,y1:350,x2:350,y2:540,class:'axis'},ch);el('line',{x1:350,y1:540,x2:880,y2:540,class:'axis'},ch);
+  txt(ch,342,356,'loss','sub','end');txt(ch,880,562,'epoch','sub','end');
+  const pts=[];for(let e=0;e<=20;e++){const loss=2.2*Math.exp(-e/5.5)+.32+.05*Math.sin(e*2.1);pts.push([350+e*25.5,540-loss/2.7*185]);}
+  const curve=el('polyline',{points:pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' '),class:'curve'},ch);
+  let len=null;
+  return {dur:11,update(t){
+    op(W,ease(P(t,0,.5)));
+    c1.lines.forEach((l,i)=>typed(c1.ts[i],l,t,.6+i*.6,.6));
+    c2.lines.forEach((l,i)=>typed(c2.ts[i],l,t,2.6+i*.7,.7));
+    typed(c3.ts[0],c3.lines[0],t,6.7,.5);
+    c1.pr.textContent=t<1.8?'[ ]:':t<2.3?'[*]:':'[1]:';
+    c2.pr.textContent=t<4?'[ ]:':t<6.4?'[*]:':'[2]:';
+    c3.pr.textContent=t<7.2?'[ ]:':t<7.6?'[*]:':'[3]:';
+    op(o1,t>=2.3?1:0);
+    const pb=P(t,4.1,2.2);op(barBg,t>=4.05?1:0);bar.setAttribute('width',(300*pb).toFixed(1));
+    barL.textContent=t>=4.05?'epoch '+Math.max(1,Math.ceil(pb*20))+'/20':'';
+    const running=(t>=1.8&&t<2.3)||(t>=4&&t<6.4)||(t>=7.2&&t<7.6);
+    busy.setAttribute('class',running?'kernel busy':'kernel');
+    op(ch,t>=7.6?1:0);
+    if(len===null){try{len=curve.getTotalLength();}catch(e){len=600;}curve.setAttribute('stroke-dasharray',len);}
+    curve.setAttribute('stroke-dashoffset',(len*(1-ease(P(t,7.6,2)))).toFixed(1));
+  }};
+}
+
+/* ---------- Scene: LLM example ---------- */
+function sLlm(g){
+  const W=winFrame(g,'Open WebUI on NRP');
+  el('rect',{x:92,y:86,width:146,height:30,rx:15,class:'pill'},W);txt(W,165,106,'New chat','lbl');
+  txt(W,100,146,'Today','sub','start');
+  [['GPU job help',172],['Paper summary',198],['Fix my YAML',224]].forEach(h=>txt(W,100,h[1],h[0],'body','start'));
+  el('rect',{x:270,y:84,width:96,height:30,rx:8,class:'cell'},W);txt(W,318,104,'qwen3','lbl');
+  const q='How do I ask for a GPU in my NRP job?';
+  const inBox=el('rect',{x:270,y:516,width:625,height:46,rx:23,class:'cell'},W);
+  const inT=txt(W,292,545,'','body','start');
+  const ub=el('g',{},W);el('rect',{x:560,y:132,width:335,height:40,rx:20,class:'bubble'},ub);txt(ub,878,157,q,'body','end');op(ub,0);
+  const av=el('circle',{cx:286,cy:202,r:10,class:'k-infer'},W);op(av,0);
+  const think=[0,1,2].map(i=>el('circle',{cx:310+i*14,cy:202,r:4,class:'usage'},W));
+  const code=el('rect',{x:310,y:224,width:330,height:80,rx:8,class:'term'},W);op(code,0);
+  const L=[
+    {x:310,y:208,s:'Add a GPU limit to the container in your job spec:',c:'body'},
+    {x:326,y:250,s:'resources:',c:'mono'},
+    {x:326,y:272,s:'  limits:',c:'mono'},
+    {x:326,y:294,s:'    nvidia.com/gpu: 1',c:'mono'},
+    {x:310,y:334,s:'To choose a specific GPU model, add a node affinity on the',c:'body'},
+    {x:310,y:356,s:'GPU product label. The NRP docs list the types available.',c:'body'},
+    {x:310,y:388,s:'Then submit it with kubectl apply -f job.yaml.',c:'body'}
+  ];
+  L.forEach(l=>{l.n=txt(W,l.x,l.y,'',l.c,'start');});
+  const total=L.reduce((a,l)=>a+l.s.length,0);
+  const note=txt(g,500,606,'The same models work in Chatbox, coding CLIs, and any OpenAI-compatible client','sub');op(note,0);
+  return {dur:10.5,update(t){
+    op(W,ease(P(t,0,.5)));
+    inT.textContent=t<2?q.slice(0,Math.floor(P(t,.6,1.2)*q.length)):'Message qwen3';
+    inT.setAttribute('class',t<2?'body':'sub');
+    op(ub,ease(P(t,2,.3)));op(av,P(t,2.2,.3));
+    think.forEach((c,i)=>op(c,(t>=2.3&&t<3.1)?(.35+.65*Math.max(0,Math.sin((t*6)-i))):0));
+    let n=Math.floor(P(t,3.1,5.4)*total);
+    L.forEach((l,i)=>{const k=Math.min(n,l.s.length);l.n.textContent=l.s.slice(0,Math.max(0,k));n-=l.s.length;});
+    op(code,L[1].n.textContent.length>0?1:0);
+    op(note,P(t,8.8,.6));
+  }};
+}
+
+/* ---------- Scene 3: schedule ---------- */
+function s3(g){
+  const sch=box(g,500,46,290,56,'Kubernetes scheduler','places each pod on a node with room','box strong');
+  const assign=[[2,'train'],[0,'bio'],[4,'hep'],[3,'class'],[5,'train'],[1,'infer'],[2,'hep'],[6,'bio'],[1,'train'],[3,'infer'],[4,'class'],[2,'bio'],[5,'hep'],[0,'train']];
+  const used={};
+  const ps=assign.map((a,i)=>{const si=a[0];const n=used[si]||0;used[si]=n+1;const q=slot(SITES[si],n);return {g:pod(g,a[1]),l:linkV(500,76,q[0],q[1]),t0:1.1+i*.5,si};});
+  return {dur:10.5,update(t){
+    op(sch,ease(P(t,.2,.6)));
+    SITES.forEach(s=>s.c.classList.remove('hit'));
+    ps.forEach(p=>{if(t<p.t0){op(p.g,0);return;}op(p.g,1);const u=P(t,p.t0,1.5);const q=p.l.at(ease(u));mv(p.g,q[0],q[1]);if(u>=1&&t-(p.t0+1.5)<.45)SITES[p.si].c.classList.add('hit');});
+  }};
+}
+
+/* ---------- Scene 4: inside a node ---------- */
+function s4(g){
+  const node=el('g',{},g);op(node,0);
+  el('rect',{x:330,y:140,width:340,height:370,rx:14,class:'box strong'},node);
+  txt(node,500,170,'GPU node','lbl');txt(node,500,190,'one server at one contributing site','sub');
+  const podg=el('g',{},g);op(podg,0);
+  el('rect',{x:360,y:212,width:280,height:140,rx:12,class:'podbox'},podg);
+  txt(podg,378,238,'Your pod','lbl','start');
+  const status=txt(podg,622,238,'Pending','lbl','end');
+  const mount=txt(podg,582,312,'/data mounted','sub');
+  const reg=box(g,140,240,200,70,'Container registry','your software image');
+  const ceph=box(g,862,230,210,70,'Ceph storage','S3 buckets, shared files');
+  const osdf=box(g,862,420,210,70,'OSDF cache','nearby copy of big datasets');
+  const regW=el('path',{d:linkH(240,240,360,300).d,class:'wire'},g);op(regW,0);
+  const cephL=linkH(757,230,640,272),osdfL=linkH(757,420,640,322);
+  const cephW=el('path',{d:cephL.d,class:'wire'},g),osdfW=el('path',{d:osdfL.d,class:'wire'},g);op(cephW,0);op(osdfW,0);
+  const names=['base OS','PyTorch + CUDA','your code'],ys=[330,308,286];
+  const layers=names.map((nm,i)=>{const lg=el('g',{},g);el('rect',{x:-70,y:-10,width:140,height:20,rx:4,class:'layer'},lg);txt(lg,0,4,nm,'tiny');op(lg,0);return {g:lg,l:linkH(240,240,448,ys[i]),t0:1.2+i*.55};});
+  const gx=[370,445,520,595],state=['hep','free','free','bio'];
+  const gpus=gx.map((x,i)=>{const gg=el('g',{},node);el('rect',{x:x,y:410,width:65,height:72,rx:8,class:'gpu'},gg);
+    let fillR=null;if(state[i]!=='free'){fillR=el('rect',{x:x,y:410,width:65,height:72,rx:8,class:'k-'+state[i]},gg);op(fillR,.3);}
+    txt(gg,x+32.5,442,'GPU','lbl');const st=txt(gg,x+32.5,462,state[i]==='free'?'free':'in use','sub');return {gg,st,x};});
+  const mine=el('rect',{x:445,y:410,width:65,height:72,rx:8,class:'k-train'},node);op(mine,0);
+  const mineT=txt(node,477.5,442,'GPU','tiny');const mineS=txt(node,477.5,462,'yours','tiny');op(mineT,0);op(mineS,0);
+  const gl=el('line',{x1:477.5,y1:352,x2:477.5,y2:410,class:'wire strong'},g);op(gl,0);
+  const dots=[];for(let j=0;j<6;j++){const c=el('circle',{r:4,class:j%2?'k-hep':'k-train'},g);op(c,0);dots.push(c);}
+  const net=txt(g,500,560,'Sites connect over high-speed research and education networks','sub');
+  return {dur:10,update(t){
+    op(node,ease(P(t,0,.5)));op(podg,ease(P(t,.4,.5)));op(reg,ease(P(t,.6,.5)));op(regW,P(t,.8,.4));op(net,P(t,.6,.6));
+    layers.forEach(L=>{if(t<L.t0){op(L.g,0);return;}op(L.g,1);const q=L.l.at(ease(P(t,L.t0,.9)));mv(L.g,q[0],q[1]);});
+    const a=ease(P(t,3.4,.4));op(gl,P(t,3.2,.4));op(mine,a);op(mineT,a);op(mineS,a);op(gpus[1].st,1-a);
+    op(ceph,ease(P(t,4.4,.5)));op(osdf,ease(P(t,4.6,.5)));op(cephW,P(t,4.8,.4));op(osdfW,P(t,5,.4));op(mount,P(t,5.4,.4));
+    dots.forEach((c,j)=>{if(t<5.2){op(c,0);return;}const ph=((t-5.2)*.7+j/6)%1;const q=(j%2?osdfL:cephL).at(ph);op(c,ph<.08||ph>.92?0:1);mv(c,q[0],q[1]);});
+    let s,col;
+    if(t<1.2){s='Pending';col='var(--muted)';}else if(t<3){s='Pulling image';col='var(--c-bio)';}else if(t<5.2){s='Starting';col='var(--c-infer)';}else{s='Running';col='var(--ok)';}
+    status.textContent=s;status.style.fill=col;
+  }};
+}
+
+/* ---------- Scene 5: what runs ---------- */
+function s5(g){
+  const stats=[[220,5800,'+','researchers'],[500,134,'','institutions'],[780,88,'','contributing sites']];
+  const st=stats.map(s=>{const gg=el('g',{},g);const big=txt(gg,s[0],54,'0','big');txt(gg,s[0],78,s[3],'sub');op(gg,0);return {gg,big,v:s[1],suf:s[2]};});
+  const ps=busy();ps.forEach(p=>{p.g=pod(g,p.kind,p.size);mv(p.g,p.x,p.y);});
+  return {dur:9,update(t){
+    st.forEach((s,i)=>{op(s.gg,ease(P(t,.2+i*.2,.5)));s.big.textContent=Math.round(s.v*ease(P(t,.4,2))).toLocaleString('en-US')+s.suf;});
+    ps.forEach((p,i)=>{const a=P(t,.3+p.order*3,.4);op(p.g,a*(.78+.22*Math.sin(t*2.2+p.order*40)));});
+  }};
+}
+
+/* ---------- Scene 6: results and accounting ---------- */
+function s6(g){
+  const you=box(g,130,46,190,56,'You','results and logs','box strong');
+  const acct=box(g,470,46,240,56,'Usage accounting','GPU and CPU hours per namespace');
+  const dash=el('g',{},g);op(dash,0);
+  el('rect',{x:700,y:14,width:270,height:64,rx:10,class:'box'},dash);
+  txt(dash,714,41,'Dashboards','lbl','start');txt(dash,714,61,'by institution','sub','start');
+  const bars=KINDS.map((k,i)=>el('rect',{x:850+i*22,y:70,width:14,height:0,rx:2,class:'k-'+k},dash));
+  const dw=el('line',{x1:590,y1:46,x2:700,y2:46,class:'wire'},g);op(dw,0);
+  const dwd=[0,1,2].map(()=>{const c=el('circle',{r:3.5,class:'usage'},g);op(c,0);return c;});
+  const ps=busy();const totals={};
+  ps.forEach(p=>{totals[p.kind]=(totals[p.kind]||0)+1;p.g=pod(g,p.kind,p.size);mv(p.g,p.x,p.y);p.te=.8+p.order*5;
+    if(p.main){p.rd=el('circle',{r:5,class:'k-'+p.kind},g);op(p.rd,0);p.rl=linkV(p.x,p.y,130,74);}
+    p.ud=el('circle',{r:3,class:'usage'},g);op(p.ud,0);p.ul=linkV(p.x,p.y,470,74);});
+  const maxT=Math.max.apply(null,KINDS.map(k=>totals[k]||0));
+  return {dur:9.5,update(t){
+    op(you,ease(P(t,.1,.5)));op(acct,ease(P(t,.3,.5)));op(dash,ease(P(t,.5,.5)));op(dw,P(t,.6,.4));
+    const counts={};
+    ps.forEach(p=>{
+      op(p.g,t<p.te?1:1-.85*P(t,p.te,.6));
+      if(p.rd){const u=P(t,p.te,1.3);if(t<p.te||u>=1)op(p.rd,0);else{op(p.rd,1);const q=p.rl.at(ease(u));mv(p.rd,q[0],q[1]);}}
+      const u2=P(t,p.te+.15,1.3);
+      if(t<p.te+.15||u2>=1)op(p.ud,0);else{op(p.ud,.9);const q=p.ul.at(ease(u2));mv(p.ud,q[0],q[1]);}
+      if(u2>=1)counts[p.kind]=(counts[p.kind]||0)+1;
+    });
+    KINDS.forEach((k,i)=>{const h=50*(counts[k]||0)/maxT;bars[i].setAttribute('height',h.toFixed(1));bars[i].setAttribute('y',(70-h).toFixed(1));});
+    dwd.forEach((c,j)=>{if(t<2.2){op(c,0);return;}const ph=((t-2.2)*.8+j/3)%1;op(c,1);mv(c,lerp(592,698,ph),46);});
+  }};
+}
+
+/* ---------- Engine ---------- */
+const SCENES=[
+  {key:'Sign in',title:'Sign in with your institution',map:.12,build:s1,
+   body:'There are no separate NRP passwords. You sign in with the same account you already use at your university or college. Once you\u2019re in, a group admin adds you to your lab\u2019s namespace, the shared space where your jobs, storage, and quotas live.'},
+  {key:'Ways in',title:'Pick the way in that fits your work',map:.12,build:s2,
+   body:'Batch work goes in as a Kubernetes job: a YAML file naming your container and the GPUs, CPUs, and memory it needs. JupyterHub gives you a notebook server on shared GPUs with no Kubernetes knowledge needed. Hosted open-weight models are available in a browser chat or through an OpenAI-compatible API.'},
+  {key:'Jupyter',title:'A notebook on a shared GPU',map:0,build:sJup,
+   body:'Sign in to JupyterHub, pick a profile, and you have a notebook server with a GPU attached. Courses and labs that need more control can run their own hub with their own images, on the same shared hardware.'},
+  {key:'LLMs',title:'Open-weight models, ready to use',map:0,build:sLlm,
+   body:'NRP hosts open-weight models such as Qwen, Kimi, GLM, and gpt-oss. Chat with them in Open WebUI, or point Chatbox, a coding CLI, or your own code at the same endpoint. Nothing to deploy and no GPUs to manage.'},
+  {key:'Schedule',title:'The scheduler picks a node anywhere in the federation',map:1,build:s3,
+   body:'NRP is one Kubernetes cluster made of hardware at dozens of campuses. The scheduler matches each pod to a node with the right free resources, from gaming-class GPUs in a campus machine room to H100 and GH200 nodes in a data center, and honors any site or GPU type you ask for.'},
+  {key:'Run',title:'Inside the node',map:.12,build:s4,
+   body:'The node pulls your container image, assigns you a GPU, and mounts storage: Ceph for S3 buckets and shared filesystems, and OSDF caches for large shared datasets. Your pod moves from Pending to Running, and your code starts.'},
+  {key:'Workloads',title:'What people run',map:1,build:s5,
+   body:'AI training and fine-tuning, LLM inference, LHC physics analysis, genomics pipelines, and classroom notebooks share the same machines. A GPU sitting idle at one campus becomes capacity for a researcher somewhere else.'},
+  {key:'Results',title:'Results come back and usage is counted',map:1,build:s6,
+   body:'Outputs land in your storage or back on your laptop. Every pod\u2019s GPU and CPU time is recorded per namespace, which feeds NRP\u2019s accounting dashboards and the reports contributing institutions use to see what their hardware made possible.'}
+];
+const N=SCENES.length;
+const stepsEl=document.getElementById('steps');
+SCENES.forEach((s,i)=>{
+  const b=document.createElement('button');b.type='button';b.className='step';
+  b.innerHTML='<span><span class="n">'+(i+1)+'</span><span class="label">'+s.key+'</span></span><span class="track"><span class="fill"></span></span>';
+  b.setAttribute('aria-label','Step '+(i+1)+': '+s.title);
+  b.addEventListener('click',()=>{show(i);});
+  stepsEl.appendChild(b);s.btn=b;s.fill=b.querySelector('.fill');
+});
+const playBtn=document.getElementById('play');
+let cur=0,t=0,api=null,playing=!reduce&&!AUTOH,last=null,userPaused=false;
+
+function ended(){return cur===N-1&&t>=api.dur;}
+let endShown=false;
+function updEnd(){const e=ended();if(e===endShown)return;endShown=e;endEl.classList.toggle('show',e);if(e){post('nrp-how:ended');if(!AUTOH)try{endEl.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'});}catch(x){}}}
+function setBtn(){playBtn.textContent=ended()?'Replay':(playing?'Pause':'Play');}
+function show(i){
+  cur=(i+N)%N;t=0;
+  while(layer.firstChild)layer.removeChild(layer.firstChild);
+  SITES.forEach(s=>s.c.classList.remove('hit'));
+  api=SCENES[cur].build(layer);
+  mapG.style.opacity=SCENES[cur].map;
+  if(reduce)t=api.dur;
+  api.update(t);
+  const s=SCENES[cur];
+  document.getElementById('scene-count').textContent='Step '+(cur+1)+' of '+N;
+  document.getElementById('scene-title').textContent=s.title;
+  document.getElementById('scene-body').textContent=s.body;
+  svg.setAttribute('aria-label',s.title+'. '+s.body);
+  SCENES.forEach((x,j)=>{if(j===cur)x.btn.setAttribute('aria-current','step');else x.btn.removeAttribute('aria-current');});
+  setBtn();paintProgress();updEnd();
+}
+function paintProgress(){SCENES.forEach((s,j)=>{s.fill.style.width=(j<cur?100:j>cur?0:100*Math.min(1,t/api.dur))+'%';});}
+function frame(ts){
+  if(last===null)last=ts;
+  const dt=Math.min(.1,(ts-last)/1000);last=ts;
+  if(playing){
+    t+=dt;
+    if(t>=api.dur){
+      if(cur<N-1){show(cur+1);}
+      else{t=api.dur;playing=false;setBtn();}
+    }
+  }
+  api.update(Math.min(t,api.dur));paintProgress();updEnd();
+  requestAnimationFrame(frame);
+}
+playBtn.addEventListener('click',()=>{
+  if(ended()){playing=!reduce;show(0);if(reduce){playing=false;}return;}
+  playing=!playing;userPaused=!playing;if(playing&&t>=api.dur)t=0;setBtn();
+});
+document.getElementById('prev').addEventListener('click',()=>show(cur-1));
+document.getElementById('next').addEventListener('click',()=>show(cur+1));
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){post('nrp-how:close');}
+  else if(e.key==='ArrowRight'){show(cur+1);}
+  else if(e.key==='ArrowLeft'){show(cur-1);}
+  else if(e.key===' '&&e.target.tagName!=='BUTTON'){e.preventDefault();playBtn.click();}
+});
+if(EMBED){
+  window.addEventListener('message',e=>{
+    if(e.origin!==location.origin||!e.data||e.data.type!=='nrp-how:theme')return;
+    const th=e.data.theme;if(th==='light'||th==='dark')document.documentElement.setAttribute('data-theme',th);
+  });
+}
+if(AUTOH){
+  const sendH=()=>{if(window.parent!==window){try{window.parent.postMessage({type:'nrp-how:height',height:Math.ceil(document.body.getBoundingClientRect().height)},location.origin);}catch(e){}}};
+  if('ResizeObserver' in window)new ResizeObserver(sendH).observe(document.body);
+  window.addEventListener('load',sendH);sendH();
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>{const vis=es[0].isIntersecting;
+      if(vis){if(!userPaused&&!reduce&&!ended()){playing=true;setBtn();}}
+      else if(playing){playing=false;setBtn();}
+    },{threshold:.45}).observe(svg);
+  }else if(!reduce){playing=true;setBtn();}
+}
+show(0);
+requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

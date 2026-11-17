@@ -1,0 +1,59 @@
+{% comment %}
+  Embed a self-contained HTML animation from /assets/animations/ in a post.
+
+  Usage:
+    {% include animation.html src="/assets/animations/nrp-how-it-works.html"
+       title="How the National Research Platform works"
+       caption="Optional caption." %}
+
+  The animation page is loaded with ?embed=1&autoheight=1. It reports its
+  height so the iframe grows to fit, plays only while it is on screen, and
+  follows the site's light/dark toggle.
+{% endcomment %}
+{% assign anim_src = include.src | relative_url %}
+<figure class="not-prose my-8" data-animation-embed>
+  <iframe
+    src="{{ anim_src }}?embed=1&amp;autoheight=1"
+    title="{{ include.title | escape }}"
+    loading="lazy"
+    scrolling="no"
+    class="block w-full rounded-[0.9rem] border border-slate-200 dark:border-slate-700"
+    style="width: 100%; height: {{ include.height | default: 960 }}px; border-width: 1px; background: transparent;"></iframe>
+  <figcaption class="mt-3 text-sm text-slate-500 dark:text-slate-400">
+    {% if include.caption %}{{ include.caption | markdownify | remove: '<p>' | remove: '</p>' | strip }} {% endif %}<a href="{{ anim_src }}" target="_blank" rel="noopener" class="underline decoration-sky-500/60 underline-offset-2 hover:text-sky-600 dark:hover:text-sky-400">Open full screen</a>
+  </figcaption>
+</figure>
+<script>
+  (function () {
+    if (window.__animationEmbedReady) return;
+    window.__animationEmbedReady = true;
+
+    function frames() {
+      return Array.prototype.slice.call(document.querySelectorAll('[data-animation-embed] iframe'));
+    }
+    function currentTheme() {
+      return document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+    }
+    function sendTheme(frame) {
+      try {
+        frame.contentWindow.postMessage({ type: 'nrp-how:theme', theme: currentTheme() }, location.origin);
+      } catch (err) {}
+    }
+
+    window.addEventListener('message', function (event) {
+      if (event.origin !== location.origin || !event.data || event.data.type !== 'nrp-how:height') return;
+      frames().forEach(function (frame) {
+        if (frame.contentWindow === event.source && event.data.height > 0) {
+          frame.style.height = event.data.height + 'px';
+        }
+      });
+    });
+
+    frames().forEach(function (frame) {
+      frame.addEventListener('load', function () { sendTheme(frame); });
+    });
+
+    new MutationObserver(function () { frames().forEach(sendTheme); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  })();
+</script>
