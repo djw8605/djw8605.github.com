@@ -30,10 +30,45 @@
 #               a preprint is worth surfacing.
 #   award       Optional. Folds the old "Awards" section into the entry itself.
 #   status      Optional. `unresolved` = citation incomplete or provisional.
-#               Currently unused; every entry below carries a resolved citation
-#               or is a type that legitimately has no DOI.
+#               Used for a paper that has been presented but whose proceedings
+#               DOI is not yet known; drop it once the DOI is filled in.
 
 # ---------------------------------------------------------------- 2026
+# INDIS 2026 workshop at SC26 (Chicago, 15 Nov 2026). Proceedings DOI not yet
+# assigned; fill in `doi`, `venue_full` and `pages` and drop `status` once the
+# SC '26 Workshops proceedings are published.
+- key: barla2026networkaware
+  type: inproceedings
+  title: "Network-Aware Caching in Distributed CMS XRootD Systems via Data-Driven Forecasting"
+  authors:
+    - Sarat Sasank Barla
+    - Byrav Ramamurthy
+    - Derek Weitzel
+  year: 2026
+  venue: "INDIS 2026 (SC26 Workshops)"
+  venue_full: "INDIS 2026: Innovating the Network for Data-Intensive Science, SC26 Workshops"
+  series: other
+  status: unresolved
+  links:
+    - label: "INDIS 2026 program"
+      url: "https://scinet.supercomputing.org/community/indis/indis-2026-workshop-program/"
+
+- key: barla2026hierarchical
+  type: article
+  title: "Hierarchical File-Level Cache Access Prediction for Distributed Scientific Experiments: A Case Study in High-Energy Physics with US CMS"
+  authors:
+    - Sarat Sasank Barla
+    - Venkat Sai Suman Lamba Karanam
+    - Byrav Ramamurthy
+    - Derek Weitzel
+  year: 2026
+  venue: "Research Square (preprint)"
+  venue_full: "Research Square preprint"
+  series: other
+  links:
+    - label: "Research Square"
+      url: "https://www.researchsquare.com/article/rs-9809323/v1"
+
 - key: aarrestad2026ainative
   type: article
   title: "Building an AI-native Research Ecosystem for Experimental Particle Physics: A Community Vision"
@@ -189,6 +224,9 @@
   publisher: "Association for Computing Machinery"
   series: pearc
   doi: "10.1145/3626203.3670557"
+  links:
+    - label: "arXiv"
+      url: "https://arxiv.org/abs/2605.15437"
 
 - key: garrido2024xrootdmonitoring
   type: article
