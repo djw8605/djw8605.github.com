@@ -30,7 +30,7 @@
 #               a preprint is worth surfacing.
 #   award       Optional. Folds the old "Awards" section into the entry itself.
 #   status      Optional. `unresolved` = citation incomplete or provisional.
-#               Used for a paper that has been presented but whose proceedings
+#               Use for a paper that has been presented but whose proceedings
 #               DOI is not yet known; drop it once the DOI is filled in.
 
 # ---------------------------------------------------------------- 2026
@@ -59,9 +59,7 @@
   series: ieee
   doi: "10.1109/SCW72768.2026.00242"
 
-# INDIS 2026 workshop at SC26 (Chicago, 15 Nov 2026). Proceedings DOI not yet
-# assigned; fill in `doi` and `pages` and drop `status` once the
-# SC '26 Workshops proceedings are published.
+# INDIS 2026 workshop at SC26 (Chicago, 15 Nov 2026).
 - key: barla2026networkaware
   type: inproceedings
   title: "Network-Aware Caching in Distributed CMS XRootD Systems via Data-Driven Forecasting"
@@ -74,10 +72,7 @@
   venue_full: "SC26-W: Workshops of the International Conference for High Performance Computing, Networking, Storage and Analysis"
   publisher: "IEEE Computer Society"
   series: ieee
-  status: unresolved
-  links:
-    - label: "INDIS 2026 program"
-      url: "https://scinet.supercomputing.org/community/indis/indis-2026-workshop-program/"
+  doi: "10.1109/SCW72768.2026.00066"
 
 - key: barla2026hierarchical
   type: article
