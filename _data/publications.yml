@@ -34,8 +34,33 @@
 #               DOI is not yet known; drop it once the DOI is filled in.
 
 # ---------------------------------------------------------------- 2026
+# HUST workshop at SC26 (Chicago, 15 Nov 2026). Pages are from the IEEE
+# proceedings; no DOI found yet. The source list is truncated after Derek
+# ("and others").
+- key: smith2026skip
+  type: inproceedings
+  title: "Skip the SuperPOD - The User-Driven Case for Throughput-Optimized GPU Clusters"
+  authors:
+    - Preston Smith
+    - Ryan DeRue
+    - Scott Michael
+    - Kanin Bender
+    - Greg Bauer
+    - Christopher Heller
+    - Kevin Hildebrand
+    - Brock Palen
+    - Brian O'Shea
+    - Derek Weitzel
+  et_al: true
+  year: 2026
+  venue: "SC26-W (HUST)"
+  venue_full: "SC26-W: Workshops of the International Conference for High Performance Computing, Networking, Storage and Analysis"
+  pages: "1995--2002"
+  publisher: "IEEE Computer Society"
+  series: ieee
+
 # INDIS 2026 workshop at SC26 (Chicago, 15 Nov 2026). Proceedings DOI not yet
-# assigned; fill in `doi`, `venue_full` and `pages` and drop `status` once the
+# assigned; fill in `doi` and `pages` and drop `status` once the
 # SC '26 Workshops proceedings are published.
 - key: barla2026networkaware
   type: inproceedings
@@ -46,8 +71,9 @@
     - Derek Weitzel
   year: 2026
   venue: "INDIS 2026 (SC26 Workshops)"
-  venue_full: "INDIS 2026: Innovating the Network for Data-Intensive Science, SC26 Workshops"
-  series: other
+  venue_full: "SC26-W: Workshops of the International Conference for High Performance Computing, Networking, Storage and Analysis"
+  publisher: "IEEE Computer Society"
+  series: ieee
   status: unresolved
   links:
     - label: "INDIS 2026 program"
