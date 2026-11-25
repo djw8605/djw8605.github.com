@@ -34,9 +34,8 @@
 #               DOI is not yet known; drop it once the DOI is filled in.
 
 # ---------------------------------------------------------------- 2026
-# HUST workshop at SC26 (Chicago, 15 Nov 2026). Pages are from the IEEE
-# proceedings; no DOI found yet. The source list is truncated after Derek
-# ("and others").
+# HUST workshop at SC26 (Chicago, 15 Nov 2026). The source list is truncated
+# after Derek ("and others").
 - key: smith2026skip
   type: inproceedings
   title: "Skip the SuperPOD - The User-Driven Case for Throughput-Optimized GPU Clusters"
@@ -58,6 +57,7 @@
   pages: "1995--2002"
   publisher: "IEEE Computer Society"
   series: ieee
+  doi: "10.1109/SCW72768.2026.00242"
 
 # INDIS 2026 workshop at SC26 (Chicago, 15 Nov 2026). Proceedings DOI not yet
 # assigned; fill in `doi` and `pages` and drop `status` once the
